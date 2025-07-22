@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריכים מקצועיים לבריכות שחייה | Pool Israel</title>
+    <meta name="description" content="מדריכים מקיפים ומקצועיים לכל מה שקשור לבריכות שחייה - תכנון, בנייה, בטיחות, תחזוקה והיתרים. כל המידע במקום אחד.">
+    <meta name="keywords" content="מדריכי בריכות, בניית בריכה, בטיחות בריכות, תחזוקת בריכה, היתר בנייה, קבלני בריכות">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://israel-pool.top/guides_page.html">
+    <meta property="og:title" content="מדריכים מקצועיים לבריכות שחייה | Pool Israel">
+    <meta property="og:description" content="מדריכים מקיפים ומקצועיים לכל מה שקשור לבריכות שחייה - תכנון, בנייה, בטיחות, תחזוקה והיתרים.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://israel-pool.top/guides_page.html">
+    <meta property="og:image" content="https://israel-pool.top/images/logo.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="מדריכים מקצועיים לבריכות שחייה | Pool Israel">
+    <meta name="twitter:description" content="מדריכים מקיפים ומקצועיים לכל מה שקשור לבריכות שחייה - תכנון ועד תחזוקה.">
+    <meta name="twitter:image" content="https://israel-pool.top/images/logo.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "מדריכים מקצועיים לבריכות שחייה",
+        "description": "מדריכים מקיפים ומקצועיים לכל מה שקשור לבריכות שחייה - תכנון, בנייה, בטיחות, תחזוקה והיתרים",
+        "url": "https://israel-pool.top/guides_page.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Pool Israel",
+            "url": "https://israel-pool.top"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "דף הבית",
+                    "item": "https://israel-pool.top/home.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "מדריכים מקצועיים",
+                    "item": "https://israel-pool.top/guides_page.html"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/template.css">
+    <link rel="stylesheet" href="css/breadcrumbs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for guides page */
+        .guides-hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            padding: 120px 0 80px;
+            color: #722196;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guides-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="guides-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="20" fill="url(%23guides-pattern)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .guides-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .guides-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .guides-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .guides-search {
+            background: white;
+            padding: 40px 0;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 60px 20px 20px;
+            font-size: 1.1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .popular-searches {
+            text-align: center;
+        }
+
+        .popular-searches span {
+            color: var(--text-muted);
+            margin-left: 10px;
+        }
+
+        .search-tag {
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-tag:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--light-blue);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .category-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .category-count {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .category-body {
+            padding: 25px;
+        }
+
+        .guide-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .guide-item:last-child {
+            border-bottom: none;
+        }
+
+        .guide-item:hover {
+            color: var(--primary-blue);
+            transform: translateX(-5px);
+        }
+
+        .guide-title {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .guide-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .difficulty-badge {
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .difficulty-beginner {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .difficulty-intermediate {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .difficulty-advanced {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        @media (max-width: 768px) {
+            .guides-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .guides-hero p {
+                font-size: 1.1rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="home.html" title="Pool Israel - דף הבית">
+                        <img src="images/logo.svg" alt="Pool Israel Logo" width="150" height="45">
+                    </a>
+                </div>
+
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html" title="דף הבית">🏠 דף הבית</a></li>
+                        <li><a href="contractors_page.html" title="מצא קבלני בריכות מקצועיים">👷 קבלנים</a></li>
+                        <li><a href="guides_page.html" title="מדריכים מפורטים לבניית בריכות" class="active">📚 מדריכים</a></li>
+                        <li><a href="quote_modal.html" title="קבל הצעת מחיר מיידית">💰 הצעת מחיר</a></li>
+                        <li><a href="#contact" title="צור קשר עם Pool Israel">📞 צור קשר</a></li>
+                    </ul>
+                </nav>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="פתח תפריט ניווט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="home.html"><i class="fas fa-home"></i> דף הבית</a></li>
+                <li>מדריכים מקצועיים לבריכות שחייה</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="guides-hero">
+        <div class="container">
+            <div class="guides-hero-content">
+                <h1>📚 מדריכים מקצועיים לבריכות שחייה</h1>
+                <p>כל מה שצריך לדעת על תכנון, בנייה, בטיחות ותחזוקה של בריכות שחייה. מדריכים מקיפים ומעודכנים מאת מומחי התחום.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="guides-search">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="חפש מדריכים..." id="guidesSearch">
+                    <button class="search-btn" type="button" aria-label="חפש">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="popular-searches">
+                    <span>חיפושים פופולריים:</span>
+                    <span class="search-tag" onclick="searchGuides('בניית בריכה')">בניית בריכה</span>
+                    <span class="search-tag" onclick="searchGuides('בטיחות')">בטיחות</span>
+                    <span class="search-tag" onclick="searchGuides('תחזוקה')">תחזוקה</span>
+                    <span class="search-tag" onclick="searchGuides('קבלן')">בחירת קבלן</span>
+                    <span class="search-tag" onclick="searchGuides('היתרים')">היתרים</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>📚 קטגוריות המדריכים</h2>
+                <p>בחר את הנושא שמעניין אותך ומצא מדריכים מקצועיים ומפורטים</p>
+            </div>
+
+            <div class="categories-grid">
+                <!-- Getting Started -->
+                <div class="category-card animate-on-scroll">
+                    <div class="category-header" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;">
+                        <i class="fas fa-play-circle category-icon"></i>
+                        <h3>התחלת הדרך</h3>
+                        <div class="category-count">12 מדריכים</div>
+                    </div>
+                    <div class="category-body">
+                        <div class="guide-item" onclick="window.location.href='guide_complete_pool_building_2025.html'">
+                            <div class="guide-title">המדריך המלא לבניית בריכה 2025</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>15 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_choosing_contractor.html'">
+                            <div class="guide-title">איך לבחור קבלן מהימן</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>8 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_planning_stages.html'">
+                            <div class="guide-title">שלבי התכנון מהחלטה ועד מימוש</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>12 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_common_mistakes.html'">
+                            <div class="guide-title">טעויות נפוצות למען הימנעות</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>10 דק'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pool Types -->
+                <div class="category-card animate-on-scroll">
+                    <div class="category-header">
+                        <i class="fas fa-layer-group category-icon"></i>
+                        <h3>סוגי בריכות</h3>
+                        <div class="category-count">8 מדריכים</div>
+                    </div>
+                    <div class="category-body">
+                        <div class="guide-item" onclick="window.location.href='guide_complete_pool_building_2025.html'">
+                            <div class="guide-title">בריכות בטון - יתרונות וחסרונות</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>12 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_complete_pool_building_2025.html'">
+                            <div class="guide-title">בריכות פיברגלס - המדריך המלא</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>10 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_prefab_pools.html'">
+                            <div class="guide-title">בריכות מתועשות - הטכנולוגיה החדשה</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-advanced">מתקדם</span>
+                                <i class="fas fa-clock"></i>
+                                <span>14 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_complete_pool_building_2025.html'">
+                            <div class="guide-title">השוואת מחירים לפי סוג בריכה</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>7 דק'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety -->
+                <div class="category-card animate-on-scroll">
+                    <div class="category-header">
+                        <i class="fas fa-shield-alt category-icon"></i>
+                        <h3>בטיחות וילדים</h3>
+                        <div class="category-count">10 מדריכים</div>
+                    </div>
+                    <div class="category-body">
+                        <div class="guide-item" onclick="window.location.href='guide_pool_safety_children.html'">
+                            <div class="guide-title">בטיחות ילדים בבריכה - המדריך החיוני</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>8 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_pool_safety_children.html'">
+                            <div class="guide-title">גדרות ושערים - מדריך בחירה</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>6 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_pool_safety_children.html'">
+                            <div class="guide-title">כיסויים ואזעקות למניעת טביעות</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>11 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_pool_safety_children.html'">
+                            <div class="guide-title">התקן ישראלי 6250 - הסבר מפורט</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-advanced">מתקדם</span>
+                                <i class="fas fa-clock"></i>
+                                <span>13 דק'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Permits -->
+                <div class="category-card animate-on-scroll">
+                    <div class="category-header">
+                        <i class="fas fa-file-alt category-icon"></i>
+                        <h3>היתרים ורגולציה</h3>
+                        <div class="category-count">7 מדריכים</div>
+                    </div>
+                    <div class="category-body">
+                        <div class="guide-item" onclick="window.location.href='guide_planning_stages.html'">
+                            <div class="guide-title">איך להוציא היתר בנייה לבריכה</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>16 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_common_mistakes.html'">
+                            <div class="guide-title">דרישות עיריות - מדריך לפי ערים</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>11 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_betterment_tax.html'">
+                            <div class="guide-title">היטל השבחה - מתי משלמים</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>9 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_official_forms.html'">
+                            <div class="guide-title">טפסים להדפסה וקישורים רשמיים</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>5 דק'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maintenance -->
+                <div class="category-card animate-on-scroll">
+                    <div class="category-header">
+                        <i class="fas fa-tools category-icon"></i>
+                        <h3>תחזוקה ותפעול</h3>
+                        <div class="category-count">15 מדריכים</div>
+                    </div>
+                    <div class="category-body">
+                        <div class="guide-item" onclick="window.location.href='guide_annual_maintenance.html'">
+                            <div class="guide-title">מדריך תחזוקה שנתי מלא</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>18 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_chemical_balance.html'">
+                            <div class="guide-title">איזון כימי של מי הבריכה</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-advanced">מתקדם</span>
+                                <i class="fas fa-clock"></i>
+                                <span>15 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_common_problems.html'">
+                            <div class="guide-title">תקלות נפוצות ואיך לטפל בהן</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>13 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_winter_pool_care.html'">
+                            <div class="guide-title">בריכה בחורף - הכנה וטיפול</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>8 דק'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trends -->
+                <div class="category-card animate-on-scroll">
+                    <div class="category-header">
+                        <i class="fas fa-rocket category-icon"></i>
+                        <h3>טרנדים וחדשנות</h3>
+                        <div class="category-count">9 מדריכים</div>
+                    </div>
+                    <div class="category-body">
+                        <div class="guide-item" onclick="window.location.href='guide_smart_pools.html'">
+                            <div class="guide-title">בריכות חכמות וטכנולוגיה</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-advanced">מתקדם</span>
+                                <i class="fas fa-clock"></i>
+                                <span>11 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_trendy_designs_2025.html'">
+                            <div class="guide-title">עיצובים טרנדיים 2025</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>9 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_green_sustainable_pools.html'">
+                            <div class="guide-title">בריכות ירוקות וקיימות</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-intermediate">בינוני</span>
+                                <i class="fas fa-clock"></i>
+                                <span>12 דק'</span>
+                            </div>
+                        </div>
+                        <div class="guide-item" onclick="window.location.href='guide_israeli_innovation.html'">
+                            <div class="guide-title">חדשנות ישראלית בענף</div>
+                            <div class="guide-meta">
+                                <span class="difficulty-badge difficulty-beginner">מתחילים</span>
+                                <i class="fas fa-clock"></i>
+                                <span>7 דק'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Guides -->
+    <section class="featured-guides">
+        <div class="container">
+            <div class="section-title">
+                <h2>המדריכים המובילים השבוע</h2>
+                <p>המדריכים הכי פופולריים ומעודכנים שקיבלו הכי הרבה צפיות השבוע</p>
+            </div>
+
+            <div class="featured-grid">
+                <div class="main-featured">
+                    <div class="featured-image">
+                        <i class="fas fa-swimming-pool"></i>
+                        <div class="featured-badge">הכי פופולרי</div>
+                    </div>
+                    <div class="featured-content">
+                        <h3>המדריך המלא לבניית בריכה פרטית 2025</h3>
+                        <p>מדריך מקיף ומעודכן לכל השלבים בבניית בריכה פרטית - מהתכנון הראשוני ועד הצלילה הראשונה. כולל טיפים מקצועיים, רשימת ציוד ולוחות זמנים מציאותיים.</p>
+                        
+                        <div class="featured-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>25,342 צפיות</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-clock"></i>
+                                <span>15 דקות קריאה</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.9 דירוג</span>
+                            </div>
+                        </div>
+
+                        <a href="guide_complete_pool_building_2025.html" class="btn btn-primary">קרא את המדריך המלא</a>
+                    </div>
+                </div>
+
+                <div class="side-featured">
+                    <div class="side-item" onclick="window.location.href='guide_pool_safety_children.html'">
+                        <h4>בטיחות ילדים בבריכה - המדריך החיוני</h4>
+                        <p>כל מה שחובה לדעת על אמצעי בטיחות, התקן 6250 ומניעת טביעות</p>
+                        <div class="guide-meta">
+                            <i class="fas fa-clock"></i>
+                            <span>8 דקות</span>
+                            <span>12,887 צפיות</span>
+                        </div>
+                    </div>
+
+                    <div class="side-item" onclick="window.location.href='guide_complete_pool_building_2025.html'">
+                        <h4>בריכות פיברגלס vs בטון - השוואה מקיפה</h4>
+                        <p>ניתוח מפורט של היתרונות, החסרונות והעלויות של כל סוג</p>
+                        <div class="guide-meta">
+                            <i class="fas fa-clock"></i>
+                            <span>12 דקות</span>
+                            <span>9,654 צפיות</span>
+                        </div>
+                    </div>
+
+                    <div class="side-item" onclick="window.location.href='guide_planning_stages.html'">
+                        <h4>היתר בנייה לבריכה - מדריך צעד אחר צעד</h4>
+                        <p>תהליך הוצאת ההיתר, דרישות ועלויות לפי עיריות</p>
+                        <div class="guide-meta">
+                            <i class="fas fa-clock"></i>
+                            <span>16 דקות</span>
+                            <span>8,239 צפיות</span>
+                        </div>
+                    </div>
+
+                    <div class="side-item" onclick="window.location.href='guide_common_mistakes.html'">
+                        <h4>תחזוקת בריכה - המדריך השנתי</h4>
+                        <p>לוח תחזוקה מלא לכל השנה עם טיפים לחיסכון</p>
+                        <div class="guide-meta">
+                            <i class="fas fa-clock"></i>
+                            <span>20 דקות</span>
+                            <span>7,891 צפיות</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access -->
+    <section class="quick-access">
+        <div class="container">
+            <div class="section-title">
+                <h2>גישה מהירה</h2>
+                <p>כלים וקישורים מהירים למה שאתם הכי צריכים</p>
+            </div>
+
+            <div class="quick-grid">
+                <div class="quick-item">
+                    <div class="quick-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h4>מחשבון עלויות</h4>
+                    <p>הערכת מחיר מדויקת לבריכה שלכם</p>
+                </div>
+
+                <div class="quick-item">
+                    <div class="quick-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>מצא קבלן</h4>
+                    <p>קבלנים מאומתים באזור שלכם</p>
+                </div>
+
+                <div class="quick-item">
+                    <div class="quick-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h4>שאלות ותשובות</h4>
+                    <p>התשובות לשאלות הנפוצות</p>
+                </div>
+
+                <div class="quick-item">
+                    <div class="quick-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4>ייעוץ מקצועי</h4>
+                    <p>דברו עם המומחים שלנו</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Search functionality
+        document.getElementById('guidesSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            // Here you would implement the actual search logic
+            console.log('Searching for:', searchTerm);
+        });
+
+        // Search tags
+        document.querySelectorAll('.search-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                document.getElementById('guidesSearch').value = this.textContent;
+                // Trigger search
+            });
+        });
+
+        // Smooth scroll animation
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        // Category card clicks
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Navigate to category page
+                console.log('Navigating to category');
+            });
+        });
+
+        // Guide item clicks - handled by onclick attributes in HTML
+
+        // Event listeners
+        window.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🏊‍♂️ Pool Israel</h4>
+                    <p>הפורטל המוביל לבניית בריכות בישראל</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>🔗 קישורים מהירים</h4>
+                    <ul>
+                        <li><a href="contractors_page.html">קבלני בריכות</a></li>
+                        <li><a href="guides_page.html">מדריכי בריכות</a></li>
+                        <li><a href="quote_modal.html">הצעת מחיר</a></li>
+                        <li><a href="home.html#contact">צור קשר</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>📞 צור קשר</h4>
+                    <p><i class="fas fa-phone"></i> 058-4995151</p>
+                    <p><i class="fas fa-envelope"></i> info@israel-pool.top</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>💼 שירותי BDNHOST</h4>
+                    <p>פיתוח ואחסון האתר על ידי BDNHOST</p>
+                    <a href="https://bdnhost.com" target="_blank" rel="noopener">www.bdnhost.com</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pool Israel. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/template.js"></script>
+    <script>
+        // Search functionality
+        function searchGuides(term) {
+            const searchInput = document.getElementById('guidesSearchMain');
+            if (searchInput) {
+                searchInput.value = term;
+                // Here you would implement the actual search logic
+                console.log('Searching for:', term);
+            }
+        }
+
+        // Search input handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('guidesSearchMain');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    console.log('Searching for:', searchTerm);
+                    // Implement search logic here
+                });
+            }
+
+            // Search tags
+            document.querySelectorAll('.search-tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const term = this.textContent.trim();
+                    searchGuides(term);
+                });
+            });
+
+            // Animate on scroll
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+        });
+
+        // Smooth scroll animation
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

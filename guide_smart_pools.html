@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בריכות חכמות וטכנולוגיה מתקדמת | PoolIsrael</title>
+    <meta name="description" content="מדריך מקיף לבריכות חכמות - אוטומציה, בקרה מרחוק, חיישנים חכמים, IoT ומערכות ניהול מתקדמות. העתיד של הבריכות כאן.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://poolisrael.co.il/guide_smart_pools.html">
+    <meta property="og:title" content="בריכות חכמות וטכנולוגיה מתקדמת">
+    <meta property="og:description" content="מדריך מקיף לטכנולוגיות החכמות בבריכות - אוטומציה, בקרה מרחוק ועוד">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://poolisrael.co.il/guide_smart_pools.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2E86AB;
+            --dark-blue: #1B4F72;
+            --accent-orange: #F39C12;
+            --light-blue: #AED6F1;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --border-light: #E5E7EB;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            --success-green: #27AE60;
+            --warning-yellow: #F39C12;
+            --tech-purple: #8E44AD;
+            --smart-blue: #3498DB;
+            --ai-green: #1ABC9C;
+            --future-orange: #E67E22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .guide-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, var(--tech-purple) 0%, #9B59B6 100%);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .guide-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            border-right: 4px solid var(--tech-purple);
+        }
+
+        .section h2 {
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h3 {
+            color: var(--tech-purple);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .tech-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tech-card.automation {
+            border-top-color: var(--smart-blue);
+        }
+
+        .tech-card.sensors {
+            border-top-color: var(--ai-green);
+        }
+
+        .tech-card.control {
+            border-top-color: var(--tech-purple);
+        }
+
+        .tech-card.future {
+            border-top-color: var(--future-orange);
+        }
+
+        .tech-card h4 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .tech-icon {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            opacity: 0.1;
+        }
+
+        .tech-card.automation .tech-icon {
+            background: var(--smart-blue);
+        }
+
+        .tech-card.sensors .tech-icon {
+            background: var(--ai-green);
+        }
+
+        .tech-card.control .tech-icon {
+            background: var(--tech-purple);
+        }
+
+        .tech-card.future .tech-icon {
+            background: var(--future-orange);
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li::before {
+            content: "⚡";
+            color: var(--tech-purple);
+            font-size: 1.1rem;
+        }
+
+        .price-range {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .price-range .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--tech-purple);
+        }
+
+        .price-range .note {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-table th {
+            background: var(--tech-purple);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: var(--light-gray);
+        }
+
+        .info-box {
+            background: #D1ECF1;
+            border: 1px solid #BEE5EB;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .info-box h4 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border: 1px solid #FFEAA7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning-yellow);
+        }
+
+        .warning-box h4 {
+            color: #B7791F;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .future-box {
+            background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
+            border: 1px solid #C8E6C9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--ai-green);
+        }
+
+        .future-box h4 {
+            color: var(--ai-green);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .guide-header h1 {
+                font-size: 2rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="pool_israel_homepage.html" class="logo">
+                    <i class="fas fa-swimming-pool"></i>
+                    PoolIsrael
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="guides_page.html" class="active">מדריכים</a></li>
+                    <li><a href="contractors_page.html">קבלנים</a></li>
+                    <li><a href="tools_page.html">כלים</a></li>
+                    <li><a href="community_page.html">קהילה</a></li>
+                    <li><a href="news_page.html">חדשות</a></li>
+                </ul>
+
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">התחברות</a>
+                    <a href="#" class="btn btn-primary">הרשמה</a>
+                </div>
+
+                <button type="button" class="mobile-menu-btn" aria-label="תפריט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="guide-container">
+        <div class="guide-header">
+            <h1>🤖 בריכות חכמות וטכנולוגיה</h1>
+            <div class="meta-info">
+                <span><i class="fas fa-clock"></i> זמן קריאה: 11 דקות</span>
+                <span><i class="fas fa-calendar-alt"></i> עודכן: יוני 2025</span>
+                <span><i class="fas fa-star"></i> דירוג: 4.9/5</span>
+                <span><i class="fas fa-eye"></i> 12,456 צפיות</span>
+            </div>
+        </div>
+
+        <div class="guide-content">
+            <section class="section">
+                <h2><i class="fas fa-info-circle"></i> מבוא לבריכות חכמות</h2>
+                <p>בריכות חכמות מייצגות את העתיד של תחזוקת בריכות. באמצעות טכנולוגיות מתקדמות כמו IoT, בינה מלאכותית וחיישנים חכמים, ניתן לנהל את הבריכה מרחוק, לחסוך בעלויות ולהבטיח איכות מים מושלמת.</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> מה זה בריכה חכמה?</h4>
+                    <p>בריכה חכמה היא מערכת אוטומטית המשלבת חיישנים, בקרים ותוכנה לניהול עצמאי של כל היבטי הבריכה - מאיזון כימי ועד לתחזוקה מונעת.</p>
+                </div>
+
+                <h3>יתרונות הבריכה החכמה</h3>
+                <ul class="features-list">
+                    <li><strong>חיסכון בזמן:</strong> אוטומציה מלאה של התחזוקה</li>
+                    <li><strong>חיסכון בכסף:</strong> אופטימיזציה של צריכת כימיקלים ואנרגיה</li>
+                    <li><strong>איכות מים מושלמת:</strong> ניטור וכוונון רציף</li>
+                    <li><strong>בקרה מרחוק:</strong> ניהול מכל מקום בעולם</li>
+                    <li><strong>תחזוקה מונעת:</strong> זיהוי בעיות לפני שהן מתפתחות</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-cogs"></i> טכנולוגיות מרכזיות</h2>
+                
+                <div class="tech-grid">
+                    <div class="tech-card automation">
+                        <div class="tech-icon"><i class="fas fa-robot"></i></div>
+                        <h4><i class="fas fa-cog"></i> אוטומציה מלאה</h4>
+                        <ul class="features-list">
+                            <li>מינון כימיקלים אוטומטי</li>
+                            <li>בקרת pH וכלור</li>
+                            <li>ניהול זמני סינון</li>
+                            <li>בקרת טמפרטורה</li>
+                            <li>ניקוי אוטומטי</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price">₪15,000 - ₪35,000</div>
+                            <div class="note">מערכת בסיסית</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-card sensors">
+                        <div class="tech-icon"><i class="fas fa-satellite-dish"></i></div>
+                        <h4><i class="fas fa-search"></i> חיישנים חכמים</h4>
+                        <ul class="features-list">
+                            <li>חיישני pH ו-ORP</li>
+                            <li>מדידת כלור בזמן אמת</li>
+                            <li>חיישני טמפרטורה</li>
+                            <li>מדידת זרימה ולחץ</li>
+                            <li>זיהוי דליפות</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price">₪8,000 - ₪20,000</div>
+                            <div class="note">חבילת חיישנים</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-card control">
+                        <div class="tech-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h4><i class="fas fa-wifi"></i> בקרה מרחוק</h4>
+                        <ul class="features-list">
+                            <li>אפליקציה לסמארטפון</li>
+                            <li>התראות בזמן אמת</li>
+                            <li>בקרת תאורה</li>
+                            <li>ניהול מערכת חימום</li>
+                            <li>דוחות ואנליטיקה</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price">₪5,000 - ₪15,000</div>
+                            <div class="note">מערכת בקרה</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-card future">
+                        <div class="tech-icon"><i class="fas fa-brain"></i></div>
+                        <h4><i class="fas fa-magic"></i> בינה מלאכותית</h4>
+                        <ul class="features-list">
+                            <li>למידה מדפוסי שימוש</li>
+                            <li>חיזוי תחזוקה</li>
+                            <li>אופטימיזציה אנרגטית</li>
+                            <li>זיהוי אנומליות</li>
+                            <li>המלצות אישיות</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price">₪25,000 - ₪50,000</div>
+                            <div class="note">מערכת מתקדמת</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-chart-line"></i> השוואת מערכות</h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>תכונה</th>
+                            <th>בסיסי</th>
+                            <th>מתקדם</th>
+                            <th>פרימיום</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>בקרת pH</strong></td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>בקרת כלור</strong></td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>אפליקציה</strong></td>
+                            <td>בסיסית</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>חיישנים מתקדמים</strong></td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>בינה מלאכותית</strong></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>תחזוקה מונעת</strong></td>
+                            <td>-</td>
+                            <td>בסיסית</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>מחיר</strong></td>
+                            <td>₪15,000-25,000</td>
+                            <td>₪25,000-40,000</td>
+                            <td>₪40,000-70,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-mobile-alt"></i> אפליקציות ובקרה</h2>
+
+                <h3>תכונות האפליקציה</h3>
+                <div class="tech-grid">
+                    <div class="tech-card control">
+                        <h4><i class="fas fa-tachometer-alt"></i> ניטור בזמן אמת</h4>
+                        <ul class="features-list">
+                            <li>רמות pH וכלור נוכחיות</li>
+                            <li>טמפרטורת מים</li>
+                            <li>סטטוס ציוד</li>
+                            <li>זמני הפעלה</li>
+                            <li>היסטוריית נתונים</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card automation">
+                        <h4><i class="fas fa-bell"></i> התראות חכמות</h4>
+                        <ul class="features-list">
+                            <li>חריגה מטווח pH</li>
+                            <li>רמת כלור נמוכה</li>
+                            <li>תקלות ציוד</li>
+                            <li>צורך בתחזוקה</li>
+                            <li>התראות מזג אוויר</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card sensors">
+                        <h4><i class="fas fa-sliders-h"></i> בקרה מרחוק</h4>
+                        <ul class="features-list">
+                            <li>הפעלת/כיבוי משאבה</li>
+                            <li>כוונון טמפרטורה</li>
+                            <li>בקרת תאורה</li>
+                            <li>הפעלת ניקוי</li>
+                            <li>מינון כימיקלים</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card future">
+                        <h4><i class="fas fa-chart-bar"></i> דוחות ואנליטיקה</h4>
+                        <ul class="features-list">
+                            <li>צריכת כימיקלים</li>
+                            <li>עלויות תפעול</li>
+                            <li>דפוסי שימוש</li>
+                            <li>יעילות אנרגטית</li>
+                            <li>המלצות שיפור</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-tools"></i> התקנה ותחזוקה</h2>
+
+                <h3>שלבי התקנה</h3>
+                <ul class="features-list">
+                    <li><strong>תכנון המערכת:</strong> בחירת רכיבים מתאימים</li>
+                    <li><strong>התקנת חיישנים:</strong> מיקום אופטימלי בצנרת</li>
+                    <li><strong>חיבור בקרים:</strong> התקנת יחידת בקרה מרכזית</li>
+                    <li><strong>הגדרת רשת:</strong> חיבור לאינטרנט ואפליקציה</li>
+                    <li><strong>כיול ובדיקות:</strong> הגדרת פרמטרים ובדיקת תקינות</li>
+                    <li><strong>הדרכה:</strong> הכשרת המשתמש</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> חשוב לדעת</h4>
+                    <p>התקנת מערכת חכמה דורשת מקצועיות גבוהה. מומלץ להשתמש בטכנאי מוסמך עם ניסיון במערכות אוטומציה.</p>
+                </div>
+
+                <h3>תחזוקה שוטפת</h3>
+                <ul class="features-list">
+                    <li><strong>כיול חיישנים:</strong> כל 3-6 חודשים</li>
+                    <li><strong>עדכון תוכנה:</strong> לפי הצורך</li>
+                    <li><strong>ניקוי חיישנים:</strong> חודשי</li>
+                    <li><strong>בדיקת חיבורים:</strong> רבעוני</li>
+                    <li><strong>גיבוי הגדרות:</strong> חודשי</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-dollar-sign"></i> עלויות והחזר השקעה</h2>
+
+                <h3>פירוט עלויות</h3>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4><i class="fas fa-calculator"></i> עלויות ראשוניות</h4>
+                        <ul class="features-list">
+                            <li>מערכת בסיסית: ₪15,000-25,000</li>
+                            <li>מערכת מתקדמת: ₪25,000-40,000</li>
+                            <li>מערכת פרימיום: ₪40,000-70,000</li>
+                            <li>התקנה: ₪3,000-8,000</li>
+                            <li>הדרכה: ₪1,000-2,000</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4><i class="fas fa-piggy-bank"></i> חיסכון שנתי</h4>
+                        <ul class="features-list">
+                            <li>כימיקלים: ₪2,000-4,000</li>
+                            <li>חשמל: ₪1,500-3,000</li>
+                            <li>מים: ₪800-1,500</li>
+                            <li>תחזוקה: ₪2,000-5,000</li>
+                            <li>סה"כ: ₪6,300-13,500</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-chart-line"></i> החזר השקעה</h4>
+                    <p>בממוצע, מערכת בריכה חכמה מחזירה את עצמה תוך 3-5 שנים באמצעות חיסכון בעלויות תפעול ותחזוקה.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-rocket"></i> טכנולוגיות עתידיות</h2>
+
+                <div class="future-box">
+                    <h4><i class="fas fa-crystal-ball"></i> מה צפוי בעתיד?</h4>
+                    <p>התפתחויות טכנולוגיות שיגיעו לבריכות בשנים הקרובות:</p>
+                </div>
+
+                <div class="tech-grid">
+                    <div class="tech-card future">
+                        <h4><i class="fas fa-eye"></i> ראייה ממוחשבת</h4>
+                        <ul class="features-list">
+                            <li>זיהוי אצות אוטומטי</li>
+                            <li>ניתוח איכות מים ויזואלי</li>
+                            <li>זיהוי פסולת ועלים</li>
+                            <li>ניטור בטיחות שחיינים</li>
+                            <li>זיהוי נזקים מבניים</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card future">
+                        <h4><i class="fas fa-cloud"></i> ענן וביג דאטה</h4>
+                        <ul class="features-list">
+                            <li>ניתוח נתונים מתקדם</li>
+                            <li>חיזוי מזג אוויר</li>
+                            <li>השוואה עם בריכות דומות</li>
+                            <li>אופטימיזציה קהילתית</li>
+                            <li>עדכונים אוטומטיים</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card future">
+                        <h4><i class="fas fa-leaf"></i> קיימות חכמה</h4>
+                        <ul class="features-list">
+                            <li>מיחזור מים מתקדם</li>
+                            <li>אנרגיה סולארית חכמה</li>
+                            <li>כימיקלים ביולוגיים</li>
+                            <li>פחמן נייטרלי</li>
+                            <li>אקוסיסטם טבעי</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card future">
+                        <h4><i class="fas fa-vr-cardboard"></i> מציאות רבודה</h4>
+                        <ul class="features-list">
+                            <li>ויזואליזציה תלת-ממדית</li>
+                            <li>הדרכה אינטראקטיבית</li>
+                            <li>תחזוקה מודרכת</li>
+                            <li>סימולציה וירטואלית</li>
+                            <li>עיצוב דיגיטלי</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-star"></i> המלצות לרכישה</h2>
+
+                <h3>איך לבחור מערכת?</h3>
+                <ul class="features-list">
+                    <li><strong>הגדירו צרכים:</strong> מה חשוב לכם ביותר?</li>
+                    <li><strong>תקציב:</strong> קבעו מסגרת תקציבית ריאלית</li>
+                    <li><strong>גודל בריכה:</strong> מערכת מתאימה לגודל</li>
+                    <li><strong>רמת מורכבות:</strong> כמה אוטומציה אתם רוצים?</li>
+                    <li><strong>תמיכה טכנית:</strong> זמינות שירות מקומי</li>
+                </ul>
+
+                <h3>ספקים מובילים בישראל</h3>
+                <ul class="features-list">
+                    <li><strong>Hayward:</strong> מערכות OmniLogic ו-AquaRite</li>
+                    <li><strong>Pentair:</strong> פלטפורמת IntelliCenter</li>
+                    <li><strong>Jandy:</strong> מערכות iAquaLink</li>
+                    <li><strong>Fluidra:</strong> פתרונות Connect</li>
+                    <li><strong>ספקים מקומיים:</strong> פתרונות מותאמים</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-handshake"></i> טיפ לרכישה</h4>
+                    <p>בקשו הדגמה מעשית לפני הרכישה. מערכת חכמה היא השקעה משמעותית ויש לוודא שהיא מתאימה לצרכים שלכם.</p>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin: 40px 0; padding: 30px; background: var(--light-gray); border-radius: 12px;">
+                <h3 style="color: var(--dark-blue); margin-bottom: 20px;">מעוניינים בבריכה חכמה?</h3>
+                <p style="margin-bottom: 20px;">קבלו ייעוץ מקצועי והצעת מחיר מותאמת</p>
+                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                    <i class="fas fa-robot"></i> ייעוץ טכנולוגי
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

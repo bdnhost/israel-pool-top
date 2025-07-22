@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עמוד לא נמצא - Pool Israel</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .error-content {
+            max-width: 600px;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .error-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .pool-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-content">
+            <div class="pool-icon">
+                <i class="fas fa-swimming-pool"></i>
+            </div>
+            
+            <div class="error-code">404</div>
+            
+            <h1 class="error-title">העמוד לא נמצא</h1>
+            
+            <p class="error-description">
+                מצטערים, העמוד שחיפשתם לא קיים או הועבר למיקום אחר.
+                <br>
+                אולי תמצאו את מה שאתם מחפשים בקישורים הבאים:
+            </p>
+            
+            <div class="error-actions">
+                <a href="home.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    חזרה לעמוד הבית
+                </a>
+                
+                <a href="contractors_page.html" class="btn btn-outline">
+                    <i class="fas fa-users"></i>
+                    מצא קבלנים
+                </a>
+                
+                <a href="guides_page.html" class="btn btn-outline">
+                    <i class="fas fa-book"></i>
+                    מדריכים
+                </a>
+            </div>
+            
+            <div style="margin-top: 3rem; opacity: 0.7;">
+                <p>
+                    <i class="fas fa-search"></i>
+                    או השתמשו בחיפוש באתר למציאת התוכן הרצוי
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Track 404 errors for analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_not_found', {
+                'page_location': window.location.href,
+                'page_referrer': document.referrer
+            });
+        }
+        
+        // Auto-redirect common typos
+        const currentPath = window.location.pathname.toLowerCase();
+        const redirects = {
+            '/index.html': '/home.html',
+            '/index.php': '/home.html',
+            '/contractors.html': '/contractors_page.html',
+            '/guides.html': '/guides_page.html'
+        };
+        
+        if (redirects[currentPath]) {
+            setTimeout(() => {
+                window.location.href = redirects[currentPath];
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הצעת מחיר - Pool Israel | קבל הצעת מחיר מיידית לבריכה</title>
+    <meta name="description" content="קבל הצעת מחיר מיידית לבניית בריכה מקבלנים מקצועיים. מילוי פרטים פשוט ומהיר עם אימות SMS.">
+    <meta name="keywords" content="הצעת מחיר בריכה, בניית בריכות, קבלני בריכות, מחיר בריכה">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/template.css">
+    <link rel="stylesheet" href="css/quote-form.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="home.html" title="Pool Israel - דף הבית">
+                        <img src="images/logo.png" alt="Pool Israel Logo" width="150" height="50">
+                    </a>
+                </div>
+
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="home.html" title="דף הבית">🏠 דף הבית</a></li>
+                        <li><a href="contractors_page.html" title="מצא קבלני בריכות מקצועיים">👷 קבלנים</a></li>
+                        <li><a href="guides_page.html" title="מדריכים מפורטים לבניית בריכות">📚 מדריכים</a></li>
+                        <li><a href="quote_modal.html" title="קבל הצעת מחיר מיידית" class="active">💰 הצעת מחיר</a></li>
+                        <li><a href="#contact" title="צור קשר עם Pool Israel">📞 צור קשר</a></li>
+                    </ul>
+                </nav>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="פתח תפריט ניווט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="home.html">דף הבית</a></li>
+                <li>הצעת מחיר</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <div class="header-actions">
+                    <a href="contractors_page.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i>
+                        חזור לקבלנים
+                    </a>
+                </div>
+                <h1>🏊‍♂️ קבל הצעת מחיר לבריכה</h1>
+                <p class="page-description">
+                    מלא את הפרטים למטה וקבל הצעות מחיר מקבלנים מקצועיים תוך דקות ספורות
+                </p>
+            </div>
+
+            <!-- Quote Form Container -->
+            <div class="quote-form-container">
+                <div class="quote-modal-content">
+        
+        <div class="modal-body">
+            <!-- Step 1: Phone Verification -->
+            <div id="step1" class="quote-step active">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-info">
+                        <h3>אימות מספר טלפון</h3>
+                        <p>נשלח אליך קוד אימות בהודעת SMS</p>
+                    </div>
+                </div>
+                
+                <div class="contractor-info" id="selectedContractorInfo">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerPhone">מספר טלפון נייד *</label>
+                    <input type="tel" id="customerPhone" class="form-control" placeholder="050-123-4567" required>
+                    <small class="form-text">נשלח אליך קוד אימות בהודעת SMS</small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="sendCodeBtn" class="btn btn-primary">
+                        <i class="fas fa-sms"></i>
+                        שלח קוד אימות
+                    </button>
+                </div>
+                
+                <!-- Verification Code Input (hidden initially) -->
+                <div id="verificationSection" class="verification-section" style="display: none;">
+                    <div class="form-group">
+                        <label for="verificationCode">קוד אימות *</label>
+                        <input type="text" id="verificationCode" class="form-control verification-input" 
+                               placeholder="1234" maxlength="4" required>
+                        <small class="form-text">
+                            הקוד נשלח ל-<span id="phoneDisplay"></span>
+                            <span id="timer" class="timer"></span>
+                        </small>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="verifyCodeBtn" class="btn btn-primary">
+                            <i class="fas fa-check"></i>
+                            אמת קוד
+                        </button>
+                        <button type="button" id="resendCodeBtn" class="btn btn-outline" disabled>
+                            <i class="fas fa-redo"></i>
+                            שלח שוב
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2: Quote Form -->
+            <div id="step2" class="quote-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-info">
+                        <h3>פרטי הבקשה</h3>
+                        <p>מלא את הפרטים כדי לקבל הצעת מחיר מדויקת</p>
+                    </div>
+                </div>
+                
+                <form id="quoteForm" class="quote-form">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-user"></i> פרטים אישיים</h4>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customerName">שם מלא *</label>
+                                <input type="text" id="customerName" name="customer_name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerEmail">אימייל (אופציונלי)</label>
+                                <input type="email" id="customerEmail" name="customer_email" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customerCity">עיר מגורים</label>
+                                <select id="customerCity" name="customer_city" class="form-control">
+                                    <option value="">בחר עיר</option>
+                                    <option value="תל אביב">תל אביב</option>
+                                    <option value="ירושלים">ירושלים</option>
+                                    <option value="חיפה">חיפה</option>
+                                    <option value="ראשון לציון">ראשון לציון</option>
+                                    <option value="פתח תקווה">פתח תקווה</option>
+                                    <option value="אשדוד">אשדוד</option>
+                                    <option value="נתניה">נתניה</option>
+                                    <option value="באר שבע">באר שבע</option>
+                                    <option value="בני ברק">בני ברק</option>
+                                    <option value="חולון">חולון</option>
+                                    <option value="רמת גן">רמת גן</option>
+                                    <option value="אשקלון">אשקלון</option>
+                                    <option value="רחובות">רחובות</option>
+                                    <option value="בת ים">בת ים</option>
+                                    <option value="כפר סבא">כפר סבא</option>
+                                    <option value="הרצליה">הרצליה</option>
+                                    <option value="חדרה">חדרה</option>
+                                    <option value="מודיעין">מודיעין</option>
+                                    <option value="נצרת">נצרת</option>
+                                    <option value="לוד">לוד</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Information -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-swimming-pool"></i> פרטי הפרויקט</h4>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="poolType">סוג בריכה *</label>
+                                <select id="poolType" name="pool_type" class="form-control" required onchange="updatePoolTypeInfo()">
+                                    <option value="">בחר סוג בריכה</option>
+                                    <option value="concrete">בריכת בטון</option>
+                                    <option value="fiberglass">בריכת פיברגלס</option>
+                                    <option value="modular">בריכה מתועשת</option>
+                                    <option value="renovation">שיפוץ בריכה קיימת</option>
+                                    <option value="maintenance">תחזוקה ושירות</option>
+                                </select>
+                                <small id="poolTypeInfo" class="form-text"></small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="poolSize">גודל משוער *</label>
+                                <select id="poolSize" name="pool_size" class="form-control" required>
+                                    <option value="">בחר גודל</option>
+                                    <option value="small">קטנה (עד 20 מ"ר)</option>
+                                    <option value="medium">בינונית (20-40 מ"ר)</option>
+                                    <option value="large">גדולה (40-60 מ"ר)</option>
+                                    <option value="xl">גדולה מאוד (60+ מ"ר)</option>
+                                    <option value="unknown">לא יודע</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="budgetRange">תקציב משוער *</label>
+                                <select id="budgetRange" name="budget_range" class="form-control" required>
+                                    <option value="">בחר טווח תקציב</option>
+                                    <option value="under_100k">עד 100,000 ₪</option>
+                                    <option value="100k_200k">100,000 - 200,000 ₪</option>
+                                    <option value="200k_300k">200,000 - 300,000 ₪</option>
+                                    <option value="300k_500k">300,000 - 500,000 ₪</option>
+                                    <option value="over_500k">מעל 500,000 ₪</option>
+                                    <option value="unknown">לא יודע</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="preferredTiming">זמן ביצוע רצוי *</label>
+                                <select id="preferredTiming" name="preferred_timing" class="form-control" required>
+                                    <option value="">בחר זמן</option>
+                                    <option value="asap">דחוף (עד חודש)</option>
+                                    <option value="1_month">תוך חודש</option>
+                                    <option value="1_3_months">1-3 חודשים</option>
+                                    <option value="3_6_months">3-6 חודשים</option>
+                                    <option value="6_12_months">6-12 חודשים</option>
+                                    <option value="flexible">גמיש</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectLocation">מיקום הפרויקט *</label>
+                            <input type="text" id="projectLocation" name="project_location" class="form-control" 
+                                   placeholder="עיר, רחוב (אופציונלי)" required>
+                            <small class="form-text">המיקום עוזר לנו למצוא קבלנים באזור</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Requirements -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-list-check"></i> דרישות מיוחדות (אופציונלי)</h4>
+                        
+                        <div class="checkbox-group" id="specialRequirements">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="requirements[]" value="heating">
+                                <span class="checkmark"></span>
+                                חימום בריכה
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="requirements[]" value="cover">
+                                <span class="checkmark"></span>
+                                כיסוי בריכה
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="requirements[]" value="lighting">
+                                <span class="checkmark"></span>
+                                תאורה מתקדמת
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="requirements[]" value="automation">
+                                <span class="checkmark"></span>
+                                מערכת אוטומציה
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="requirements[]" value="waterfall">
+                                <span class="checkmark"></span>
+                                מפל מים
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="requirements[]" value="jacuzzi">
+                                <span class="checkmark"></span>
+                                ג'קוזי
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">תיאור נוסף</label>
+                            <textarea id="description" name="description" class="form-control" rows="4" 
+                                      placeholder="תאר את הפרויקט, דרישות מיוחדות, או כל מידע נוסף שיעזור לקבלן להבין את הצרכים שלך..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Image Upload -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-images"></i> תמונות (אופציונלי)</h4>
+                        <p class="section-description">העלה תמונות של המקום, תוכניות, או דוגמאות למה שאתה רוצה</p>
+                        
+                        <div class="image-upload-area" id="imageUploadArea">
+                            <div class="upload-placeholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>גרור תמונות לכאן או לחץ לבחירה</p>
+                                <small>עד 5 תמונות, מקסימום 5MB כל אחת</small>
+                            </div>
+                            <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
+                        </div>
+                        
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+                    
+                    <!-- Form Actions -->
+                    <div class="form-actions final-actions">
+                        <button type="button" class="btn btn-outline" onclick="goToStep(1)">
+                            <i class="fas fa-arrow-right"></i>
+                            חזור
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-paper-plane"></i>
+                            שלח בקשה
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Step 3: Success -->
+            <div id="step3" class="quote-step success-step">
+                <div class="success-content">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>הבקשה נשלחה בהצלחה!</h3>
+                    <p id="successMessage">בקשתך נשלחה לקבלנים מתאימים באזור</p>
+                    
+                    <div class="quote-summary" id="quoteSummary">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="next-steps">
+                        <h4>מה קורה עכשיו?</h4>
+                        <ul>
+                            <li><i class="fas fa-sms"></i> הקבלנים יקבלו הודעת SMS עם פרטי הבקשה</li>
+                            <li><i class="fas fa-phone"></i> הם יצרו איתך קשר תוך 24 שעות</li>
+                            <li><i class="fas fa-handshake"></i> תוכל לבחור את ההצעה הטובה ביותר</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" onclick="closeQuoteModal()">
+                            <i class="fas fa-home"></i>
+                            חזור לאתר
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🏊‍♂️ Pool Israel</h4>
+                    <p>הפורטל המוביל לבניית בריכות בישראל</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>🔗 קישורים מהירים</h4>
+                    <ul>
+                        <li><a href="contractors_page.html">קבלני בריכות</a></li>
+                        <li><a href="guides_page.html">מדריכי בריכות</a></li>
+                        <li><a href="quote_modal.html">הצעת מחיר</a></li>
+                        <li><a href="#contact">צור קשר</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>📞 צור קשר</h4>
+                    <p><i class="fas fa-phone"></i> 058-4995151</p>
+                    <p><i class="fas fa-envelope"></i> info@israel-pool.top</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>💼 שירותי BDNHOST</h4>
+                    <p>פיתוח ואחסון האתר על ידי BDNHOST</p>
+                    <a href="https://bdnhost.com" target="_blank">www.bdnhost.com</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pool Israel. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loadingText">שולח בקשה...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js?v=2025060424"></script>
+    <script src="js/quote-form.js?v=2025060424"></script>
+</body>
+</html>

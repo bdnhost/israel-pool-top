@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת תקינות האתר - Pool Israel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            text-align: right;
+            padding: 20px;
+            background: #f5f5f5;
+            margin: 0;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c5aa0;
+        }
+        .header h1 {
+            color: #2c5aa0;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .test-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .test-section:hover {
+            border-color: #2c5aa0;
+            box-shadow: 0 4px 15px rgba(44, 90, 160, 0.1);
+        }
+        .test-section h3 {
+            color: #2c5aa0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .test-section .icon {
+            font-size: 1.5rem;
+        }
+        .test-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .result {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+        }
+        .result.success {
+            border-left: 5px solid #28a745;
+            background: #f8fff9;
+        }
+        .result.error {
+            border-left: 5px solid #dc3545;
+            background: #fff8f8;
+        }
+        .result.warning {
+            border-left: 5px solid #ffc107;
+            background: #fffdf5;
+        }
+        .result.info {
+            border-left: 5px solid #17a2b8;
+            background: #f8fdff;
+        }
+        button {
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        button:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+        }
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status-bar {
+            background: #2c5aa0;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .summary {
+            background: linear-gradient(135deg, #2c5aa0, #1e3a8a);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        .summary h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .summary-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+        .summary-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2c5aa0;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .quick-actions {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .quick-actions h3 {
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        .quick-actions button {
+            margin: 5px;
+            background: #6c757d;
+        }
+        .quick-actions button.primary {
+            background: #2c5aa0;
+        }
+        @media (max-width: 768px) {
+            .test-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 15px;
+            }
+            .test-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 בדיקת תקינות האתר</h1>
+            <p>בדיקה מקיפה של כל רכיבי האתר - דפים, API, מסד נתונים, ביצועים ו-SEO</p>
+        </div>
+
+        <div class="status-bar">
+            <div id="overallStatus">מוכן לבדיקה</div>
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h3>🚀 פעולות מהירות</h3>
+            <button class="primary" onclick="runAllTests()">הרץ את כל הבדיקות</button>
+            <button onclick="runCriticalTests()">בדיקות קריטיות בלבד</button>
+            <button onclick="runPerformanceTests()">בדיקות ביצועים</button>
+            <button onclick="clearAllResults()">נקה תוצאות</button>
+        </div>
+
+        <div class="test-grid">
+            <!-- Pages Test -->
+            <div class="test-section">
+                <h3><span class="icon">📄</span>בדיקת דפים</h3>
+                <div class="test-controls">
+                    <button onclick="testAllPages()">בדוק כל הדפים</button>
+                    <button onclick="testMainPages()">דפים עיקריים</button>
+                </div>
+                <div id="pagesResult" class="result">לחץ על כפתור לבדיקת הדפים</div>
+            </div>
+
+            <!-- Links Test -->
+            <div class="test-section">
+                <h3><span class="icon">🔗</span>בדיקת קישורים</h3>
+                <div class="test-controls">
+                    <button onclick="testAllLinks()">בדוק קישורים</button>
+                    <button onclick="testInternalLinks()">קישורים פנימיים</button>
+                </div>
+                <div id="linksResult" class="result">לחץ על כפתור לבדיקת הקישורים</div>
+            </div>
+
+            <!-- CSS/JS Test -->
+            <div class="test-section">
+                <h3><span class="icon">🎨</span>בדיקת CSS/JS</h3>
+                <div class="test-controls">
+                    <button onclick="testAssets()">בדוק נכסים</button>
+                    <button onclick="testCSS()">CSS בלבד</button>
+                </div>
+                <div id="assetsResult" class="result">לחץ על כפתור לבדיקת הנכסים</div>
+            </div>
+
+            <!-- API Test -->
+            <div class="test-section">
+                <h3><span class="icon">🔌</span>בדיקת API</h3>
+                <div class="test-controls">
+                    <button onclick="testAllAPIs()">בדוק כל ה-APIs</button>
+                    <button onclick="testContractorsAPI()">API קבלנים</button>
+                </div>
+                <div id="apiResult" class="result">לחץ על כפתור לבדיקת ה-API</div>
+            </div>
+
+            <!-- Database Test -->
+            <div class="test-section">
+                <h3><span class="icon">🗄️</span>בדיקת מסד נתונים</h3>
+                <div class="test-controls">
+                    <button onclick="testDatabase()">בדוק מסד נתונים</button>
+                    <button onclick="testTables()">בדוק טבלאות</button>
+                </div>
+                <div id="databaseResult" class="result">לחץ על כפתור לבדיקת מסד הנתונים</div>
+            </div>
+
+            <!-- Responsive Test -->
+            <div class="test-section">
+                <h3><span class="icon">📱</span>בדיקת Responsive</h3>
+                <div class="test-controls">
+                    <button onclick="testResponsive()">בדוק Responsive</button>
+                    <button onclick="testMobile()">מובייל בלבד</button>
+                </div>
+                <div id="responsiveResult" class="result">לחץ על כפתור לבדיקת Responsive</div>
+            </div>
+
+            <!-- SEO Test -->
+            <div class="test-section">
+                <h3><span class="icon">🔍</span>בדיקת SEO</h3>
+                <div class="test-controls">
+                    <button onclick="testSEO()">בדוק SEO</button>
+                    <button onclick="testMetaTags()">Meta Tags</button>
+                </div>
+                <div id="seoResult" class="result">לחץ על כפתור לבדיקת SEO</div>
+            </div>
+
+            <!-- Performance Test -->
+            <div class="test-section">
+                <h3><span class="icon">⚡</span>בדיקת ביצועים</h3>
+                <div class="test-controls">
+                    <button onclick="testPerformance()">בדוק ביצועים</button>
+                    <button onclick="testLoadTimes()">זמני טעינה</button>
+                </div>
+                <div id="performanceResult" class="result">לחץ על כפתור לבדיקת הביצועים</div>
+            </div>
+
+            <!-- Security Test -->
+            <div class="test-section">
+                <h3><span class="icon">🔒</span>בדיקת אבטחה</h3>
+                <div class="test-controls">
+                    <button onclick="testSecurity()">בדוק אבטחה</button>
+                    <button onclick="testHeaders()">Headers</button>
+                </div>
+                <div id="securityResult" class="result">לחץ על כפתור לבדיקת האבטחה</div>
+            </div>
+
+            <!-- Forms Test -->
+            <div class="test-section">
+                <h3><span class="icon">📝</span>בדיקת טפסים</h3>
+                <div class="test-controls">
+                    <button onclick="testForms()">בדוק טפסים</button>
+                    <button onclick="testQuoteForm()">טופס הצעת מחיר</button>
+                </div>
+                <div id="formsResult" class="result">לחץ על כפתור לבדיקת הטפסים</div>
+            </div>
+
+            <!-- Images Test -->
+            <div class="test-section">
+                <h3><span class="icon">🖼️</span>בדיקת תמונות</h3>
+                <div class="test-controls">
+                    <button onclick="testImages()">בדוק תמונות</button>
+                    <button onclick="testImageOptimization()">אופטימיזציה</button>
+                </div>
+                <div id="imagesResult" class="result">לחץ על כפתור לבדיקת התמונות</div>
+            </div>
+
+            <!-- Accessibility Test -->
+            <div class="test-section">
+                <h3><span class="icon">♿</span>בדיקת נגישות</h3>
+                <div class="test-controls">
+                    <button onclick="testAccessibility()">בדוק נגישות</button>
+                    <button onclick="testWCAG()">WCAG</button>
+                </div>
+                <div id="accessibilityResult" class="result">לחץ על כפתור לבדיקת הנגישות</div>
+            </div>
+        </div>
+
+        <div class="summary" id="testSummary" style="display: none;">
+            <h3>📊 סיכום בדיקות</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-number" id="totalTests">0</span>
+                    <span>סה"כ בדיקות</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-number" id="passedTests">0</span>
+                    <span>עברו בהצלחה</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-number" id="failedTests">0</span>
+                    <span>נכשלו</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-number" id="warningTests">0</span>
+                    <span>אזהרות</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-number" id="successRate">0%</span>
+                    <span>אחוז הצלחה</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/site-integrity-test.js"></script>
+</body>
+</html>

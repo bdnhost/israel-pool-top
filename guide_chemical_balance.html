@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>איזון כימי של מי הבריכה - מדריך מקצועי | PoolIsrael</title>
+    <meta name="description" content="מדריך מקיף לאיזון כימי של מי הבריכה - pH, כלור, אלקליניות, קשיות מים. כל הפרמטרים, הבדיקות והטיפולים הנדרשים.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://poolisrael.co.il/guide_chemical_balance.html">
+    <meta property="og:title" content="איזון כימי של מי הבריכה - מדריך מקצועי">
+    <meta property="og:description" content="מדריך מקיף לאיזון כימי מושלם של מי הבריכה - כל הפרמטרים והטיפולים">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://poolisrael.co.il/guide_chemical_balance.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2E86AB;
+            --dark-blue: #1B4F72;
+            --accent-orange: #F39C12;
+            --light-blue: #AED6F1;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --border-light: #E5E7EB;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            --success-green: #27AE60;
+            --warning-yellow: #F39C12;
+            --danger-red: #E74C3C;
+            --chemical-blue: #3498DB;
+            --ph-green: #2ECC71;
+            --chlorine-yellow: #F1C40F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .guide-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, var(--chemical-blue) 0%, #2980B9 100%);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .guide-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            border-right: 4px solid var(--chemical-blue);
+        }
+
+        .section h2 {
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h3 {
+            color: var(--chemical-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .parameters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .parameter-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 5px solid;
+        }
+
+        .parameter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .parameter-card.ph {
+            border-top-color: var(--ph-green);
+        }
+
+        .parameter-card.chlorine {
+            border-top-color: var(--chlorine-yellow);
+        }
+
+        .parameter-card.alkalinity {
+            border-top-color: var(--chemical-blue);
+        }
+
+        .parameter-card.hardness {
+            border-top-color: var(--accent-orange);
+        }
+
+        .parameter-card h4 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .range-display {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .range-display .ideal {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--success-green);
+        }
+
+        .range-display .acceptable {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .testing-schedule {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin: 20px 0;
+        }
+
+        .testing-schedule h4 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .schedule-table th {
+            background: var(--chemical-blue);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .schedule-table tr:hover {
+            background: var(--light-gray);
+        }
+
+        .info-box {
+            background: #D1ECF1;
+            border: 1px solid #BEE5EB;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .info-box h4 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border: 1px solid #FFEAA7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning-yellow);
+        }
+
+        .warning-box h4 {
+            color: #B7791F;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .danger-box {
+            background: #FADBD8;
+            border: 1px solid #F1948A;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--danger-red);
+        }
+
+        .danger-box h4 {
+            color: var(--danger-red);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .guide-header h1 {
+                font-size: 2rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+
+            .parameters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="pool_israel_homepage.html" class="logo">
+                    <i class="fas fa-swimming-pool"></i>
+                    PoolIsrael
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="guides_page.html" class="active">מדריכים</a></li>
+                    <li><a href="contractors_page.html">קבלנים</a></li>
+                    <li><a href="tools_page.html">כלים</a></li>
+                    <li><a href="community_page.html">קהילה</a></li>
+                    <li><a href="news_page.html">חדשות</a></li>
+                </ul>
+
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">התחברות</a>
+                    <a href="#" class="btn btn-primary">הרשמה</a>
+                </div>
+
+                <button type="button" class="mobile-menu-btn" aria-label="תפריט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="guide-container">
+        <div class="guide-header">
+            <h1>🧪 איזון כימי של מי הבריכה</h1>
+            <div class="meta-info">
+                <span><i class="fas fa-clock"></i> זמן קריאה: 15 דקות</span>
+                <span><i class="fas fa-calendar-alt"></i> עודכן: יוני 2025</span>
+                <span><i class="fas fa-star"></i> דירוג: 4.9/5</span>
+                <span><i class="fas fa-eye"></i> 19,876 צפיות</span>
+            </div>
+        </div>
+
+        <div class="guide-content">
+            <section class="section">
+                <h2><i class="fas fa-info-circle"></i> מבוא לאיזון כימי</h2>
+                <p>איזון כימי נכון של מי הבריכה הוא הבסיס לבריכה בטוחה, נקייה ונעימה לשחייה. מדריך זה יעזור לכם להבין את כל הפרמטרים הכימיים ולשמור על איזון מושלם לאורך כל השנה.</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> למה איזון כימי חשוב?</h4>
+                    <p>איזון כימי נכון מבטיח מים בטוחים לשחייה, מונע גידול חיידקים ואצות, שומר על ציוד הבריכה ומבטיח חוויית שחייה נעימה.</p>
+                </div>
+
+                <h3>הפרמטרים העיקריים</h3>
+                <ul class="checklist">
+                    <li><strong>pH:</strong> רמת החומציות/בסיסיות של המים</li>
+                    <li><strong>כלור חופשי:</strong> רמת החיטוי הפעילה</li>
+                    <li><strong>אלקליניות כוללת:</strong> יכולת המים לנטרל חומצות</li>
+                    <li><strong>קשיות מים:</strong> ריכוז יוני הסידן והמגנזיום</li>
+                    <li><strong>ציאנוריק אסיד:</strong> מייצב הכלור</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-vials"></i> הפרמטרים הכימיים המרכזיים</h2>
+                
+                <div class="parameters-grid">
+                    <div class="parameter-card ph">
+                        <h4><i class="fas fa-balance-scale"></i> pH (רמת חומציות)</h4>
+                        <div class="range-display">
+                            <div class="ideal">7.2 - 7.6</div>
+                            <div class="acceptable">טווח אידיאלי</div>
+                        </div>
+                        <p><strong>חשיבות:</strong> משפיע על יעילות הכלור ונוחות השחייה</p>
+                        <p><strong>בדיקה:</strong> פעמיים בשבוע</p>
+                        <p><strong>תיקון:</strong> pH+ להעלאה, pH- להורדה</p>
+                    </div>
+
+                    <div class="parameter-card chlorine">
+                        <h4><i class="fas fa-shield-virus"></i> כלור חופשי</h4>
+                        <div class="range-display">
+                            <div class="ideal">1.0 - 3.0 ppm</div>
+                            <div class="acceptable">טווח בטוח</div>
+                        </div>
+                        <p><strong>חשיבות:</strong> חיטוי והרג חיידקים ווירוסים</p>
+                        <p><strong>בדיקה:</strong> יומית בעונת השימוש</p>
+                        <p><strong>תיקון:</strong> הוספת כלור או הפחתת מינון</p>
+                    </div>
+
+                    <div class="parameter-card alkalinity">
+                        <h4><i class="fas fa-water"></i> אלקליניות כוללת</h4>
+                        <div class="range-display">
+                            <div class="ideal">80 - 120 ppm</div>
+                            <div class="acceptable">טווח מומלץ</div>
+                        </div>
+                        <p><strong>חשיבות:</strong> מייצבת את ה-pH ומונעת תנודות</p>
+                        <p><strong>בדיקה:</strong> שבועית</p>
+                        <p><strong>תיקון:</strong> סודה לשתייה להעלאה</p>
+                    </div>
+
+                    <div class="parameter-card hardness">
+                        <h4><i class="fas fa-gem"></i> קשיות מים</h4>
+                        <div class="range-display">
+                            <div class="ideal">150 - 300 ppm</div>
+                            <div class="acceptable">טווח אופטימלי</div>
+                        </div>
+                        <p><strong>חשיבות:</strong> מונעת קורוזיה ואבנית</p>
+                        <p><strong>בדיקה:</strong> חודשית</p>
+                        <p><strong>תיקון:</strong> סידן כלוריד להעלאה</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-calendar-check"></i> לוח בדיקות ותחזוקה</h2>
+
+                <div class="testing-schedule">
+                    <h4><i class="fas fa-clock"></i> תדירות בדיקות מומלצת</h4>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>פרמטר</th>
+                                <th>תדירות בדיקה</th>
+                                <th>זמן מומלץ</th>
+                                <th>כלי בדיקה</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>כלור חופשי</strong></td>
+                                <td>יומית</td>
+                                <td>בוקר/ערב</td>
+                                <td>ערכת טיפות/רצועות</td>
+                            </tr>
+                            <tr>
+                                <td><strong>pH</strong></td>
+                                <td>פעמיים בשבוע</td>
+                                <td>אחרי הוספת כימיקלים</td>
+                                <td>ערכת טיפות/דיגיטלי</td>
+                            </tr>
+                            <tr>
+                                <td><strong>אלקליניות</strong></td>
+                                <td>שבועית</td>
+                                <td>לפני תיקון pH</td>
+                                <td>ערכת טיפות</td>
+                            </tr>
+                            <tr>
+                                <td><strong>קשיות מים</strong></td>
+                                <td>חודשית</td>
+                                <td>תחילת חודש</td>
+                                <td>ערכת בדיקה מיוחדת</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ציאנוריק אסיד</strong></td>
+                                <td>חודשית</td>
+                                <td>אמצע חודש</td>
+                                <td>רצועות בדיקה</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> חשוב לזכור</h4>
+                    <p>בדקו תמיד את הכלור והpH לפני כניסה לבריכה. בתקופות שימוש אינטנסיבי או מזג אוויר חם, הגבירו את תדירות הבדיקות.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-tools"></i> כלי בדיקה וציוד</h2>
+
+                <h3>סוגי כלי בדיקה</h3>
+                <div class="parameters-grid">
+                    <div class="parameter-card">
+                        <h4><i class="fas fa-vial"></i> ערכת טיפות</h4>
+                        <p><strong>יתרונות:</strong> מדויקת, זולה, קלה לשימוש</p>
+                        <p><strong>חסרונות:</strong> זמן בדיקה ארוך יחסית</p>
+                        <p><strong>מחיר:</strong> ₪50-150</p>
+                        <p><strong>מתאים ל:</strong> בדיקות שגרתיות</p>
+                    </div>
+
+                    <div class="parameter-card">
+                        <h4><i class="fas fa-band-aid"></i> רצועות בדיקה</h4>
+                        <p><strong>יתרונות:</strong> מהיר, נוח, בדיקה מרובת פרמטרים</p>
+                        <p><strong>חסרונות:</strong> פחות מדויק, יקר יותר</p>
+                        <p><strong>מחיר:</strong> ₪80-200</p>
+                        <p><strong>מתאים ל:</strong> בדיקות מהירות</p>
+                    </div>
+
+                    <div class="parameter-card">
+                        <h4><i class="fas fa-mobile-alt"></i> מכשיר דיגיטלי</h4>
+                        <p><strong>יתרונות:</strong> מדויק מאוד, קריאה ברורה</p>
+                        <p><strong>חסרונות:</strong> יקר, דורש תחזוקה</p>
+                        <p><strong>מחיר:</strong> ₪300-1500</p>
+                        <p><strong>מתאים ל:</strong> שימוש מקצועי</p>
+                    </div>
+
+                    <div class="parameter-card">
+                        <h4><i class="fas fa-microscope"></i> פוטומטר</h4>
+                        <p><strong>יתרונות:</strong> דיוק מקסימלי, בדיקות מתקדמות</p>
+                        <p><strong>חסרונות:</strong> יקר מאוד, מורכב</p>
+                        <p><strong>מחיר:</strong> ₪1500-5000</p>
+                        <p><strong>מתאים ל:</strong> בריכות מסחריות</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-exclamation-triangle"></i> בעיות נפוצות ופתרונות</h2>
+
+                <h3>pH גבוה מדי (מעל 7.8)</h3>
+                <div class="danger-box">
+                    <h4><i class="fas fa-arrow-up"></i> סימפטומים</h4>
+                    <ul style="margin: 10px 0; padding-right: 20px;">
+                        <li>גירוי בעיניים ובעור</li>
+                        <li>כלור לא יעיל</li>
+                        <li>מים עכורים</li>
+                        <li>אבנית על הציוד</li>
+                    </ul>
+                </div>
+                <p><strong>פתרון:</strong> הוסיפו pH- (חומצה מוריאטית או ביסולפט נתרן) בהדרגה</p>
+                <p><strong>מינון:</strong> 100-200 גרם ל-50 מ"ק מים</p>
+
+                <h3>pH נמוך מדי (מתחת ל-7.0)</h3>
+                <div class="danger-box">
+                    <h4><i class="fas fa-arrow-down"></i> סימפטומים</h4>
+                    <ul style="margin: 10px 0; padding-right: 20px;">
+                        <li>קורוזיה לציוד מתכת</li>
+                        <li>גירוי חזק בעיניים</li>
+                        <li>בלאי מהיר של ציוד</li>
+                        <li>ריח חזק של כלור</li>
+                    </ul>
+                </div>
+                <p><strong>פתרון:</strong> הוסיפו pH+ (סודה קאוסטית או קרבונט נתרן)</p>
+                <p><strong>מינון:</strong> 150-300 גרם ל-50 מ"ק מים</p>
+
+                <h3>כלור נמוך</h3>
+                <ul class="checklist">
+                    <li><strong>הוסיפו כלור:</strong> גרנולות, טבליות או נוזל</li>
+                    <li><strong>בדקו pH:</strong> pH גבוה מפחית יעילות הכלור</li>
+                    <li><strong>שוק כלור:</strong> במקרים קיצוניים</li>
+                    <li><strong>בדקו מייצב:</strong> ציאנוריק אסיד גבוה מדי</li>
+                </ul>
+
+                <h3>מים ירוקים (אצות)</h3>
+                <ul class="checklist">
+                    <li><strong>שוק כלור:</strong> 10-20 ppm כלור</li>
+                    <li><strong>מברשת קירות:</strong> ניקוי מכני</li>
+                    <li><strong>אלגיציד:</strong> למניעת חזרה</li>
+                    <li><strong>סינון רציף:</strong> 24 שעות</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-flask"></i> כימיקלים נפוצים ושימושם</h2>
+
+                <h3>כימיקלי חיטוי</h3>
+                <ul class="checklist">
+                    <li><strong>כלור גרנולות:</strong> חיטוי יומי, מהיר הפעלה</li>
+                    <li><strong>כלור טבליות:</strong> שחרור איטי, נוח לשימוש</li>
+                    <li><strong>כלור נוזל:</strong> מהיר ויעיל, דורש זהירות</li>
+                    <li><strong>ברום:</strong> חלופה לכלור, פחות ריח</li>
+                </ul>
+
+                <h3>כימיקלי איזון</h3>
+                <ul class="checklist">
+                    <li><strong>pH+:</strong> העלאת pH (סודה קאוסטית)</li>
+                    <li><strong>pH-:</strong> הורדת pH (חומצה מוריאטית)</li>
+                    <li><strong>אלקליניות+:</strong> ביקרבונט נתרן</li>
+                    <li><strong>קשיות+:</strong> סידן כלוריד</li>
+                </ul>
+
+                <h3>כימיקלים מיוחדים</h3>
+                <ul class="checklist">
+                    <li><strong>אלגיציד:</strong> מניעת אצות</li>
+                    <li><strong>פלוקולנט:</strong> צירוף חלקיקים קטנים</li>
+                    <li><strong>מייצב כלור:</strong> ציאנוריק אסיד</li>
+                    <li><strong>מנקה קו מים:</strong> הסרת שומנים</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> כללי בטיחות</h4>
+                    <ul style="margin: 10px 0; padding-right: 20px;">
+                        <li>אל תערבבו כימיקלים שונים</li>
+                        <li>הוסיפו כימיקלים למים, לא להפך</li>
+                        <li>השתמשו בציוד מגן</li>
+                        <li>אחסנו במקום יבש וקריר</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-chart-line"></i> טיפים מתקדמים</h2>
+
+                <h3>אופטימיזציה של איזון כימי</h3>
+                <ul class="checklist">
+                    <li><strong>סדר פעולות:</strong> תקנו תמיד אלקליניות לפני pH</li>
+                    <li><strong>זמן המתנה:</strong> חכו 4-6 שעות בין הוספות</li>
+                    <li><strong>ערבוב:</strong> הפעילו משאבה אחרי הוספת כימיקלים</li>
+                    <li><strong>תיעוד:</strong> רשמו את כל הבדיקות והטיפולים</li>
+                </ul>
+
+                <h3>חיסכון בכימיקלים</h3>
+                <ul class="checklist">
+                    <li><strong>כיסוי בריכה:</strong> מפחית אידוי וזיהום</li>
+                    <li><strong>ניקוי סדיר:</strong> פחות עומס על הכימיקלים</li>
+                    <li><strong>סינון יעיל:</strong> מערכת סינון תקינה</li>
+                    <li><strong>מניעת זיהום:</strong> מקלחת לפני כניסה</li>
+                </ul>
+
+                <h3>בעיות מתקדמות</h3>
+                <ul class="checklist">
+                    <li><strong>כלור משולב:</strong> שוק כלור או החלפת מים</li>
+                    <li><strong>מתכות במים:</strong> שימוש בסקוונט מתכות</li>
+                    <li><strong>פוספטים:</strong> הסרה עם מוצרים מיוחדים</li>
+                    <li><strong>TDS גבוה:</strong> החלפה חלקית של מים</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> טיפ מקצועי</h4>
+                    <p>שמרו יומן בדיקות מפורט. זה יעזור לכם לזהות דפוסים ולחזות בעיות לפני שהן מתפתחות.</p>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin: 40px 0; padding: 30px; background: var(--light-gray); border-radius: 12px;">
+                <h3 style="color: var(--dark-blue); margin-bottom: 20px;">צריכים עזרה עם איזון כימי?</h3>
+                <p style="margin-bottom: 20px;">קבלו ייעוץ מקצועי מהכימאים שלנו</p>
+                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                    <i class="fas fa-vials"></i> ייעוץ כימי מקצועי
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

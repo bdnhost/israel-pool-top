@@ -1,0 +1,27 @@
+# Pool Israel - Basic Configuration
+RewriteEngine On
+
+# Default page redirects
+RewriteRule ^$ home.html [L]
+RewriteRule ^index\.html$ home.html [R=301,L]
+
+# Clean URLs for guides
+RewriteRule ^guide/([a-zA-Z0-9\-]+)/?$ single_guide_page.html?slug=$1 [L,QSA]
+
+# API routes
+RewriteRule ^api/contractors/?$ api/contractors.php [L,QSA]
+RewriteRule ^api/guides/?$ api/guides.php [L,QSA]
+RewriteRule ^api/quotes/?$ api/quotes.php [L,QSA]
+
+# Admin panel
+RewriteRule ^admin/?$ admin/index.html [L]
+RewriteRule ^admin/([a-zA-Z0-9\-]+)/?$ admin/$1.html [L,QSA]
+
+# Contractor dashboard
+RewriteRule ^contractor/?$ contractor/dashboard.html [L]
+RewriteRule ^contractor/([a-zA-Z0-9\-]+)/?$ contractor/$1.html [L,QSA]
+
+# Basic security - protect sensitive files
+<Files ~ "\.(sql|log|env)$">
+    Require all denied
+</Files>

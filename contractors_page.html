@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>קבלני בריכות מקצועיים בישראל | Pool Israel - מצא את הקבלן המושלם</title>
+    <meta name="description" content="מצא קבלני בריכות מקצועיים ומאומתים בכל רחבי ישראל. השווה מחירים, קרא ביקורות ובחר את הקבלן הטוב ביותר לבניית הבריכה שלך.">
+    <meta name="keywords" content="קבלני בריכות, בניית בריכות, קבלן בריכות, בריכות פיברגלס, בריכות בטון, קבלני בריכות בתל אביב, קבלני בריכות בחיפה">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="קבלני בריכות מקצועיים בישראל | Pool Israel">
+    <meta property="og:description" content="מצא קבלני בריכות מקצועיים ומאומתים בכל רחבי ישראל. השווה מחירים וקרא ביקורות.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://israel-pool.top/contractors_page.html">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://israel-pool.top/contractors_page.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/template.css">
+    <link rel="stylesheet" href="css/contractor-cards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Page specific styles for contractors */
+        .search-filters {
+            background: white;
+            padding: var(--spacing-6);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-8);
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+        }
+        
+        .filters-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: var(--spacing-4);
+            align-items: end;
+        }
+        
+        .search-input-group {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-3) var(--spacing-3) var(--spacing-3) var(--spacing-12);
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: var(--spacing-3);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+            font-size: var(--font-size-lg);
+        }
+        
+        .filter-select {
+            width: 100%;
+            padding: var(--spacing-3);
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            background: white;
+            font-size: var(--font-size-base);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+            flex-wrap: wrap;
+            gap: var(--spacing-4);
+        }
+        
+        .results-count {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+        
+        .sort-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+        
+        .view-toggle {
+            display: flex;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        
+        .view-btn {
+            padding: var(--spacing-2) var(--spacing-4);
+            border: none;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--gray-600);
+        }
+        
+        .view-btn.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        .contractors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: var(--spacing-6);
+        }
+        
+        .contractors-list {
+            display: none;
+            flex-direction: column;
+            gap: var(--spacing-4);
+        }
+        
+        .contractors-list.active {
+            display: flex;
+        }
+        
+        .contractors-grid.active {
+            display: grid;
+        }
+        
+        .contractor-card {
+            background: white;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .contractor-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--light-blue);
+        }
+        
+        .contractor-card.featured {
+            border-color: var(--primary-orange);
+        }
+        
+        .contractor-card.featured::before {
+            content: "מומלץ";
+            position: absolute;
+            top: var(--spacing-3);
+            left: var(--spacing-3);
+            background: var(--primary-orange);
+            color: white;
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .contractor-header {
+            padding: var(--spacing-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .contractor-top {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .contractor-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .contractor-info h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-2);
+            color: var(--primary-blue-dark);
+            line-height: 1.3;
+        }
+        
+        .contractor-location {
+            color: var(--gray-600);
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-1);
+        }
+        
+        .contractor-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+        
+        .star {
+            color: #fbbf24;
+            font-size: var(--font-size-base);
+        }
+        
+        .star.empty {
+            color: var(--gray-300);
+        }
+        
+        .rating-text {
+            font-size: var(--font-size-sm);
+            color: var(--gray-600);
+        }
+        
+        .contractor-specialties {
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .specialties-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-2);
+        }
+        
+        .specialty-tag {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+        
+        .contractor-actions {
+            padding: var(--spacing-4) var(--spacing-6);
+            background: var(--gray-50);
+            display: flex;
+            gap: var(--spacing-3);
+        }
+        
+        .btn-contact {
+            flex: 1;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: var(--spacing-3) var(--spacing-4);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+        }
+        
+        .btn-contact:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-1px);
+        }
+        
+        .btn-quote {
+            flex: 1;
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: var(--spacing-3) var(--spacing-4);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+        }
+        
+        .btn-quote:hover {
+            background: var(--primary-orange-dark);
+            transform: translateY(-1px);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-2);
+            margin-top: var(--spacing-12);
+        }
+        
+        .pagination-btn,
+        .page-number {
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 2px solid var(--gray-300);
+            background: white;
+            color: var(--gray-700);
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .pagination-btn:hover,
+        .page-number:hover {
+            background: var(--gray-50);
+            border-color: var(--primary-blue);
+        }
+        
+        .page-number.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: var(--spacing-12);
+            color: var(--gray-600);
+        }
+        
+        .loading i {
+            font-size: var(--font-size-3xl);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .filters-row {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-3);
+            }
+            
+            .results-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .contractors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contractor-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contractor-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="home.html" title="Pool Israel - דף הבית">
+                        <img src="images/logo.svg" alt="Pool Israel Logo" width="150" height="45">
+                    </a>
+                </div>
+
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="home.html" title="דף הבית">🏠 דף הבית</a></li>
+                        <li><a href="contractors_new.html" title="מצא קבלני בריכות מקצועיים" class="active">👷 קבלנים</a></li>
+                        <li><a href="guides_page.html" title="מדריכים מפורטים לבניית בריכות">📚 מדריכים</a></li>
+                        <li><a href="quote_modal.html" title="קבל הצעת מחיר מיידית">💰 הצעת מחיר</a></li>
+                        <li><a href="#contact" title="צור קשר עם Pool Israel">📞 צור קשר</a></li>
+                    </ul>
+                </nav>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="פתח תפריט ניווט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <button class="mobile-menu-close" id="mobileMenuClose" type="button" aria-label="סגור תפריט">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3>🏊 Pool Israel</h3>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="home.html"><i class="fas fa-home"></i><span>דף הבית</span></a></li>
+            <li><a href="contractors_new.html" class="active"><i class="fas fa-hard-hat"></i><span>קבלני בריכות</span></a></li>
+            <li><a href="guides_page.html"><i class="fas fa-book-open"></i><span>מדריכי בריכות</span></a></li>
+            <li><a href="quote_modal.html"><i class="fas fa-calculator"></i><span>הצעת מחיר</span></a></li>
+            <li><a href="#contact"><i class="fas fa-phone"></i><span>צור קשר</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="home.html">דף הבית</a></li>
+                <li>קבלני בריכות</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>🏗️ קבלני בריכות מקצועיים</h1>
+                <p class="page-description">מצא את הקבלן המושלם לבניית הבריכה שלך. כל הקבלנים שלנו מאומתים ובעלי ניסיון מוכח</p>
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="search-filters">
+                <div class="filters-row">
+                    <div class="search-input-group">
+                        <input type="text" id="searchInput" class="search-input" placeholder="חפש קבלן לפי שם או תיאור...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="cityFilter" class="form-label">עיר</label>
+                        <select id="cityFilter" class="filter-select">
+                            <option value="">כל הערים</option>
+                            <option value="תל אביב">תל אביב</option>
+                            <option value="חיפה">חיפה</option>
+                            <option value="ירושלים">ירושלים</option>
+                            <option value="נתניה">נתניה</option>
+                            <option value="באר שבע">באר שבע</option>
+                            <option value="אשדוד">אשדוד</option>
+                            <option value="פתח תקווה">פתח תקווה</option>
+                            <option value="רמת גן">רמת גן</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="categoryFilter" class="form-label">התמחות</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="">כל ההתמחויות</option>
+                            <option value="בטון">בריכות בטון</option>
+                            <option value="פיברגלס">בריכות פיברגלס</option>
+                            <option value="מתועשות">בריכות מתועשות</option>
+                            <option value="תחזוקה">תחזוקת בריכות</option>
+                            <option value="שיפוץ">שיפוץ בריכות</option>
+                            <option value="עיצוב">עיצוב בריכות</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="ratingFilter" class="form-label">דירוג מינימלי</label>
+                        <select id="ratingFilter" class="filter-select">
+                            <option value="">כל הדירוגים</option>
+                            <option value="4.5">4.5+ כוכבים</option>
+                            <option value="4.0">4.0+ כוכבים</option>
+                            <option value="3.5">3.5+ כוכבים</option>
+                            <option value="3.0">3.0+ כוכבים</option>
+                        </select>
+                    </div>
+
+                    <button type="button" id="clearFilters" class="btn btn-outline">
+                        <i class="fas fa-times"></i>
+                        נקה
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Header -->
+            <div class="results-header">
+                <div class="results-count">
+                    <span id="resultsCount">טוען...</span>
+                </div>
+
+                <div class="sort-controls">
+                    <label for="sortSelect">מיין לפי:</label>
+                    <select id="sortSelect" class="filter-select" style="width: auto; min-width: 150px;">
+                        <option value="featured">מומלצים ראשון</option>
+                        <option value="rating">דירוג גבוה</option>
+                        <option value="reviews">מספר ביקורות</option>
+                        <option value="name">שם א-ת</option>
+                        <option value="city">עיר א-ת</option>
+                    </select>
+
+                    <div class="view-toggle">
+                        <button type="button" class="view-btn active" data-view="grid" title="תצוגת רשת">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button type="button" class="view-btn" data-view="list" title="תצוגת רשימה">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>טוען קבלנים...</p>
+            </div>
+
+            <!-- Contractors Grid -->
+            <div id="contractorsGrid" class="contractors-grid active">
+                <!-- Contractors will be loaded here -->
+            </div>
+
+            <!-- Contractors List -->
+            <div id="contractorsList" class="contractors-list">
+                <!-- List view will be loaded here -->
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="pagination" style="display: none;">
+                <!-- Pagination will be generated here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🏊‍♂️ Pool Israel</h4>
+                    <p>הפורטל המוביל לבניית בריכות בישראל</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>🔗 קישורים מהירים</h4>
+                    <ul>
+                        <li><a href="contractors_new.html">קבלני בריכות</a></li>
+                        <li><a href="guides_page.html">מדריכי בריכות</a></li>
+                        <li><a href="quote_modal.html">הצעת מחיר</a></li>
+                        <li><a href="#contact">צור קשר</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>📞 צור קשר</h4>
+                    <p><i class="fas fa-phone"></i> 058-4995151</p>
+                    <p><i class="fas fa-envelope"></i> info@israel-pool.top</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>💼 שירותי BDNHOST</h4>
+                    <p>פיתוח ואחסון האתר על ידי BDNHOST</p>
+                    <a href="https://bdnhost.com" target="_blank" rel="noopener">www.bdnhost.com</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pool Israel. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/template.js"></script>
+    <script src="js/contractors.js?v=2025060502"></script>
+</body>
+</html>

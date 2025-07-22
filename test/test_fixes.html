@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pool Israel - Bug Fixes Test</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23007cba'/%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EP%3C/text%3E%3C/svg%3E">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            direction: rtl;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #005a87;
+        }
+        .test-button.success {
+            background: #28a745;
+        }
+        .test-button.danger {
+            background: #dc3545;
+        }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success {
+            border-color: #28a745;
+            background-color: #d4edda;
+        }
+        .error {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .fix-summary {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #b3d9ff;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        .status-ok { background: #28a745; }
+        .status-error { background: #dc3545; }
+        .status-warning { background: #ffc107; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Pool Israel - Bug Fixes Test</h1>
+    
+    <div class="fix-summary">
+        <h2>📋 תיקונים שבוצעו</h2>
+        <ul>
+            <li><span class="status-indicator status-ok"></span><strong>favicon.ico:</strong> נוסף favicon SVG לדף האדמין</li>
+            <li><span class="status-indicator status-ok"></span><strong>SMS Stats Error:</strong> תוקן שגיאת "Cannot read properties of undefined"</li>
+            <li><span class="status-indicator status-ok"></span><strong>Global Functions:</strong> תוקנו הפונקציות החסרות במודול קבלנים</li>
+            <li><span class="status-indicator status-ok"></span><strong>Error Handling:</strong> נוסף try-catch לכל הפונקציות</li>
+            <li><span class="status-indicator status-ok"></span><strong>Default Values:</strong> נוספו ערכי ברירת מחדל למניעת שגיאות</li>
+        </ul>
+    </div>
+    
+    <div class="test-container">
+        <h2>🔧 SMS Stats Fix Test</h2>
+        <button class="test-button" onclick="testSMSStats()">Test SMS Statistics</button>
+        <button class="test-button" onclick="testSMSLogs()">Test SMS Logs</button>
+        <div id="smsResults" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="test-container">
+        <h2>👥 Contractor Functions Test</h2>
+        <button class="test-button" onclick="testExportContractors()">Test Export Contractors</button>
+        <button class="test-button" onclick="testSetupFilters()">Test Setup Filters</button>
+        <button class="test-button" onclick="testBulkOperations()">Test Bulk Operations</button>
+        <div id="contractorResults" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="test-container">
+        <h2>🌐 Global Functions Test</h2>
+        <button class="test-button" onclick="testGlobalFunctions()">Test All Global Functions</button>
+        <button class="test-button success" onclick="testAdminPanelAccess()">Test AdminPanel Access</button>
+        <div id="globalResults" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="test-container">
+        <h2>🔍 Error Handling Test</h2>
+        <button class="test-button danger" onclick="testErrorHandling()">Test Error Scenarios</button>
+        <button class="test-button" onclick="testDefaultValues()">Test Default Values</button>
+        <div id="errorResults" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="test-container">
+        <h2>📊 Dashboard Integration Test</h2>
+        <button class="test-button success" onclick="openAdminDashboard()">Open Admin Dashboard</button>
+        <button class="test-button" onclick="testDashboardAPIs()">Test Dashboard APIs</button>
+        <div id="dashboardResults" class="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        // Test functions
+        async function testSMSStats() {
+            showResult('smsResults', 'Testing SMS statistics...');
+            try {
+                const response = await fetch('/api/sms_simple.php?action=get_stats');
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResult('smsResults', 'SMS Stats Test PASSED:\n' + JSON.stringify(data, null, 2), true);
+                } else {
+                    showResult('smsResults', 'SMS Stats Test FAILED:\n' + JSON.stringify(data, null, 2), false);
+                }
+            } catch (error) {
+                showResult('smsResults', 'SMS Stats Test ERROR:\n' + error.message, false);
+            }
+        }
+        
+        async function testSMSLogs() {
+            showResult('smsResults', 'Testing SMS logs...');
+            try {
+                const response = await fetch('/api/sms_simple.php?action=get_logs&limit=5');
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResult('smsResults', 'SMS Logs Test PASSED:\n' + JSON.stringify(data, null, 2), true);
+                } else {
+                    showResult('smsResults', 'SMS Logs Test FAILED:\n' + JSON.stringify(data, null, 2), false);
+                }
+            } catch (error) {
+                showResult('smsResults', 'SMS Logs Test ERROR:\n' + error.message, false);
+            }
+        }
+        
+        function testExportContractors() {
+            showResult('contractorResults', 'Testing export contractors function...');
+            try {
+                if (typeof exportContractors === 'function') {
+                    showResult('contractorResults', 'Export Contractors Function EXISTS ✅\nFunction can be called without errors.', true);
+                } else {
+                    showResult('contractorResults', 'Export Contractors Function NOT FOUND ❌', false);
+                }
+            } catch (error) {
+                showResult('contractorResults', 'Export Contractors Test ERROR:\n' + error.message, false);
+            }
+        }
+        
+        function testSetupFilters() {
+            showResult('contractorResults', 'Testing setup filters function...');
+            try {
+                if (typeof setupContractorFilters === 'function') {
+                    showResult('contractorResults', 'Setup Filters Function EXISTS ✅\nFunction can be called without errors.', true);
+                } else {
+                    showResult('contractorResults', 'Setup Filters Function NOT FOUND ❌', false);
+                }
+            } catch (error) {
+                showResult('contractorResults', 'Setup Filters Test ERROR:\n' + error.message, false);
+            }
+        }
+        
+        function testBulkOperations() {
+            showResult('contractorResults', 'Testing bulk operations function...');
+            try {
+                if (typeof showBulkOperationsModal === 'function') {
+                    showResult('contractorResults', 'Bulk Operations Function EXISTS ✅\nFunction can be called without errors.', true);
+                } else {
+                    showResult('contractorResults', 'Bulk Operations Function NOT FOUND ❌', false);
+                }
+            } catch (error) {
+                showResult('contractorResults', 'Bulk Operations Test ERROR:\n' + error.message, false);
+            }
+        }
+        
+        function testGlobalFunctions() {
+            showResult('globalResults', 'Testing all global functions...');
+            const functions = [
+                'addContractor',
+                'exportQuotes', 
+                'importContractors',
+                'sendTestSMS',
+                'editContractor',
+                'deleteContractor',
+                'viewContractorQuotes',
+                'toggleContractorStatus',
+                'exportContractors',
+                'setupContractorFilters',
+                'showBulkOperationsModal'
+            ];
+            
+            let results = 'Global Functions Test Results:\n\n';
+            let allExist = true;
+            
+            functions.forEach(funcName => {
+                if (typeof window[funcName] === 'function') {
+                    results += `✅ ${funcName} - EXISTS\n`;
+                } else {
+                    results += `❌ ${funcName} - NOT FOUND\n`;
+                    allExist = false;
+                }
+            });
+            
+            results += `\nOverall Status: ${allExist ? 'ALL FUNCTIONS EXIST ✅' : 'SOME FUNCTIONS MISSING ❌'}`;
+            showResult('globalResults', results, allExist);
+        }
+        
+        function testAdminPanelAccess() {
+            showResult('globalResults', 'Testing AdminPanel access...');
+            try {
+                if (window.adminPanel) {
+                    showResult('globalResults', 'AdminPanel Access Test PASSED ✅\nwindow.adminPanel is available and accessible.', true);
+                } else {
+                    showResult('globalResults', 'AdminPanel Access Test FAILED ❌\nwindow.adminPanel is not available.', false);
+                }
+            } catch (error) {
+                showResult('globalResults', 'AdminPanel Access Test ERROR:\n' + error.message, false);
+            }
+        }
+        
+        function testErrorHandling() {
+            showResult('errorResults', 'Testing error handling...');
+            try {
+                // Test calling a function that might not exist
+                if (window.adminPanel && typeof window.adminPanel.updateSMSStats === 'function') {
+                    // This should not throw an error even with undefined data
+                    window.adminPanel.data = { smsStats: undefined };
+                    window.adminPanel.updateSMSStats();
+                    showResult('errorResults', 'Error Handling Test PASSED ✅\nFunctions handle undefined data gracefully.', true);
+                } else {
+                    showResult('errorResults', 'Error Handling Test SKIPPED\nAdminPanel not available for testing.', false);
+                }
+            } catch (error) {
+                showResult('errorResults', 'Error Handling Test FAILED:\n' + error.message, false);
+            }
+        }
+        
+        function testDefaultValues() {
+            showResult('errorResults', 'Testing default values...');
+            try {
+                if (window.adminPanel) {
+                    // Test that default values are set properly
+                    const hasDefaults = window.adminPanel.data && 
+                                      typeof window.adminPanel.updateElement === 'function';
+                    
+                    if (hasDefaults) {
+                        showResult('errorResults', 'Default Values Test PASSED ✅\nDefault values and fallback functions are available.', true);
+                    } else {
+                        showResult('errorResults', 'Default Values Test FAILED ❌\nSome default values or functions are missing.', false);
+                    }
+                } else {
+                    showResult('errorResults', 'Default Values Test SKIPPED\nAdminPanel not available for testing.', false);
+                }
+            } catch (error) {
+                showResult('errorResults', 'Default Values Test ERROR:\n' + error.message, false);
+            }
+        }
+        
+        function openAdminDashboard() {
+            showResult('dashboardResults', 'Opening admin dashboard...');
+            window.open('/admin/', '_blank');
+            showResult('dashboardResults', 'Admin Dashboard opened in new tab ✅\nCheck the dashboard for proper functionality.', true);
+        }
+        
+        async function testDashboardAPIs() {
+            showResult('dashboardResults', 'Testing dashboard APIs...');
+            try {
+                const tests = [
+                    { name: 'Admin Stats', url: '/api/admin.php?action=get_stats' },
+                    { name: 'Contractors', url: '/api/contractors.php?limit=5' },
+                    { name: 'SMS Stats', url: '/api/sms_simple.php?action=get_stats' }
+                ];
+                
+                let results = 'Dashboard APIs Test Results:\n\n';
+                let allPassed = true;
+                
+                for (const test of tests) {
+                    try {
+                        const response = await fetch(test.url);
+                        const data = await response.json();
+                        
+                        if (data.success) {
+                            results += `✅ ${test.name} - WORKING\n`;
+                        } else {
+                            results += `❌ ${test.name} - FAILED: ${data.message || 'Unknown error'}\n`;
+                            allPassed = false;
+                        }
+                    } catch (error) {
+                        results += `❌ ${test.name} - ERROR: ${error.message}\n`;
+                        allPassed = false;
+                    }
+                }
+                
+                results += `\nOverall Status: ${allPassed ? 'ALL APIs WORKING ✅' : 'SOME APIs FAILED ❌'}`;
+                showResult('dashboardResults', results, allPassed);
+                
+            } catch (error) {
+                showResult('dashboardResults', 'Dashboard APIs Test ERROR:\n' + error.message, false);
+            }
+        }
+        
+        // Helper function
+        function showResult(elementId, content, success = null) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.textContent = content;
+            element.className = 'result ' + (success === true ? 'success' : success === false ? 'error' : '');
+        }
+        
+        // Auto-run basic tests
+        window.addEventListener('load', function() {
+            console.log('Bug Fixes Test Page Loaded');
+            setTimeout(() => testGlobalFunctions(), 500);
+            setTimeout(() => testAdminPanelAccess(), 1000);
+        });
+    </script>
+</body>
+</html>

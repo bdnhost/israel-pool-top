@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת מודלים - Pool Israel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <style>
+        body {
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 1rem;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .test-section h2 {
+            color: #007cba;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 בדיקת מודלים פופאפ - Pool Israel</h1>
+        <p>דף זה מיועד לבדיקת פונקציונליות המודלים החדשים במערכת הניהול.</p>
+        
+        <div class="test-section">
+            <h2>🔐 מודל שינוי סיסמה</h2>
+            <button class="btn btn-primary test-button" onclick="testPasswordModal()">
+                <i class="fas fa-key"></i>
+                בדוק מודל שינוי סיסמה
+            </button>
+        </div>
+        
+        <div class="test-section">
+            <h2>👥 מודלי קבלנים</h2>
+            <button class="btn btn-success test-button" onclick="testContractorAddModal()">
+                <i class="fas fa-plus"></i>
+                בדוק הוספת קבלן
+            </button>
+            <button class="btn btn-primary test-button" onclick="testContractorEditModal()">
+                <i class="fas fa-edit"></i>
+                בדוק עריכת קבלן
+            </button>
+        </div>
+        
+        <div class="test-section">
+            <h2>📋 מודלי בקשות הצעות מחיר</h2>
+            <button class="btn btn-primary test-button" onclick="testQuoteEditModal()">
+                <i class="fas fa-file-invoice"></i>
+                בדוק עריכת בקשה
+            </button>
+        </div>
+        
+        <div class="test-section">
+            <h2>👤 מודלי משתמשים</h2>
+            <button class="btn btn-success test-button" onclick="testUserAddModal()">
+                <i class="fas fa-user-plus"></i>
+                בדוק הוספת משתמש
+            </button>
+            <button class="btn btn-primary test-button" onclick="testUserEditModal()">
+                <i class="fas fa-user-edit"></i>
+                בדוק עריכת משתמש
+            </button>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎨 בדיקת עיצוב</h2>
+            <button class="btn btn-warning test-button" onclick="testModalStyles()">
+                <i class="fas fa-palette"></i>
+                בדוק סטיילים
+            </button>
+            <button class="btn btn-info test-button" onclick="testResponsive()">
+                <i class="fas fa-mobile-alt"></i>
+                בדוק תגובתיות
+            </button>
+        </div>
+        
+        <div class="test-section">
+            <h2>📱 הוראות בדיקה</h2>
+            <ul style="text-align: right; line-height: 1.8;">
+                <li>לחץ על כל כפתור ובדוק שהמודל נפתח במרכז המסך</li>
+                <li>בדוק שניתן לסגור את המודל בלחיצה על X או על הרקע</li>
+                <li>בדוק שמקש ESC סוגר את המודל</li>
+                <li>בדוק שהטפסים מוצגים נכון ונגישים</li>
+                <li>בדוק תגובתיות במכשירים שונים</li>
+                <li>בדוק שהאנימציות עובדות חלק</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>
+        // Initialize admin panel for testing
+        const adminPanel = new AdminPanel();
+        
+        // Test functions
+        function testPasswordModal() {
+            adminPanel.showChangePasswordModal();
+        }
+        
+        function testContractorAddModal() {
+            adminPanel.showContractorEditModal(null);
+        }
+        
+        function testContractorEditModal() {
+            // Mock contractor data for testing
+            const mockContractor = {
+                id: 1,
+                title: 'קבלן בדיקה',
+                phone: '050-1234567',
+                email: 'test@example.com',
+                city: 'תל אביב',
+                description: 'זהו קבלן לבדיקה',
+                rating: 5,
+                latitude: 32.0853,
+                longitude: 34.7818
+            };
+            
+            // Override the fetch for testing
+            const originalFetch = window.fetch;
+            window.fetch = async (url) => {
+                if (url.includes('get_contractor')) {
+                    return {
+                        json: async () => ({
+                            success: true,
+                            contractor: mockContractor
+                        })
+                    };
+                }
+                return originalFetch(url);
+            };
+            
+            adminPanel.showContractorEditModal(1);
+            
+            // Restore original fetch after a delay
+            setTimeout(() => {
+                window.fetch = originalFetch;
+            }, 1000);
+        }
+        
+        function testQuoteEditModal() {
+            // Mock quote data for testing
+            const mockQuote = {
+                id: 1,
+                customer_name: 'לקוח בדיקה',
+                customer_phone: '050-9876543',
+                customer_email: 'customer@example.com',
+                customer_city: 'חיפה',
+                pool_type: 'concrete',
+                pool_size: 'medium',
+                budget_range: '100000-200000',
+                status: 'pending',
+                project_location: 'חיפה, ישראל',
+                description: 'בקשה לבניית בריכה'
+            };
+            
+            // Override the fetch for testing
+            const originalFetch = window.fetch;
+            window.fetch = async (url) => {
+                if (url.includes('get_quote')) {
+                    return {
+                        json: async () => ({
+                            success: true,
+                            quote: mockQuote
+                        })
+                    };
+                }
+                return originalFetch(url);
+            };
+            
+            adminPanel.showQuoteEditModal(1);
+            
+            // Restore original fetch after a delay
+            setTimeout(() => {
+                window.fetch = originalFetch;
+            }, 1000);
+        }
+        
+        function testUserAddModal() {
+            adminPanel.showUserEditModal(null);
+        }
+        
+        function testUserEditModal() {
+            // Mock user data for testing
+            const mockUser = {
+                id: 1,
+                username: 'testuser',
+                email: 'user@example.com',
+                role: 'user',
+                status: 'active',
+                phone: '050-5555555',
+                city: 'ירושלים',
+                notes: 'משתמש לבדיקה'
+            };
+            
+            // Override the fetch for testing
+            const originalFetch = window.fetch;
+            window.fetch = async (url) => {
+                if (url.includes('get_user')) {
+                    return {
+                        json: async () => ({
+                            success: true,
+                            user: mockUser
+                        })
+                    };
+                }
+                return originalFetch(url);
+            };
+            
+            adminPanel.showUserEditModal(1);
+            
+            // Restore original fetch after a delay
+            setTimeout(() => {
+                window.fetch = originalFetch;
+            }, 1000);
+        }
+        
+        function testModalStyles() {
+            const testContent = `
+                <div style="padding: 20px; text-align: center;">
+                    <h3>🎨 בדיקת סטיילים</h3>
+                    <p>זהו מודל לבדיקת העיצוב והסטיילים</p>
+                    <div style="margin: 20px 0;">
+                        <button class="btn btn-primary" style="margin: 5px;">כפתור ראשי</button>
+                        <button class="btn btn-secondary" style="margin: 5px;">כפתור משני</button>
+                        <button class="btn btn-success" style="margin: 5px;">כפתור הצלחה</button>
+                        <button class="btn btn-danger" style="margin: 5px;">כפתור סכנה</button>
+                    </div>
+                    <div class="form-group">
+                        <label>שדה טקסט לבדיקה:</label>
+                        <input type="text" placeholder="הכנס טקסט כאן...">
+                    </div>
+                </div>
+            `;
+            
+            adminPanel.showModal('styleTestModal', 'בדיקת סטיילים', testContent);
+        }
+        
+        function testResponsive() {
+            alert('לבדיקת תגובתיות:\n1. שנה את גודל החלון\n2. פתח כלי פיתוח (F12)\n3. עבור למצב מכשיר נייד\n4. בדוק שהמודלים מתאימים לגדלים שונים');
+        }
+    </script>
+</body>
+</html>

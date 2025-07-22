@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת Responsive Design - Pool Israel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            text-align: right;
+            padding: 20px;
+            background: #f5f5f5;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c5aa0;
+        }
+        .header h1 {
+            color: #2c5aa0;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .device-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .device-btn {
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .device-btn:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+        }
+        .device-btn.active {
+            background: #f59e0b;
+        }
+        .viewport-info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .test-frame {
+            border: 3px solid #2c5aa0;
+            border-radius: 10px;
+            margin: 20px auto;
+            transition: all 0.5s ease;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .test-frame iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: block;
+        }
+        .device-desktop {
+            width: 1200px;
+            max-width: 100%;
+        }
+        .device-laptop {
+            width: 1024px;
+            max-width: 100%;
+        }
+        .device-tablet {
+            width: 768px;
+            max-width: 100%;
+        }
+        .device-mobile {
+            width: 375px;
+            max-width: 100%;
+        }
+        .device-mobile-small {
+            width: 320px;
+            max-width: 100%;
+        }
+        .page-selector {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .page-selector h3 {
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        .page-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .page-btn:hover {
+            background: #495057;
+        }
+        .page-btn.active {
+            background: #2c5aa0;
+        }
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .checklist h3 {
+            color: #2c5aa0;
+            margin-bottom: 15px;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+        .checklist-item input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+        .checklist-item.checked {
+            background: #d4edda;
+            color: #155724;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .tips {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .tips h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .tips ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+        .tips li {
+            margin-bottom: 5px;
+            color: #856404;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .device-selector {
+                flex-direction: column;
+            }
+            .page-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 בדיקת Responsive Design</h1>
+            <p>כלי לבדיקת התאמת האתר לכל גדלי המסך</p>
+        </div>
+
+        <div class="page-selector">
+            <h3>🔗 בחר דף לבדיקה:</h3>
+            <div class="page-buttons">
+                <button class="page-btn active" onclick="loadPage('home.html')">🏠 דף הבית</button>
+                <button class="page-btn" onclick="loadPage('contractors_page.html')">👷 קבלנים</button>
+                <button class="page-btn" onclick="loadPage('guides_page.html')">📚 מדריכים</button>
+                <button class="page-btn" onclick="loadPage('quote_modal.html')">💰 הצעת מחיר</button>
+                <button class="page-btn" onclick="loadPage('admin/index.html')">⚙️ ניהול</button>
+            </div>
+        </div>
+
+        <div class="device-selector">
+            <button class="device-btn active" onclick="setDevice('desktop')">
+                <i>🖥️</i> Desktop (1200px)
+            </button>
+            <button class="device-btn" onclick="setDevice('laptop')">
+                <i>💻</i> Laptop (1024px)
+            </button>
+            <button class="device-btn" onclick="setDevice('tablet')">
+                <i>📱</i> Tablet (768px)
+            </button>
+            <button class="device-btn" onclick="setDevice('mobile')">
+                <i>📱</i> Mobile (375px)
+            </button>
+            <button class="device-btn" onclick="setDevice('mobile-small')">
+                <i>📱</i> Small (320px)
+            </button>
+        </div>
+
+        <div class="viewport-info" id="viewportInfo">
+            🖥️ Desktop View - 1200px רוחב
+        </div>
+
+        <div class="test-frame device-desktop" id="testFrame">
+            <iframe id="testIframe" src="home.html"></iframe>
+        </div>
+
+        <div class="checklist">
+            <h3>✅ רשימת בדיקה לכל גודל מסך</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="checklistItems">
+                <!-- Checklist items will be generated here -->
+            </div>
+        </div>
+
+        <div class="tips">
+            <h4>💡 טיפים לבדיקת Responsive:</h4>
+            <ul>
+                <li>בדוק שהתפריט הופך לתפריט המבורגר במובייל</li>
+                <li>וודא שהטקסט קריא בכל הגדלים</li>
+                <li>בדוק שהכפתורים גדולים מספיק למגע</li>
+                <li>וודא שהתמונות מתאימות לגודל המסך</li>
+                <li>בדוק שהטפסים נוחים למילוי במובייל</li>
+                <li>וודא שאין גלילה אופקית</li>
+                <li>בדוק שהתוכן מסודר היטב בכל הגדלים</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let currentDevice = 'desktop';
+        let currentPage = 'home.html';
+        
+        const deviceSizes = {
+            'desktop': { width: '1200px', name: '🖥️ Desktop View - 1200px רוחב' },
+            'laptop': { width: '1024px', name: '💻 Laptop View - 1024px רוחב' },
+            'tablet': { width: '768px', name: '📱 Tablet View - 768px רוחב' },
+            'mobile': { width: '375px', name: '📱 Mobile View - 375px רוחב' },
+            'mobile-small': { width: '320px', name: '📱 Small Mobile - 320px רוחב' }
+        };
+
+        const checklistItems = {
+            'desktop': [
+                'תפריט הניווט מוצג במלואו',
+                'כל הכפתורים נגישים',
+                'התוכן מסודר בעמודות',
+                'התמונות בגודל מתאים',
+                'הפוטר מוצג במלואו',
+                'אין גלילה אופקית'
+            ],
+            'laptop': [
+                'תפריט הניווט מוצג',
+                'התוכן מתאים לרוחב',
+                'הכפתורים בגודל נוח',
+                'הטפסים נוחים למילוי',
+                'הפוטר מסודר',
+                'אין גלילה אופקית'
+            ],
+            'tablet': [
+                'תפריט הניווט מותאם',
+                'התוכן בעמודות מתאימות',
+                'הכפתורים גדולים למגע',
+                'הטפסים נוחים',
+                'הפוטר מסודר',
+                'אין גלילה אופקית'
+            ],
+            'mobile': [
+                'תפריט המבורגר פועל',
+                'התוכן בעמודה אחת',
+                'הכפתורים גדולים למגע',
+                'הטקסט קריא',
+                'הטפסים נוחים למילוי',
+                'הפוטר מותאם למובייל',
+                'אין גלילה אופקית'
+            ],
+            'mobile-small': [
+                'תפריט המבורגר פועל',
+                'התוכן בעמודה אחת',
+                'הכפתורים גדולים מספיק',
+                'הטקסט קריא',
+                'הטפסים לא חותכים',
+                'הפוטר מותאם',
+                'אין גלילה אופקית'
+            ]
+        };
+
+        function setDevice(device) {
+            currentDevice = device;
+            
+            // Update active button
+            document.querySelectorAll('.device-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update frame size
+            const frame = document.getElementById('testFrame');
+            frame.className = `test-frame device-${device}`;
+            
+            // Update viewport info
+            document.getElementById('viewportInfo').textContent = deviceSizes[device].name;
+            
+            // Update checklist
+            updateChecklist();
+        }
+
+        function loadPage(page) {
+            currentPage = page;
+            
+            // Update active button
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Load page in iframe
+            document.getElementById('testIframe').src = page;
+            
+            // Reset checklist
+            updateChecklist();
+        }
+
+        function updateChecklist() {
+            const container = document.getElementById('checklistItems');
+            container.innerHTML = '';
+            
+            const items = checklistItems[currentDevice] || [];
+            
+            items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'checklist-item';
+                div.innerHTML = `
+                    <input type="checkbox" id="check-${index}" onchange="updateProgress()">
+                    <label for="check-${index}">${item}</label>
+                `;
+                container.appendChild(div);
+            });
+            
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('#checklistItems input[type="checkbox"]');
+            const checked = document.querySelectorAll('#checklistItems input[type="checkbox"]:checked');
+            
+            const progress = checkboxes.length > 0 ? (checked.length / checkboxes.length) * 100 : 0;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Update checked items styling
+            checkboxes.forEach(checkbox => {
+                const item = checkbox.closest('.checklist-item');
+                if (checkbox.checked) {
+                    item.classList.add('checked');
+                } else {
+                    item.classList.remove('checked');
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateChecklist();
+        });
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        setDevice('desktop');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        setDevice('laptop');
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        setDevice('tablet');
+                        break;
+                    case '4':
+                        e.preventDefault();
+                        setDevice('mobile');
+                        break;
+                    case '5':
+                        e.preventDefault();
+                        setDevice('mobile-small');
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

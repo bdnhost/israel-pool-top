@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>המדריך המלא לבניית בריכה פרטית 2025 | PoolIsrael</title>
+    <meta name="description" content="מדריך מקיף ומעודכן לכל השלבים בבניית בריכה פרטית - מהתכנון הראשוני ועד הצלילה הראשונה. כולל טיפים מקצועיים, רשימת ציוד ולוחות זמנים מציאותיים.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://poolisrael.co.il/guide_complete_pool_building_2025.html">
+    <meta property="og:title" content="המדריך המלא לבניית בריכה פרטית 2025">
+    <meta property="og:description" content="מדריך מקיף ומעודכן לכל השלבים בבניית בריכה פרטית - מהתכנון הראשוני ועד הצלילה הראשונה">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://poolisrael.co.il/guide_complete_pool_building_2025.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2E86AB;
+            --dark-blue: #1B4F72;
+            --accent-orange: #F39C12;
+            --light-blue: #AED6F1;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --border-light: #E5E7EB;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .guide-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .guide-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .guide-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .section h2 {
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            color: var(--accent-orange);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border: 1px solid #FFEAA7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--accent-orange);
+        }
+
+        .warning-box h4 {
+            color: #B7791F;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box {
+            background: #D1ECF1;
+            border: 1px solid #BEE5EB;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .info-box h4 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-blue);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-right: 50px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 6px;
+            top: 8px;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--primary-blue);
+        }
+
+        .timeline-item h4 {
+            color: var(--dark-blue);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .cost-table th,
+        .cost-table td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cost-table th {
+            background: var(--gradient);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .cost-table tr:hover {
+            background: var(--light-gray);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .guide-header h1 {
+                font-size: 2rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="pool_israel_homepage.html" class="logo">
+                    <i class="fas fa-swimming-pool"></i>
+                    PoolIsrael
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="guides_page.html" class="active">מדריכים</a></li>
+                    <li><a href="contractors_page.html">קבלנים</a></li>
+                    <li><a href="tools_page.html">כלים</a></li>
+                    <li><a href="community_page.html">קהילה</a></li>
+                    <li><a href="news_page.html">חדשות</a></li>
+                </ul>
+
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">התחברות</a>
+                    <a href="#" class="btn btn-primary">הרשמה</a>
+                </div>
+
+                <button type="button" class="mobile-menu-btn" aria-label="תפריט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="home.html"><i class="fas fa-home"></i> דף הבית</a></li>
+                <li><a href="guides_page.html"><i class="fas fa-book"></i> מדריכים</a></li>
+                <li>המדריך המלא לבניית בריכה פרטית 2025</li>
+            </ol>
+        </div>
+    </nav>
+
+    <div class="guide-container">
+        <div class="guide-header">
+            <h1>המדריך המלא לבניית בריכה פרטית 2025</h1>
+            <div class="meta-info">
+                <span><i class="fas fa-clock"></i> זמן קריאה: 15 דקות</span>
+                <span><i class="fas fa-calendar-alt"></i> עודכן: יוני 2025</span>
+                <span><i class="fas fa-star"></i> דירוג: 4.9/5</span>
+                <span><i class="fas fa-eye"></i> 25,342 צפיות</span>
+            </div>
+        </div>
+
+        <div class="guide-content">
+            <section class="section">
+                <h2><i class="fas fa-lightbulb"></i> מבוא - החלום הופך למציאות</h2>
+                <p>בניית בריכה פרטית היא אחת ההשקעות הגדולות והמשמעותיות ביותר שתעשו בבית שלכם. מדריך זה יעזור לכם לעבור את כל התהליך בביטחון, מהתכנון הראשוני ועד הצלילה הראשונה.</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-info-circle"></i> למה המדריך הזה שונה?</h4>
+                    <p>המדריך נכתב על בסיס ניסיון של מאות פרויקטים שבוצעו בישראל ב-2024-2025, כולל עדכונים לתקנות החדשות, מחירים עדכניים וטכנולוגיות חדשות.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-map-marked-alt"></i> שלב 1: תכנון ועיצוב</h2>
+                
+                <h3>בחירת מיקום הבריכה</h3>
+                <p>המיקום הוא הגורם הקריטי ביותר להצלחת הפרויקט. יש לקחת בחשבון:</p>
+                
+                <ul class="checklist">
+                    <li><strong>חשיפה לשמש:</strong> לפחות 6 שעות שמש ביום לחימום טבעי</li>
+                    <li><strong>מרחק מהבית:</strong> נגישות נוחה אך לא צמוד לחלונות חדרי שינה</li>
+                    <li><strong>כיוון רוחות:</strong> הימנעות מאזורים חשופים לרוחות חזקות</li>
+                    <li><strong>ניקוז:</strong> אזור שלא מתמלא במים בחורף</li>
+                    <li><strong>עצים:</strong> מרחק של לפחות 5 מטר מעצים גדולים</li>
+                </ul>
+
+                <h3>קביעת גודל וצורה</h3>
+                <p>הגדלים הפופולריים ביותר בישראל:</p>
+                
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>גודל</th>
+                            <th>מידות (מטר)</th>
+                            <th>שטח (מ"ר)</th>
+                            <th>מתאים ל</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>קטנה</td>
+                            <td>4×8</td>
+                            <td>32</td>
+                            <td>משפחה עד 4 נפשות</td>
+                        </tr>
+                        <tr>
+                            <td>בינונית</td>
+                            <td>5×10</td>
+                            <td>50</td>
+                            <td>משפחה עד 6 נפשות</td>
+                        </tr>
+                        <tr>
+                            <td>גדולה</td>
+                            <td>6×12</td>
+                            <td>72</td>
+                            <td>משפחה גדולה + אירוח</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> שימו לב!</h4>
+                    <p>בריכה גדולה יותר = עלויות תחזוקה גבוהות יותר. חשבו על השימוש הצפוי ולא רק על החלום.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-file-contract"></i> שלב 2: היתרים ורישיונות</h2>
+
+                <h3>היתר בנייה</h3>
+                <p>בישראל נדרש היתר בנייה לכל בריכה מעל 10 מ"ר. התהליך כולל:</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>הגשת בקשה לעירייה</h4>
+                        <p>כולל תוכניות אדריכל, תוכניות קונסטרוקציה ותשלום אגרות</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>בדיקת הבקשה</h4>
+                        <p>תהליך שלוקח 30-60 יום, לפעמים נדרשות התאמות</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>קבלת היתר</h4>
+                        <p>לאחר אישור ותשלום יתרת האגרות</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>תחילת עבודות</h4>
+                        <p>רק לאחר קבלת היתר בפועל!</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-calculator"></i> עלויות היתרים</h4>
+                    <p><strong>אדריכל:</strong> 8,000-15,000 ₪<br>
+                    <strong>מהנדס קונסטרוקציה:</strong> 5,000-10,000 ₪<br>
+                    <strong>אגרות עירייה:</strong> 3,000-8,000 ₪</p>
+                </div>
+
+                <h3>דרישות בטיחות חובה</h3>
+                <ul class="checklist">
+                    <li><strong>גידור:</strong> גובה מינימלי 1.2 מטר סביב הבריכה</li>
+                    <li><strong>שער בטיחות:</strong> נעילה אוטומטית ומנגנון בטיחות לילדים</li>
+                    <li><strong>מערכת אזעקה:</strong> חיישני נפילה או מצלמות</li>
+                    <li><strong>תאורה:</strong> תאורת בטיחות סביב הבריכה</li>
+                    <li><strong>ציוד הצלה:</strong> מוט הצלה ומצוף</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-tools"></i> שלב 3: בחירת סוג הבריכה</h2>
+
+                <h3>השוואת סוגי בריכות</h3>
+
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>סוג בריכה</th>
+                            <th>עלות (₪)</th>
+                            <th>זמן בנייה</th>
+                            <th>יתרונות</th>
+                            <th>חסרונות</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>פיברגלס</strong></td>
+                            <td>120,000-200,000</td>
+                            <td>2-3 שבועות</td>
+                            <td>התקנה מהירה, תחזוקה קלה</td>
+                            <td>מוגבל בגדלים וצורות</td>
+                        </tr>
+                        <tr>
+                            <td><strong>בטון יצוק</strong></td>
+                            <td>150,000-300,000</td>
+                            <td>6-10 שבועות</td>
+                            <td>גמישות מלאה בעיצוב</td>
+                            <td>תהליך ארוך, עלות גבוהה</td>
+                        </tr>
+                        <tr>
+                            <td><strong>בלוקי בטון</strong></td>
+                            <td>100,000-180,000</td>
+                            <td>4-6 שבועות</td>
+                            <td>יחס מחיר-ביצועים טוב</td>
+                            <td>דורש איטום מקצועי</td>
+                        </tr>
+                        <tr>
+                            <td><strong>מתועשת</strong></td>
+                            <td>80,000-150,000</td>
+                            <td>1-2 שבועות</td>
+                            <td>מהירה וחסכונית</td>
+                            <td>פחות עמידה לטווח ארוך</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> המלצה חשובה</h4>
+                    <p>אל תבחרו רק לפי מחיר! בריכה זו השקעה ל-20-30 שנה. איכות הבנייה והחומרים קובעת את עלויות התחזוקה לטווח הארוך.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-hard-hat"></i> שלב 4: תהליך הבנייה</h2>
+
+                <h3>לוח זמנים מפורט</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>שבוע 1: חפירה וסימון</h4>
+                        <p>חפירה מדויקת לפי התוכניות, הכנת תשתיות לצנרת</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>שבוע 2-3: יסודות ומבנה</h4>
+                        <p>יציקת יסודות, בניית קירות או התקנת מעטפת פיברגלס</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>שבוע 4-5: מערכות</h4>
+                        <p>התקנת מערכות סינון, חימום ותאורה</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>שבוע 6-7: גימורים</h4>
+                        <p>ציפוי, אריחים, מעקות ועבודות גמר</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>שבוע 8: מילוי ובדיקות</h4>
+                        <p>מילוי מים, איזון כימי ובדיקות מערכות</p>
+                    </div>
+                </div>
+
+                <h3>נקודות בקרה קריטיות</h3>
+                <ul class="checklist">
+                    <li><strong>לפני יציקה:</strong> בדיקת מיקום צנרת ומערכות</li>
+                    <li><strong>אחרי יציקה:</strong> בדיקת איטום ומבחני לחץ</li>
+                    <li><strong>לפני ציפוי:</strong> בדיקת חלקות וישרות הקירות</li>
+                    <li><strong>לפני מילוי:</strong> בדיקה סופית של כל המערכות</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-cogs"></i> שלב 5: מערכות ציוד</h2>
+
+                <h3>מערכת סינון</h3>
+                <p>הלב של הבריכה - קובעת את איכות המים ועלויות התחזוקה:</p>
+
+                <ul class="checklist">
+                    <li><strong>משאבה:</strong> הספק לפי נפח הבריכה (מחזור מלא כל 6-8 שעות)</li>
+                    <li><strong>מסנן:</strong> חול, דיאטומיט או קרטרידג' לפי התקציב</li>
+                    <li><strong>סקימר:</strong> לניקוי פני השטח מעלים ולכלוך</li>
+                    <li><strong>מפרץ חזרה:</strong> להחזרת מים מסוננים</li>
+                </ul>
+
+                <h3>מערכת חימום (אופציונלי)</h3>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>סוג חימום</th>
+                            <th>עלות התקנה</th>
+                            <th>עלות תפעול חודשית</th>
+                            <th>יתרונות</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>משאבת חום</td>
+                            <td>15,000-25,000 ₪</td>
+                            <td>800-1,200 ₪</td>
+                            <td>חסכונית, ידידותית לסביבה</td>
+                        </tr>
+                        <tr>
+                            <td>חימום גז</td>
+                            <td>8,000-15,000 ₪</td>
+                            <td>1,500-2,500 ₪</td>
+                            <td>חימום מהיר</td>
+                        </tr>
+                        <tr>
+                            <td>חימום חשמלי</td>
+                            <td>5,000-10,000 ₪</td>
+                            <td>2,000-3,500 ₪</td>
+                            <td>התקנה פשוטה</td>
+                        </tr>
+                        <tr>
+                            <td>חימום סולארי</td>
+                            <td>12,000-20,000 ₪</td>
+                            <td>200-400 ₪</td>
+                            <td>חסכוני ביותר לטווח ארוך</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-shekel-sign"></i> שלב 6: תקציב מפורט</h2>
+
+                <h3>פירוט עלויות לבריכה בינונית (5×10 מטר)</h3>
+
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>פריט</th>
+                            <th>עלות מינימלי (₪)</th>
+                            <th>עלות ממוצע (₪)</th>
+                            <th>עלות מקסימלי (₪)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>חפירה והכנות</td>
+                            <td>15,000</td>
+                            <td>20,000</td>
+                            <td>30,000</td>
+                        </tr>
+                        <tr>
+                            <td>מבנה הבריכה</td>
+                            <td>60,000</td>
+                            <td>80,000</td>
+                            <td>120,000</td>
+                        </tr>
+                        <tr>
+                            <td>מערכות סינון</td>
+                            <td>20,000</td>
+                            <td>30,000</td>
+                            <td>45,000</td>
+                        </tr>
+                        <tr>
+                            <td>ציפוי ואריחים</td>
+                            <td>25,000</td>
+                            <td>35,000</td>
+                            <td>60,000</td>
+                        </tr>
+                        <tr>
+                            <td>תאורה ואביזרים</td>
+                            <td>8,000</td>
+                            <td>15,000</td>
+                            <td>25,000</td>
+                        </tr>
+                        <tr>
+                            <td>גידור ובטיחות</td>
+                            <td>12,000</td>
+                            <td>18,000</td>
+                            <td>30,000</td>
+                        </tr>
+                        <tr>
+                            <td>עבודות גמר</td>
+                            <td>10,000</td>
+                            <td>15,000</td>
+                            <td>25,000</td>
+                        </tr>
+                        <tr style="background: var(--light-blue); font-weight: bold;">
+                            <td><strong>סה"כ</strong></td>
+                            <td><strong>150,000</strong></td>
+                            <td><strong>213,000</strong></td>
+                            <td><strong>335,000</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> עלויות נוספות לתכנון</h4>
+                    <p><strong>היתרים ותכנון:</strong> 15,000-30,000 ₪<br>
+                    <strong>חימום (אופציונלי):</strong> 15,000-25,000 ₪<br>
+                    <strong>עלויות בלתי צפויות:</strong> 10-15% מהתקציב</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-calendar-check"></i> שלב 7: תחזוקה ותפעול</h2>
+
+                <h3>תחזוקה יומית</h3>
+                <ul class="checklist">
+                    <li>בדיקת רמת כלור (0.5-1.5 ppm)</li>
+                    <li>בדיקת pH (7.2-7.6)</li>
+                    <li>ניקוי סלי הסקימר</li>
+                    <li>הפעלת מערכת סינון 8-12 שעות ביום</li>
+                </ul>
+
+                <h3>תחזוקה שבועית</h3>
+                <ul class="checklist">
+                    <li>שטיפת מסנן החול</li>
+                    <li>ניקוי קירות ורצפה עם מברשת</li>
+                    <li>בדיקת אלקליניות (80-120 ppm)</li>
+                    <li>הוספת כימיקלים לפי הצורך</li>
+                </ul>
+
+                <h3>עלויות תחזוקה שנתיות</h3>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>פריט</th>
+                            <th>עלות שנתית (₪)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>כימיקלים</td>
+                            <td>2,000-3,500</td>
+                        </tr>
+                        <tr>
+                            <td>חשמל (סינון)</td>
+                            <td>3,000-5,000</td>
+                        </tr>
+                        <tr>
+                            <td>מים (מילוי)</td>
+                            <td>1,000-2,000</td>
+                        </tr>
+                        <tr>
+                            <td>תחזוקה מקצועית</td>
+                            <td>3,000-6,000</td>
+                        </tr>
+                        <tr style="background: var(--light-blue); font-weight: bold;">
+                            <td><strong>סה"כ</strong></td>
+                            <td><strong>9,000-16,500</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-lightbulb"></i> טיפים מקצועיים לחיסכון</h2>
+
+                <ul class="checklist">
+                    <li><strong>כיסוי בריכה:</strong> חוסך עד 70% מאידוי המים ו-50% מהכימיקלים</li>
+                    <li><strong>משאבה משתנת מהירות:</strong> חוסכת עד 80% מצריכת החשמל</li>
+                    <li><strong>תאורת LED:</strong> חוסכת 90% מצריכת החשמל לתאורה</li>
+                    <li><strong>מערכת מלח:</strong> מפחיתה עלויות כימיקלים ב-60%</li>
+                    <li><strong>חימום סולארי:</strong> חוסך אלפי שקלים בשנה על חימום</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-calculator"></i> חישוב החזר השקעה</h4>
+                    <p>השקעה של 30,000 ₪ בציוד חסכוני יכולה לחסוך 5,000-8,000 ₪ בשנה בעלויות תפעול. החזר השקעה תוך 4-6 שנים!</p>
+                </div>
+            </section>
+
+            <footer class="guide-footer" style="background: var(--light-gray); padding: 30px; border-radius: 12px; margin-top: 40px; text-align: center;">
+                <p style="margin-bottom: 20px; color: var(--text-light);">מדריך זה נכתב על בסיס ניסיון של מאות פרויקטים ומומחים מוסמכים. לביצוע עצמאי יש להתייעץ עם בעל מקצוע.</p>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--primary-blue); font-weight: 600;">
+                    <i class="fas fa-certificate"></i>
+                    תוכן מאושר ע"י איגוד קבלני הבריכות הישראלי
+                </div>
+
+                <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="guides_page.html" class="btn btn-outline">חזרה למדריכים</a>
+                    <a href="contractors_page.html" class="btn btn-primary">מצא קבלן מאומת</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

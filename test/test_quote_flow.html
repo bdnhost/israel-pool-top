@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pool Israel - Quote Flow Test</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23007cba'/%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EP%3C/text%3E%3C/svg%3E">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            direction: rtl;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #005a87;
+        }
+        .btn.success { background: #28a745; }
+        .btn.danger { background: #dc3545; }
+        .btn.warning { background: #ffc107; color: #000; }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success {
+            border-color: #28a745;
+            background-color: #d4edda;
+        }
+        .error {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+        }
+        .warning {
+            border-color: #ffc107;
+            background-color: #fff3cd;
+        }
+        .status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        .ok { background: #28a745; }
+        .fail { background: #dc3545; }
+        .warn { background: #ffc107; }
+        .issue-summary {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Pool Israel - Quote Flow Diagnosis</h1>
+    
+    <div class="issue-summary">
+        <h2>🚨 הבעיה שזוהתה</h2>
+        <p><strong>תסמין:</strong> "בקשתך נשלחה ל-0 קבלנים באזור"</p>
+        <p><strong>משמעות:</strong> הבקשה נשמרה אבל לא נמצאו קבלנים מתאימים או שהם לא קיבלו SMS</p>
+        <p><strong>סיבות אפשריות:</strong></p>
+        <ul>
+            <li>אין קבלנים פעילים במערכת</li>
+            <li>הקבלנים לא עונים על הקריטריונים (עיר, קטגוריה)</li>
+            <li>בעיה בשליחת SMS לקבלנים</li>
+            <li>מספרי טלפון של קבלנים לא תקינים</li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <h2>📊 בדיקת קבלנים במערכת</h2>
+        <button class="btn" onclick="checkContractors()">בדוק קבלנים פעילים</button>
+        <button class="btn" onclick="checkContractorPhones()">בדוק מספרי טלפון</button>
+        <div id="contractorsResults" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="container">
+        <h2>🔍 בדיקת תהליך חיפוש קבלנים</h2>
+        <button class="btn" onclick="testContractorSearch()">בדוק חיפוש קבלנים</button>
+        <button class="btn" onclick="testContractorFilters()">בדוק פילטרים</button>
+        <div id="searchResults" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="container">
+        <h2>📱 בדיקת SMS Service</h2>
+        <button class="btn success" onclick="testSMSBalance()">בדוק יתרת SMS</button>
+        <button class="btn warning" onclick="testSMSCredentials()">בדוק הגדרות SMS</button>
+        <button class="btn danger" onclick="testSMSSend()">בדוק שליחת SMS</button>
+        <div id="smsResults" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="container">
+        <h2>📋 בדיקת בקשות אחרונות</h2>
+        <button class="btn" onclick="checkRecentQuotes()">בדוק בקשות אחרונות</button>
+        <button class="btn" onclick="checkQuoteAssignments()">בדוק הקצאות לקבלנים</button>
+        <div id="quotesResults" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="container">
+        <h2>🧪 בדיקת תיקונים</h2>
+        <button class="btn success" onclick="testQuoteSubmission()">בדוק שליחת בקשה</button>
+        <button class="btn" onclick="testContractorMatching()">בדוק התאמת קבלנים</button>
+        <div id="testResults" class="result" style="display:none;"></div>
+    </div>
+
+    <div class="container">
+        <h2>🔧 פתרונות מוצעים</h2>
+        <button class="btn success" onclick="showSolutions()">הצג פתרונות</button>
+        <div id="solutionsResults" class="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        async function checkContractors() {
+            showResult('contractorsResults', 'בודק קבלנים במערכת...');
+            try {
+                const response = await fetch('/api/contractors.php?limit=100');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const contractors = data.contractors || [];
+                    const activeContractors = contractors.filter(c => c.status === 'active' || !c.status);
+                    const contractorsWithPhones = contractors.filter(c => c.phone && c.phone.trim());
+                    
+                    let result = `📊 סטטיסטיקות קבלנים:\n\n`;
+                    result += `סה"כ קבלנים: ${contractors.length}\n`;
+                    result += `קבלנים פעילים: ${activeContractors.length}\n`;
+                    result += `קבלנים עם טלפון: ${contractorsWithPhones.length}\n\n`;
+                    
+                    if (activeContractors.length === 0) {
+                        result += `❌ בעיה: אין קבלנים פעילים במערכת!\n`;
+                        result += `פתרון: הפעל קבלנים קיימים או הוסף קבלנים חדשים\n\n`;
+                    }
+                    
+                    result += `📋 דוגמאות קבלנים:\n`;
+                    contractors.slice(0, 5).forEach(c => {
+                        result += `- ${c.title || 'ללא שם'} | ${c.city || 'ללא עיר'} | ${c.phone || 'ללא טלפון'} | ${c.status || 'לא מוגדר'}\n`;
+                    });
+                    
+                    showResult('contractorsResults', result, activeContractors.length > 0);
+                } else {
+                    showResult('contractorsResults', 'שגיאה בטעינת קבלנים: ' + data.message, false);
+                }
+            } catch (error) {
+                showResult('contractorsResults', 'שגיאה בחיבור: ' + error.message, false);
+            }
+        }
+        
+        async function checkContractorPhones() {
+            showResult('contractorsResults', 'בודק מספרי טלפון של קבלנים...');
+            try {
+                const response = await fetch('/api/contractors.php?limit=100');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const contractors = data.contractors || [];
+                    let result = `📱 בדיקת מספרי טלפון:\n\n`;
+                    
+                    let validPhones = 0;
+                    let invalidPhones = 0;
+                    let missingPhones = 0;
+                    
+                    contractors.forEach(c => {
+                        if (!c.phone || !c.phone.trim()) {
+                            missingPhones++;
+                        } else if (isValidIsraeliPhone(c.phone)) {
+                            validPhones++;
+                        } else {
+                            invalidPhones++;
+                            result += `❌ טלפון לא תקין: ${c.title} - ${c.phone}\n`;
+                        }
+                    });
+                    
+                    result += `✅ טלפונים תקינים: ${validPhones}\n`;
+                    result += `❌ טלפונים לא תקינים: ${invalidPhones}\n`;
+                    result += `⚠️ ללא טלפון: ${missingPhones}\n\n`;
+                    
+                    if (validPhones === 0) {
+                        result += `🚨 בעיה קריטית: אין קבלנים עם מספרי טלפון תקינים!\n`;
+                    }
+                    
+                    showResult('contractorsResults', result, validPhones > 0);
+                } else {
+                    showResult('contractorsResults', 'שגיאה בטעינת קבלנים: ' + data.message, false);
+                }
+            } catch (error) {
+                showResult('contractorsResults', 'שגיאה בחיבור: ' + error.message, false);
+            }
+        }
+        
+        async function testSMSBalance() {
+            showResult('smsResults', 'בודק יתרת SMS...');
+            try {
+                const response = await fetch('/api/sms_simple.php?action=get_balance');
+                const data = await response.json();
+                
+                let result = `💰 יתרת SMS:\n\n`;
+                if (data.success) {
+                    result += `יתרה נוכחית: ${data.balance || 'לא ידוע'}\n`;
+                    if (data.balance < 10) {
+                        result += `⚠️ אזהרה: יתרה נמוכה!\n`;
+                    }
+                } else {
+                    result += `❌ שגיאה בבדיקת יתרה: ${data.message}\n`;
+                }
+                
+                showResult('smsResults', result, data.success);
+            } catch (error) {
+                showResult('smsResults', 'שגיאה בחיבור: ' + error.message, false);
+            }
+        }
+        
+        async function checkRecentQuotes() {
+            showResult('quotesResults', 'בודק בקשות אחרונות...');
+            try {
+                const response = await fetch('/api/admin.php?action=get_quotes&limit=10');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const quotes = data.quotes || [];
+                    let result = `📋 בקשות אחרונות (${quotes.length}):\n\n`;
+                    
+                    quotes.forEach(q => {
+                        result += `${q.request_number} | ${q.customer_name} | ${q.status} | ${q.created_at}\n`;
+                    });
+                    
+                    // Check for quotes with 0 contractors
+                    const zeroContractorQuotes = quotes.filter(q => q.contractors_notified === 0 || q.contractors_notified === '0');
+                    if (zeroContractorQuotes.length > 0) {
+                        result += `\n🚨 בקשות ללא קבלנים: ${zeroContractorQuotes.length}\n`;
+                    }
+                    
+                    showResult('quotesResults', result, true);
+                } else {
+                    showResult('quotesResults', 'שגיאה בטעינת בקשות: ' + data.message, false);
+                }
+            } catch (error) {
+                showResult('quotesResults', 'שגיאה בחיבור: ' + error.message, false);
+            }
+        }
+        
+        function showSolutions() {
+            const solutions = `🔧 פתרונות מוצעים לבעיה:
+
+1. 👥 בדיקת קבלנים:
+   - וודא שיש קבלנים פעילים במערכת
+   - בדוק שלקבלנים יש מספרי טלפון תקינים
+   - הפעל קבלנים שסטטוס שלהם 'inactive'
+
+2. 📱 בדיקת SMS:
+   - וודא שיש יתרת SMS מספקת
+   - בדוק שהגדרות SMS4Free תקינות
+   - בדוק שהמספרים בפורמט ישראלי תקין
+
+3. 🔍 בדיקת פילטרים:
+   - בדוק שהקבלנים עונים על הקריטריונים
+   - הרחב את הקריטריונים (עיר, קטגוריה)
+   - הוסף קבלנים באזורים נוספים
+
+4. 🛠️ תיקונים טכניים:
+   - בדוק לוגי שגיאות בשרת
+   - וודא שטבלת quote_contractor_assignments עובדת
+   - בדוק שפונקציית findSuitableContractors עובדת
+
+5. 📊 מעקב ובקרה:
+   - הוסף לוגים מפורטים לתהליך
+   - בדוק SMS logs בדשבורד אדמין
+   - עקוב אחר הקצאות בזמן אמת`;
+            
+            showResult('solutionsResults', solutions, true);
+        }
+        
+        // Helper functions
+        function showResult(elementId, content, success = null) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.textContent = content;
+            element.className = 'result ' + (success === true ? 'success' : success === false ? 'error' : success === null ? 'warning' : '');
+        }
+        
+        function isValidIsraeliPhone(phone) {
+            if (!phone) return false;
+            const cleaned = phone.replace(/[^0-9]/g, '');
+            return /^05[0-9]{8}$/.test(cleaned) || /^0[2-4,8-9][0-9]{7}$/.test(cleaned);
+        }
+        
+        async function testQuoteSubmission() {
+            showResult('testResults', 'בודק שליחת בקשת הצעת מחיר...');
+
+            const testQuote = {
+                customer_name: 'בדיקה טסט',
+                customer_phone: '0501234567',
+                pool_type: 'concrete',
+                pool_size: 'medium',
+                budget_range: '50000-100000',
+                preferred_timing: 'תוך 3 חודשים',
+                project_location: 'תל אביב',
+                description: 'בדיקת מערכת'
+            };
+
+            try {
+                const response = await fetch('/api/quotes.php?action=submit_quote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testQuote)
+                });
+
+                const data = await response.json();
+                let result = `תוצאת בדיקה:\n\n`;
+                result += `הצלחה: ${data.success ? 'כן' : 'לא'}\n`;
+                result += `הודעה: ${data.message || 'ללא הודעה'}\n`;
+                result += `קבלנים שקיבלו: ${data.contractors_notified || 0}\n`;
+                result += `מספר בקשה: ${data.quote_number || 'לא נוצר'}\n\n`;
+                result += `נתונים מלאים:\n${JSON.stringify(data, null, 2)}`;
+
+                showResult('testResults', result, data.success && data.contractors_notified > 0);
+            } catch (error) {
+                showResult('testResults', 'שגיאה בבדיקה: ' + error.message, false);
+            }
+        }
+
+        async function testContractorMatching() {
+            showResult('testResults', 'בודק התאמת קבלנים...');
+
+            try {
+                // Get contractors with phone numbers
+                const response = await fetch('/api/contractors.php?limit=100');
+                const data = await response.json();
+
+                if (data.success) {
+                    const contractors = data.contractors || [];
+                    const activeContractors = contractors.filter(c =>
+                        (c.status === 'active' || !c.status) &&
+                        c.phone &&
+                        c.phone.trim() &&
+                        /^05[0-9]{8}$|^0[2-4,8-9][0-9]{7}$/.test(c.phone.replace(/[^0-9]/g, ''))
+                    );
+
+                    let result = `📊 ניתוח התאמת קבלנים:\n\n`;
+                    result += `סה"כ קבלנים: ${contractors.length}\n`;
+                    result += `קבלנים פעילים: ${contractors.filter(c => c.status === 'active' || !c.status).length}\n`;
+                    result += `קבלנים עם טלפון: ${contractors.filter(c => c.phone && c.phone.trim()).length}\n`;
+                    result += `קבלנים מתאימים לשליחה: ${activeContractors.length}\n\n`;
+
+                    if (activeContractors.length === 0) {
+                        result += `❌ בעיה: אין קבלנים מתאימים לשליחת SMS!\n\n`;
+                        result += `סיבות אפשריות:\n`;
+                        result += `- אין קבלנים פעילים\n`;
+                        result += `- מספרי טלפון לא תקינים\n`;
+                        result += `- קבלנים ללא מספר טלפון\n`;
+                    } else {
+                        result += `✅ נמצאו ${activeContractors.length} קבלנים מתאימים\n\n`;
+                        result += `דוגמאות:\n`;
+                        activeContractors.slice(0, 3).forEach(c => {
+                            result += `- ${c.title} | ${c.city || 'ללא עיר'} | ${c.phone}\n`;
+                        });
+                    }
+
+                    showResult('testResults', result, activeContractors.length > 0);
+                } else {
+                    showResult('testResults', 'שגיאה בטעינת קבלנים: ' + data.message, false);
+                }
+            } catch (error) {
+                showResult('testResults', 'שגיאה בבדיקה: ' + error.message, false);
+            }
+        }
+
+        // Simplified test functions
+        function testContractorSearch() { showResult('searchResults', 'בדיקת חיפוש קבלנים - יש לבדוק ידנית בקוד', null); }
+        function testContractorFilters() { showResult('searchResults', 'בדיקת פילטרים - יש לבדוק הגדרות מערכת', null); }
+        function testSMSCredentials() { showResult('smsResults', 'בדיקת הגדרות SMS - יש לבדוק במערכת', null); }
+        function testSMSSend() { showResult('smsResults', 'בדיקת שליחת SMS - יש לבדוק עם מספר בדיקה', null); }
+        function checkQuoteAssignments() { showResult('quotesResults', 'בדיקת הקצאות - יש לבדוק בטבלת quote_contractor_assignments', null); }
+        
+        // Auto-run basic checks
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                checkContractors();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

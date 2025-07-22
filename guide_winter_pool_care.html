@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בריכה בחורף - הכנה וטיפול מקיף | PoolIsrael</title>
+    <meta name="description" content="מדריך מקיף להכנת הבריכה לחורף - סגירת עונה, הגנה מקפיאה, תחזוקה חורפית וטיפים לחיסכון. כל מה שצריך לדעת.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://poolisrael.co.il/guide_winter_pool_care.html">
+    <meta property="og:title" content="בריכה בחורף - הכנה וטיפול מקיף">
+    <meta property="og:description" content="מדריך מקיף להכנת הבריכה לחורף וטיפול בעונה הקרה">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://poolisrael.co.il/guide_winter_pool_care.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2E86AB;
+            --dark-blue: #1B4F72;
+            --accent-orange: #F39C12;
+            --light-blue: #AED6F1;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --border-light: #E5E7EB;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            --success-green: #27AE60;
+            --warning-yellow: #F39C12;
+            --winter-blue: #5DADE2;
+            --ice-blue: #AED6F1;
+            --cold-gray: #85929E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .guide-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, var(--winter-blue) 0%, #3498DB 100%);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .guide-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            border-right: 4px solid var(--winter-blue);
+        }
+
+        .section h2 {
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h3 {
+            color: var(--winter-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .step-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--winter-blue);
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--winter-blue);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .step-card h4 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .temperature-guide {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin: 20px 0;
+            border-right: 4px solid var(--ice-blue);
+        }
+
+        .temperature-guide h4 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .temp-ranges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .temp-range {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .temp-range .temp {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--winter-blue);
+        }
+
+        .temp-range .action {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .info-box {
+            background: #D1ECF1;
+            border: 1px solid #BEE5EB;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .info-box h4 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border: 1px solid #FFEAA7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning-yellow);
+        }
+
+        .warning-box h4 {
+            color: #B7791F;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .guide-header h1 {
+                font-size: 2rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+
+            .steps-grid,
+            .temp-ranges {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="pool_israel_homepage.html" class="logo">
+                    <i class="fas fa-swimming-pool"></i>
+                    PoolIsrael
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="guides_page.html" class="active">מדריכים</a></li>
+                    <li><a href="contractors_page.html">קבלנים</a></li>
+                    <li><a href="tools_page.html">כלים</a></li>
+                    <li><a href="community_page.html">קהילה</a></li>
+                    <li><a href="news_page.html">חדשות</a></li>
+                </ul>
+
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">התחברות</a>
+                    <a href="#" class="btn btn-primary">הרשמה</a>
+                </div>
+
+                <button type="button" class="mobile-menu-btn" aria-label="תפריט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="guide-container">
+        <div class="guide-header">
+            <h1>❄️ בריכה בחורף - הכנה וטיפול</h1>
+            <div class="meta-info">
+                <span><i class="fas fa-clock"></i> זמן קריאה: 8 דקות</span>
+                <span><i class="fas fa-calendar-alt"></i> עודכן: יוני 2025</span>
+                <span><i class="fas fa-star"></i> דירוג: 4.7/5</span>
+                <span><i class="fas fa-eye"></i> 16,789 צפיות</span>
+            </div>
+        </div>
+
+        <div class="guide-content">
+            <section class="section">
+                <h2><i class="fas fa-info-circle"></i> מבוא לטיפול חורפי</h2>
+                <p>החורף בישראל מציב אתגרים ייחודיים לבעלי בריכות. למרות שהטמפרטורות לא קיצוניות כמו במדינות קרות יותר, עדיין יש צורך בהכנה מתאימה ובטיפול מותאם לעונה הקרה.</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> חשוב לדעת</h4>
+                    <p>בישראל, רוב הבריכות נשארות פעילות גם בחורף, אך עם תחזוקה מופחתת. הכנה נכונה תחסוך לכם כסף ותבטיח בריכה מוכנה לקיץ הבא.</p>
+                </div>
+
+                <h3>אפשרויות לחורף</h3>
+                <ul class="checklist">
+                    <li><strong>בריכה פעילה:</strong> המשך שימוש עם חימום</li>
+                    <li><strong>תחזוקה מופחתת:</strong> ללא שימוש, עם טיפול מינימלי</li>
+                    <li><strong>סגירה מלאה:</strong> הפסקת פעילות עד האביב</li>
+                    <li><strong>כיסוי חורפי:</strong> הגנה מפני מזג אוויר</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-thermometer-half"></i> מדריך טמפרטורות</h2>
+                
+                <div class="temperature-guide">
+                    <h4><i class="fas fa-temperature-low"></i> פעולות לפי טמפרטורה</h4>
+                    <div class="temp-ranges">
+                        <div class="temp-range">
+                            <div class="temp">מעל 15°C</div>
+                            <div class="action">פעילות רגילה</div>
+                        </div>
+                        <div class="temp-range">
+                            <div class="temp">10-15°C</div>
+                            <div class="action">הפחתת תחזוקה</div>
+                        </div>
+                        <div class="temp-range">
+                            <div class="temp">5-10°C</div>
+                            <div class="action">תחזוקה מינימלית</div>
+                        </div>
+                        <div class="temp-range">
+                            <div class="temp">מתחת ל-5°C</div>
+                            <div class="action">הגנה מקפיאה</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>הגנה מפני קפיאה</h3>
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> אזהרת קפיאה</h4>
+                    <p>בצפון הארץ ובהרים, טמפרטורות מתחת לאפס עלולות לגרום נזק חמור לציוד הבריכה. הכנה מתאימה חיונית!</p>
+                </div>
+
+                <ul class="checklist">
+                    <li><strong>ניקוז צנרת:</strong> רוקנו מים מצנרת חשופה</li>
+                    <li><strong>הגנת משאבה:</strong> ניקוז או הפעלה רציפה</li>
+                    <li><strong>מערכת חימום:</strong> הפעלה אוטומטית בטמפרטורות נמוכות</li>
+                    <li><strong>כיסוי מבודד:</strong> שימוש בכיסוי איכותי</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-list-ol"></i> שלבי הכנה לחורף</h2>
+                
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4><i class="fas fa-broom"></i> ניקוי יסודי</h4>
+                        <ul class="checklist">
+                            <li>ניקוי קירות ורצפה</li>
+                            <li>הסרת כל הפסולת</li>
+                            <li>ניקוי קו המים</li>
+                            <li>שטיפת מסננים</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4><i class="fas fa-vials"></i> איזון כימי</h4>
+                        <ul class="checklist">
+                            <li>pH: 7.2-7.6</li>
+                            <li>אלקליניות: 80-120 ppm</li>
+                            <li>כלור: 1-3 ppm</li>
+                            <li>הוספת אלגיציד חורפי</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4><i class="fas fa-tools"></i> טיפול בציוד</h4>
+                        <ul class="checklist">
+                            <li>ניקוי מערכת הסינון</li>
+                            <li>הורדת ציוד נשלף</li>
+                            <li>הגנה על משאבה</li>
+                            <li>בדיקת מערכת חימום</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4><i class="fas fa-umbrella"></i> התקנת כיסוי</h4>
+                        <ul class="checklist">
+                            <li>בחירת כיסוי מתאים</li>
+                            <li>התקנה נכונה</li>
+                            <li>עיגון בטוח</li>
+                            <li>בדיקה שבועית</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-shield-alt"></i> סוגי כיסויים לחורף</h2>
+
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <h4><i class="fas fa-leaf"></i> כיסוי בטיחות</h4>
+                        <p><strong>יתרונות:</strong></p>
+                        <ul class="checklist">
+                            <li>בטיחות מקסימלית</li>
+                            <li>עמידות גבוהה</li>
+                            <li>מונע נפילת עלים</li>
+                            <li>חיסכון בכימיקלים</li>
+                        </ul>
+                        <p><strong>מחיר:</strong> ₪3,000-8,000</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4><i class="fas fa-sun"></i> כיסוי סולארי</h4>
+                        <p><strong>יתרונות:</strong></p>
+                        <ul class="checklist">
+                            <li>חימום טבעי</li>
+                            <li>מונע אידוי</li>
+                            <li>קל להתקנה</li>
+                            <li>מחיר נמוך</li>
+                        </ul>
+                        <p><strong>מחיר:</strong> ₪800-2,500</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4><i class="fas fa-tarp"></i> כיסוי חורפי</h4>
+                        <p><strong>יתרונות:</strong></p>
+                        <ul class="checklist">
+                            <li>הגנה מפני מזג אוויר</li>
+                            <li>מונע זיהום</li>
+                            <li>עמיד לרוח</li>
+                            <li>קל לתחזוקה</li>
+                        </ul>
+                        <p><strong>מחיר:</strong> ₪1,500-4,000</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4><i class="fas fa-cog"></i> כיסוי אוטומטי</h4>
+                        <p><strong>יתרונות:</strong></p>
+                        <ul class="checklist">
+                            <li>נוחות מקסימלית</li>
+                            <li>פתיחה/סגירה מהירה</li>
+                            <li>בטיחות גבוהה</li>
+                            <li>חיסכון באנרגיה</li>
+                        </ul>
+                        <p><strong>מחיר:</strong> ₪15,000-40,000</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-calendar-week"></i> תחזוקה שבועית בחורף</h2>
+
+                <h3>משימות שבועיות</h3>
+                <ul class="checklist">
+                    <li><strong>בדיקת כיסוי:</strong> וודאו שהכיסוי במקום ולא פגום</li>
+                    <li><strong>הסרת מים מכיסוי:</strong> מנעו הצטברות מים</li>
+                    <li><strong>בדיקת רמת מים:</strong> שמרו על רמה מתאימה</li>
+                    <li><strong>בדיקת ציוד:</strong> וודאו שהמשאבה עובדת</li>
+                    <li><strong>ניקוי סקימר:</strong> הסירו עלים ופסולת</li>
+                </ul>
+
+                <h3>משימות חודשיות</h3>
+                <ul class="checklist">
+                    <li><strong>בדיקה כימית:</strong> pH וכלור בסיסיים</li>
+                    <li><strong>הפעלת משאבה:</strong> 2-4 שעות ביום</li>
+                    <li><strong>ניקוי מסננים:</strong> שטיפה לאחור</li>
+                    <li><strong>בדיקת חימום:</strong> אם יש מערכת חימום</li>
+                    <li><strong>בדיקת תאורה:</strong> תאורת בטיחות</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> טיפ לחיסכון</h4>
+                    <p>הפחיתו את זמני הפעלת המשאבה ל-2-4 שעות ביום בחורף. זה יחסוך עד 70% מעלויות החשמל.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-exclamation-triangle"></i> בעיות נפוצות בחורף</h2>
+
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <h4><i class="fas fa-leaf"></i> עלים במים</h4>
+                        <p><strong>פתרון:</strong></p>
+                        <ul class="checklist">
+                            <li>הסרה יומית עם רשת</li>
+                            <li>שימוש בכיסוי איכותי</li>
+                            <li>גיזום עצים סמוכים</li>
+                            <li>ניקוי סקימר תכוף</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <h4><i class="fas fa-tint"></i> מים ירוקים</h4>
+                        <p><strong>פתרון:</strong></p>
+                        <ul class="checklist">
+                            <li>הוספת כלור מיידית</li>
+                            <li>הפעלת סינון 24 שעות</li>
+                            <li>שימוש באלגיציד</li>
+                            <li>ניקוי מכני</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <h4><i class="fas fa-snowflake"></i> קפיאה חלקית</h4>
+                        <p><strong>פתרון:</strong></p>
+                        <ul class="checklist">
+                            <li>הפעלת משאבה רציפה</li>
+                            <li>שבירת קרח עדינה</li>
+                            <li>הוספת מחמם צף</li>
+                            <li>בדיקת צנרת</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <h4><i class="fas fa-wind"></i> נזק מסערה</h4>
+                        <p><strong>פתרון:</strong></p>
+                        <ul class="checklist">
+                            <li>בדיקת כיסוי מיידית</li>
+                            <li>הסרת פסולת גדולה</li>
+                            <li>בדיקת ציוד פגום</li>
+                            <li>תיקון דחוף</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-dollar-sign"></i> חיסכון בעלויות חורף</h2>
+
+                <h3>דרכי חיסכון</h3>
+                <ul class="checklist">
+                    <li><strong>הפחתת זמני סינון:</strong> מ-8 שעות ל-2-4 שעות</li>
+                    <li><strong>כיבוי חימום:</strong> אם לא משתמשים בבריכה</li>
+                    <li><strong>שימוש בכיסוי:</strong> חיסכון של עד 50% בכימיקלים</li>
+                    <li><strong>תחזוקה מונעת:</strong> מניעת תיקונים יקרים</li>
+                    <li><strong>כימיקלים חורפיים:</strong> מוצרים מיוחדים לעונה</li>
+                </ul>
+
+                <h3>השוואת עלויות</h3>
+                <div class="temperature-guide">
+                    <h4><i class="fas fa-calculator"></i> עלויות חודשיות משוערות</h4>
+                    <div class="temp-ranges">
+                        <div class="temp-range">
+                            <div class="temp">בריכה פעילה</div>
+                            <div class="action">₪800-1,500</div>
+                        </div>
+                        <div class="temp-range">
+                            <div class="temp">תחזוקה מופחתת</div>
+                            <div class="action">₪200-400</div>
+                        </div>
+                        <div class="temp-range">
+                            <div class="temp">סגירה מלאה</div>
+                            <div class="action">₪50-150</div>
+                        </div>
+                        <div class="temp-range">
+                            <div class="temp">עם כיסוי איכותי</div>
+                            <div class="action">חיסכון 30-50%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-seedling"></i> הכנה לקיץ הבא</h2>
+
+                <h3>פעולות סוף חורף (מרץ-אפריל)</h3>
+                <ul class="checklist">
+                    <li><strong>הסרת כיסוי:</strong> ניקוי ואחסון נכון</li>
+                    <li><strong>ניקוי יסודי:</strong> קירות, רצפה ומסננים</li>
+                    <li><strong>בדיקת ציוד:</strong> משאבה, מסננים, חימום</li>
+                    <li><strong>איזון כימי מלא:</strong> כל הפרמטרים</li>
+                    <li><strong>הפעלה הדרגתית:</strong> חזרה לפעילות מלאה</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-clock"></i> תזמון חשוב</h4>
+                    <p>התחילו את ההכנה לקיץ 2-3 שבועות לפני השימוש הראשון. זה יבטיח מים נקיים ובטוחים.</p>
+                </div>
+
+                <h3>רשימת בדיקות אביב</h3>
+                <ul class="checklist">
+                    <li><strong>מערכת סינון:</strong> תקינות וביצועים</li>
+                    <li><strong>מערכת חימום:</strong> אם יש - בדיקה מקצועית</li>
+                    <li><strong>תאורה:</strong> החלפת נורות שרופות</li>
+                    <li><strong>ציוד בטיחות:</strong> מעקות, סולמות</li>
+                    <li><strong>אזור הבריכה:</strong> ריצוף, ניקוז</li>
+                </ul>
+            </section>
+
+            <div style="text-align: center; margin: 40px 0; padding: 30px; background: var(--light-gray); border-radius: 12px;">
+                <h3 style="color: var(--dark-blue); margin-bottom: 20px;">צריכים עזרה בהכנה לחורף?</h3>
+                <p style="margin-bottom: 20px;">השירות המקצועי שלנו יכין את הבריכה שלכם לחורף</p>
+                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                    <i class="fas fa-snowflake"></i> שירות הכנה לחורף
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

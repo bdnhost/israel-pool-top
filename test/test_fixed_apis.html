@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pool Israel - Fixed APIs Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            direction: rtl;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #005a87;
+        }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success {
+            border-color: #28a745;
+            background-color: #d4edda;
+        }
+        .error {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .status-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .status-ok {
+            border-color: #28a745;
+            background-color: #d4edda;
+        }
+        .status-error {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Pool Israel - Fixed APIs Test</h1>
+    
+    <div class="test-container">
+        <h2>📊 API Status Overview</h2>
+        <div class="status-grid" id="statusGrid">
+            <!-- Status cards will be populated by JavaScript -->
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h2>🔧 Fixed API Tests</h2>
+        <button class="test-button" onclick="testAPI('/api/admin.php?action=get_stats', 'adminStats')">Test Dashboard Stats (Fixed)</button>
+        <button class="test-button" onclick="testAPI('/api/admin.php?action=get_quotes&limit=5', 'adminQuotes')">Test Quotes API (Fixed)</button>
+        <button class="test-button" onclick="testAPI('/api/contractors.php?action=get_contractor_quotes&contractor_id=1', 'contractorQuotes')">Test Contractor Quotes (Fixed)</button>
+        <button class="test-button" onclick="testAPI('/api/sms_simple.php?action=get_logs&limit=5', 'smsLogs')">Test SMS Logs (Fixed)</button>
+        <button class="test-button" onclick="testAPI('/api/sms_simple.php?action=get_stats', 'smsStats')">Test SMS Stats (Fixed)</button>
+        <button class="test-button" onclick="testAPI('/api/settings.php?action=get_settings', 'settingsData')">Test Settings API (Fixed)</button>
+        <div id="adminStats" class="result" style="display:none;"></div>
+        <div id="adminQuotes" class="result" style="display:none;"></div>
+        <div id="contractorQuotes" class="result" style="display:none;"></div>
+        <div id="smsLogs" class="result" style="display:none;"></div>
+        <div id="smsStats" class="result" style="display:none;"></div>
+        <div id="settingsData" class="result" style="display:none;"></div>
+    </div>
+    
+    <div class="test-container">
+        <h2>📋 Schema Fixes Applied</h2>
+        <div style="background: #e7f3ff; padding: 15px; border-radius: 8px; border: 1px solid #b3d9ff;">
+            <h3>✅ Fixed Issues:</h3>
+            <ul>
+                <li><strong>quote_contractor_assignments:</strong> Changed `responded_at` to `response_at`</li>
+                <li><strong>quote_requests:</strong> Removed reference to non-existent `preferred_contractor_id`</li>
+                <li><strong>sms_verifications:</strong> Added fallback for missing `recipient_type` and `status` columns</li>
+                <li><strong>budget_range:</strong> Updated values to match actual enum: low/medium/high/premium</li>
+                <li><strong>settings API:</strong> Added fallback for missing table/columns</li>
+            </ul>
+            
+            <h3>🔧 Technical Changes:</h3>
+            <ul>
+                <li>Updated all SQL queries to match actual database schema</li>
+                <li>Added proper error handling and fallbacks</li>
+                <li>Fixed JOIN clauses in admin.php and contractors.php</li>
+                <li>Updated SMS queries to use `verified` field instead of `status`</li>
+                <li>Added default settings for missing system_settings table</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Test functions
+        async function testAPI(url, resultId) {
+            const resultDiv = document.getElementById(resultId);
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Loading...';
+            resultDiv.className = 'result';
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+                resultDiv.className = data.success ? 'result success' : 'result error';
+                
+                updateStatusCard(resultId, data.success);
+                
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                resultDiv.className = 'result error';
+                updateStatusCard(resultId, false);
+            }
+        }
+        
+        function updateStatusCard(testId, success) {
+            const statusGrid = document.getElementById('statusGrid');
+            let card = document.getElementById('status-' + testId);
+            
+            if (!card) {
+                card = document.createElement('div');
+                card.id = 'status-' + testId;
+                card.className = 'status-card';
+                statusGrid.appendChild(card);
+            }
+            
+            card.className = 'status-card ' + (success ? 'status-ok' : 'status-error');
+            card.innerHTML = `
+                <h4>${testId.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</h4>
+                <p>${success ? '✅ Working' : '❌ Error'}</p>
+            `;
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', function() {
+            console.log('Fixed APIs Test Page Loaded - Running tests...');
+            
+            // Test all fixed APIs
+            setTimeout(() => testAPI('/api/admin.php?action=get_stats', 'adminStats'), 500);
+            setTimeout(() => testAPI('/api/admin.php?action=get_quotes&limit=5', 'adminQuotes'), 1000);
+            setTimeout(() => testAPI('/api/contractors.php?action=get_contractor_quotes&contractor_id=1', 'contractorQuotes'), 1500);
+            setTimeout(() => testAPI('/api/sms_simple.php?action=get_logs&limit=5', 'smsLogs'), 2000);
+            setTimeout(() => testAPI('/api/sms_simple.php?action=get_stats', 'smsStats'), 2500);
+            setTimeout(() => testAPI('/api/settings.php?action=get_settings', 'settingsData'), 3000);
+        });
+    </script>
+</body>
+</html>

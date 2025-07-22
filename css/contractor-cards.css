@@ -1,0 +1,280 @@
+/* Enhanced Contractor Cards CSS */
+
+/* Enhanced contractor card styles */
+.contractor-contact-info {
+    margin: var(--spacing-3) 0;
+    padding: var(--spacing-2);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-1);
+    font-size: 0.9rem;
+    color: var(--gray-700);
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item i {
+    width: 16px;
+    color: var(--primary-blue);
+}
+
+.contractor-address {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    margin-top: var(--spacing-1);
+    font-size: 0.85rem;
+    color: var(--gray-600);
+}
+
+.btn-website, .btn-details {
+    padding: var(--spacing-2) var(--spacing-3);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-website {
+    background: var(--gray-600);
+    color: white;
+}
+
+.btn-website:hover {
+    background: var(--gray-700);
+    transform: translateY(-1px);
+}
+
+.btn-details {
+    background: var(--light-blue);
+    color: var(--dark-blue);
+    border: 1px solid var(--primary-blue);
+}
+
+.btn-details:hover {
+    background: var(--primary-blue);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Modal styles */
+.contractor-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.contractor-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-4);
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--radius-2xl);
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-2xl);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.contractor-modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-6);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--dark-blue);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--gray-500);
+    cursor: pointer;
+    padding: var(--spacing-2);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.modal-body {
+    padding: var(--spacing-6);
+}
+
+.contractor-details-grid {
+    display: grid;
+    gap: var(--spacing-6);
+}
+
+.detail-section {
+    background: var(--gray-50);
+    padding: var(--spacing-4);
+    border-radius: var(--radius-lg);
+}
+
+.detail-section h4 {
+    margin: 0 0 var(--spacing-3) 0;
+    color: var(--dark-blue);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+.detail-item {
+    margin-bottom: var(--spacing-2);
+    line-height: 1.6;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item strong {
+    color: var(--gray-700);
+    margin-left: var(--spacing-2);
+}
+
+.contact-link {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+.status-badge {
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-badge.active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.inactive {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.status-badge.pending {
+    background: #fefce8;
+    color: #a16207;
+}
+
+.stars.inline {
+    display: inline-flex;
+    margin: 0 var(--spacing-1);
+}
+
+.opening-hours {
+    display: grid;
+    gap: var(--spacing-1);
+}
+
+.hour-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-1) 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.hour-item:last-child {
+    border-bottom: none;
+}
+
+.hour-item .day {
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.hour-item .time {
+    color: var(--gray-600);
+}
+
+.modal-footer {
+    padding: var(--spacing-6);
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    gap: var(--spacing-3);
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .contractor-actions {
+        flex-wrap: wrap;
+    }
+    
+    .contractor-actions button {
+        flex: 1 1 calc(50% - var(--spacing-1));
+        min-width: 120px;
+    }
+    
+    .modal-overlay {
+        padding: var(--spacing-2);
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer button {
+        width: 100%;
+    }
+}

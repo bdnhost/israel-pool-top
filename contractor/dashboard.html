@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דשבורד קבלן - Pool Israel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/contractor-dashboard.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-swimming-pool"></i>
+                        <span>Pool Israel</span>
+                        <span class="contractor-badge">קבלן</span>
+                    </div>
+                    
+                    <div class="header-info">
+                        <div class="contractor-name" id="contractorName">טוען...</div>
+                        <div class="header-stats">
+                            <div class="stat-item">
+                                <span class="stat-value" id="pendingQuotes">0</span>
+                                <span class="stat-label">בקשות חדשות</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="totalQuotes">0</span>
+                                <span class="stat-label">סה"כ בקשות</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="responseRate">0%</span>
+                                <span class="stat-label">שיעור תגובה</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="btn btn-outline" onclick="refreshData()">
+                            <i class="fas fa-sync-alt"></i>
+                            רענן
+                        </button>
+                        <button class="btn btn-primary" onclick="updateProfile()">
+                            <i class="fas fa-user-edit"></i>
+                            עדכן פרופיל
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Quick Actions -->
+                <section class="quick-actions">
+                    <h2>פעולות מהירות</h2>
+                    <div class="actions-grid">
+                        <div class="action-card" onclick="showNewQuotes()">
+                            <div class="action-icon new">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>בקשות חדשות</h3>
+                                <p id="newQuotesCount">0 בקשות ממתינות</p>
+                            </div>
+                        </div>
+                        
+                        <div class="action-card" onclick="showAllQuotes()">
+                            <div class="action-icon all">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>כל הבקשות</h3>
+                                <p>צפה בכל הבקשות שקיבלת</p>
+                            </div>
+                        </div>
+                        
+                        <div class="action-card" onclick="showResponded()">
+                            <div class="action-icon responded">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>בקשות שהגבת</h3>
+                                <p id="respondedCount">0 תגובות</p>
+                            </div>
+                        </div>
+                        
+                        <div class="action-card" onclick="showSettings()">
+                            <div class="action-icon settings">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>הגדרות</h3>
+                                <p>נהל את ההעדפות שלך</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Filters -->
+                <section class="filters-section">
+                    <div class="filters-header">
+                        <h2>בקשות הצעות מחיר</h2>
+                        <div class="filters-controls">
+                            <select id="statusFilter" class="filter-select">
+                                <option value="">כל הסטטוסים</option>
+                                <option value="new">חדש</option>
+                                <option value="viewed">נצפה</option>
+                                <option value="responded">הגבתי</option>
+                                <option value="expired">פג תוקף</option>
+                            </select>
+                            
+                            <select id="typeFilter" class="filter-select">
+                                <option value="">כל הסוגים</option>
+                                <option value="concrete">בריכת בטון</option>
+                                <option value="fiberglass">פיברגלס</option>
+                                <option value="modular">מתועשת</option>
+                                <option value="renovation">שיפוץ</option>
+                            </select>
+                            
+                            <select id="budgetFilter" class="filter-select">
+                                <option value="">כל התקציבים</option>
+                                <option value="under_100k">עד 100K</option>
+                                <option value="100k_200k">100K-200K</option>
+                                <option value="200k_300k">200K-300K</option>
+                                <option value="300k_500k">300K-500K</option>
+                                <option value="over_500k">500K+</option>
+                            </select>
+                            
+                            <div class="search-box">
+                                <input type="text" id="searchInput" placeholder="חיפוש לפי שם לקוח או מיקום...">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Quotes List -->
+                <section class="quotes-section">
+                    <div class="quotes-container" id="quotesContainer">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <i class="fas fa-inbox"></i>
+                        <h3>אין בקשות להצגה</h3>
+                        <p>כאשר תקבל בקשות הצעת מחיר, הן יופיעו כאן</p>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div class="loading-state" id="loadingState">
+                        <div class="spinner"></div>
+                        <p>טוען בקשות...</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Quote Details Modal -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">פרטי בקשת הצעת מחיר</h2>
+                <span class="close" onclick="closeQuoteModal()">&times;</span>
+            </div>
+            
+            <div class="modal-body" id="modalBody">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeQuoteModal()">סגור</button>
+                <button class="btn btn-primary" id="respondBtn" onclick="respondToQuote()">
+                    <i class="fas fa-reply"></i>
+                    הגב לבקשה
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Response Modal -->
+    <div id="responseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>הגב לבקשת הצעת מחיר</h2>
+                <span class="close" onclick="closeResponseModal()">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <form id="responseForm">
+                    <div class="form-group">
+                        <label>סוג תגובה *</label>
+                        <select id="responseType" class="form-control" required>
+                            <option value="">בחר סוג תגובה</option>
+                            <option value="interested">מעוניין - אתן הצעת מחיר</option>
+                            <option value="need_more_info">צריך פרטים נוספים</option>
+                            <option value="not_interested">לא מעוניין</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="priceGroup" style="display: none;">
+                        <label>הערכת מחיר (₪)</label>
+                        <input type="number" id="estimatedPrice" class="form-control" placeholder="למשל: 150000">
+                        <small class="form-text">הערכה ראשונית - לא מחייבת</small>
+                    </div>
+                    
+                    <div class="form-group" id="durationGroup" style="display: none;">
+                        <label>זמן ביצוע משוער</label>
+                        <select id="estimatedDuration" class="form-control">
+                            <option value="">בחר זמן ביצוע</option>
+                            <option value="1-2 weeks">1-2 שבועות</option>
+                            <option value="3-4 weeks">3-4 שבועות</option>
+                            <option value="1-2 months">1-2 חודשים</option>
+                            <option value="2-3 months">2-3 חודשים</option>
+                            <option value="3+ months">3+ חודשים</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>הודעה ללקוח *</label>
+                        <textarea id="responseMessage" class="form-control" rows="4" required 
+                                  placeholder="כתב הודעה ללקוח - למשל: שלום, קיבלתי את בקשתך ואשמח לתת הצעת מחיר מפורטת..."></textarea>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h4>פרטי יצירת קשר</h4>
+                        <p>הלקוח יוכל ליצור איתך קשר ב:</p>
+                        <div class="contact-methods">
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span id="contractorPhone">טוען...</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span id="contractorEmail">טוען...</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeResponseModal()">ביטול</button>
+                <button class="btn btn-primary" onclick="submitResponse()">
+                    <i class="fas fa-paper-plane"></i>
+                    שלח תגובה
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../js/contractor-dashboard.js"></script>
+</body>
+</html>

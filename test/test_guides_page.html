@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת דף המדריכים - Pool Israel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        h1 { color: #2c5aa0; text-align: center; }
+        h2 { color: #495057; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; }
+        button {
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #1e3a8a; }
+        .test-link {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .test-link:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 בדיקת דף המדריכים</h1>
+        
+        <h2>1. בדיקות בסיסיות</h2>
+        <div id="basicTests"></div>
+        
+        <h2>2. בדיקת קישורים</h2>
+        <div id="linkTests"></div>
+        
+        <h2>3. בדיקת פונקציונליות</h2>
+        <div id="functionalityTests"></div>
+        
+        <h2>4. קישורים לבדיקה ידנית</h2>
+        <div class="test-result info">
+            <a href="guides_page.html" target="_blank" class="test-link">🔗 פתח דף המדריכים</a>
+            <a href="home.html" target="_blank" class="test-link">🏠 דף הבית</a>
+            <a href="contractors_page.html" target="_blank" class="test-link">👷 דף קבלנים</a>
+        </div>
+        
+        <h2>5. בדיקות ידניות</h2>
+        <div class="test-result warning">
+            <strong>בדוק ידנית:</strong><br>
+            ✅ הדף נטען ללא שגיאות<br>
+            ✅ פירורי הלחם עובדים<br>
+            ✅ חיפוש עובד<br>
+            ✅ תגיות חיפוש עובדות<br>
+            ✅ קטגוריות נטענות<br>
+            ✅ קישורי מדריכים עובדים<br>
+            ✅ עיצוב נראה טוב<br>
+            ✅ Responsive למובייל
+        </div>
+        
+        <button onclick="runAllTests()">🔄 הרץ בדיקות</button>
+        <button onclick="location.reload()">🔄 רענן דף</button>
+    </div>
+
+    <script>
+        function runAllTests() {
+            runBasicTests();
+            runLinkTests();
+            runFunctionalityTests();
+        }
+
+        function runBasicTests() {
+            const container = document.getElementById('basicTests');
+            let results = '';
+
+            // Test 1: Check if guides page exists
+            fetch('guides_page.html')
+                .then(response => {
+                    if (response.ok) {
+                        results += '<div class="test-result success">✅ קובץ guides_page.html קיים ונגיש</div>';
+                    } else {
+                        results += '<div class="test-result error">❌ קובץ guides_page.html לא נגיש</div>';
+                    }
+                    container.innerHTML = results;
+                })
+                .catch(error => {
+                    results += '<div class="test-result error">❌ שגיאה בגישה לקובץ: ' + error.message + '</div>';
+                    container.innerHTML = results;
+                });
+
+            // Test 2: Check CSS file
+            fetch('css/template.css')
+                .then(response => {
+                    if (response.ok) {
+                        results += '<div class="test-result success">✅ קובץ CSS קיים</div>';
+                    } else {
+                        results += '<div class="test-result warning">⚠️ קובץ CSS לא נמצא</div>';
+                    }
+                    container.innerHTML = results;
+                })
+                .catch(error => {
+                    results += '<div class="test-result warning">⚠️ בעיה בקובץ CSS</div>';
+                    container.innerHTML = results;
+                });
+
+            // Test 3: Check JS file
+            fetch('js/template.js')
+                .then(response => {
+                    if (response.ok) {
+                        results += '<div class="test-result success">✅ קובץ JavaScript קיים</div>';
+                    } else {
+                        results += '<div class="test-result warning">⚠️ קובץ JavaScript לא נמצא</div>';
+                    }
+                    container.innerHTML = results;
+                })
+                .catch(error => {
+                    results += '<div class="test-result warning">⚠️ בעיה בקובץ JavaScript</div>';
+                    container.innerHTML = results;
+                });
+        }
+
+        function runLinkTests() {
+            const container = document.getElementById('linkTests');
+            let results = '';
+
+            const links = [
+                { url: 'home.html', name: 'דף הבית' },
+                { url: 'contractors_page.html', name: 'דף קבלנים' },
+                { url: 'quote_modal.html', name: 'הצעת מחיר' },
+                { url: 'guide_complete_pool_building_2025.html', name: 'מדריך בניית בריכה' },
+                { url: 'guide_pool_safety_children.html', name: 'מדריך בטיחות' },
+                { url: 'guide_choosing_contractor.html', name: 'מדריך בחירת קבלן' },
+                { url: 'guide_planning_stages.html', name: 'מדריך שלבי תכנון' },
+                { url: 'guide_annual_maintenance.html', name: 'מדריך תחזוקה' }
+            ];
+
+            let completedTests = 0;
+            const totalTests = links.length;
+
+            links.forEach(link => {
+                fetch(link.url)
+                    .then(response => {
+                        completedTests++;
+                        if (response.ok) {
+                            results += `<div class="test-result success">✅ ${link.name} - קיים</div>`;
+                        } else {
+                            results += `<div class="test-result error">❌ ${link.name} - לא נמצא</div>`;
+                        }
+                        
+                        if (completedTests === totalTests) {
+                            container.innerHTML = results;
+                        }
+                    })
+                    .catch(error => {
+                        completedTests++;
+                        results += `<div class="test-result error">❌ ${link.name} - שגיאה</div>`;
+                        
+                        if (completedTests === totalTests) {
+                            container.innerHTML = results;
+                        }
+                    });
+            });
+        }
+
+        function runFunctionalityTests() {
+            const container = document.getElementById('functionalityTests');
+            let results = '';
+
+            // Test search functionality
+            try {
+                // Simulate search function
+                if (typeof searchGuides === 'function') {
+                    results += '<div class="test-result success">✅ פונקציית חיפוש זמינה</div>';
+                } else {
+                    results += '<div class="test-result warning">⚠️ פונקציית חיפוש לא זמינה (נורמלי בדף בדיקה)</div>';
+                }
+            } catch (error) {
+                results += '<div class="test-result warning">⚠️ בעיה בפונקציית חיפוש</div>';
+            }
+
+            // Test responsive design
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                results += '<div class="test-result info">📱 נבדק במצב מובייל</div>';
+            } else {
+                results += '<div class="test-result info">🖥️ נבדק במצב דסקטופ</div>';
+            }
+
+            // Test browser compatibility
+            const isModernBrowser = 'fetch' in window && 'Promise' in window;
+            if (isModernBrowser) {
+                results += '<div class="test-result success">✅ דפדפן תומך בפונקציות מודרניות</div>';
+            } else {
+                results += '<div class="test-result warning">⚠️ דפדפן ישן - יכולות מוגבלות</div>';
+            }
+
+            container.innerHTML = results;
+        }
+
+        // Run tests on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(runAllTests, 1000);
+        });
+    </script>
+</body>
+</html>

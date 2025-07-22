@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חדשנות ישראלית בענף הבריכות | PoolIsrael</title>
+    <meta name="description" content="מדריך מקיף לחדשנות הישראלית בענף הבריכות - טכנולוגיות פורצות דרך, חברות מובילות, פתרונות ייחודיים והישגים בינלאומיים.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://poolisrael.co.il/guide_israeli_innovation.html">
+    <meta property="og:title" content="חדשנות ישראלית בענף הבריכות">
+    <meta property="og:description" content="הטכנולוגיות והחדשנות הישראלית המובילה בעולם הבריכות">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://poolisrael.co.il/guide_israeli_innovation.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2E86AB;
+            --dark-blue: #1B4F72;
+            --accent-orange: #F39C12;
+            --light-blue: #AED6F1;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --border-light: #E5E7EB;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            --success-green: #27AE60;
+            --warning-yellow: #F39C12;
+            --israel-blue: #0038B8;
+            --innovation-purple: #6A1B9A;
+            --tech-cyan: #00BCD4;
+            --startup-orange: #FF5722;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .guide-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, var(--israel-blue) 0%, var(--innovation-purple) 100%);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .guide-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            border-right: 4px solid var(--israel-blue);
+        }
+
+        .section h2 {
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h3 {
+            color: var(--israel-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .innovation-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .innovation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .innovation-card.technology {
+            border-top-color: var(--tech-cyan);
+        }
+
+        .innovation-card.startup {
+            border-top-color: var(--startup-orange);
+        }
+
+        .innovation-card.research {
+            border-top-color: var(--innovation-purple);
+        }
+
+        .innovation-card.export {
+            border-top-color: var(--israel-blue);
+        }
+
+        .innovation-card h4 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .innovation-icon {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            opacity: 0.1;
+        }
+
+        .innovation-card.technology .innovation-icon {
+            background: var(--tech-cyan);
+        }
+
+        .innovation-card.startup .innovation-icon {
+            background: var(--startup-orange);
+        }
+
+        .innovation-card.research .innovation-icon {
+            background: var(--innovation-purple);
+        }
+
+        .innovation-card.export .innovation-icon {
+            background: var(--israel-blue);
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li::before {
+            content: "🇮🇱";
+            font-size: 1.1rem;
+        }
+
+        .company-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: var(--shadow);
+            border-right: 4px solid var(--israel-blue);
+        }
+
+        .company-card h5 {
+            color: var(--israel-blue);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .company-card .specialty {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .info-box {
+            background: #E3F2FD;
+            border: 1px solid #BBDEFB;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--israel-blue);
+        }
+
+        .info-box h4 {
+            color: var(--israel-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border: 1px solid #FFEAA7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning-yellow);
+        }
+
+        .warning-box h4 {
+            color: #B7791F;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .guide-header h1 {
+                font-size: 2rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+
+            .innovation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="pool_israel_homepage.html" class="logo">
+                    <i class="fas fa-swimming-pool"></i>
+                    PoolIsrael
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="guides_page.html" class="active">מדריכים</a></li>
+                    <li><a href="contractors_page.html">קבלנים</a></li>
+                    <li><a href="tools_page.html">כלים</a></li>
+                    <li><a href="community_page.html">קהילה</a></li>
+                    <li><a href="news_page.html">חדשות</a></li>
+                </ul>
+
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">התחברות</a>
+                    <a href="#" class="btn btn-primary">הרשמה</a>
+                </div>
+
+                <button type="button" class="mobile-menu-btn" aria-label="תפריט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="guide-container">
+        <div class="guide-header">
+            <h1>🇮🇱 חדשנות ישראלית בענף</h1>
+            <div class="meta-info">
+                <span><i class="fas fa-clock"></i> זמן קריאה: 7 דקות</span>
+                <span><i class="fas fa-calendar-alt"></i> עודכן: יוני 2025</span>
+                <span><i class="fas fa-star"></i> דירוג: 4.8/5</span>
+                <span><i class="fas fa-eye"></i> 11,234 צפיות</span>
+            </div>
+        </div>
+
+        <div class="guide-content">
+            <section class="section">
+                <h2><i class="fas fa-info-circle"></i> ישראל - מעצמת חדשנות בבריכות</h2>
+                <p>ישראל מובילה בחדשנות טכנולוגית בתחום הבריכות והמים. מהמדבר הישראלי יצאו פתרונות מהפכניים שמשמשים כיום בריכות ברחבי העולם. מדריך זה יציג בפניכם את החדשנות הישראלית המרשימה בתחום.</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> למה ישראל מובילה?</h4>
+                    <p>השילוב של מחסור במים, אקלים מדברי, מחקר מתקדם וחדשנות טכנולוגית יצר בישראל מרכז מצוינות עולמי בטכנולוגיות מים ובריכות.</p>
+                </div>
+
+                <h3>תחומי החדשנות הישראלית</h3>
+                <ul class="features-list">
+                    <li><strong>טכנולוגיות חיטוי:</strong> פתרונות מתקדמים ללא כימיקלים</li>
+                    <li><strong>חיסכון במים:</strong> מערכות מיחזור ובקרה חכמה</li>
+                    <li><strong>אנרגיה סולארית:</strong> פתרונות חימום יעילים</li>
+                    <li><strong>אוטומציה:</strong> מערכות בקרה חכמות</li>
+                    <li><strong>חומרים חדשניים:</strong> פיתוח חומרים מתקדמים</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-rocket"></i> טכנולוגיות פורצות דרך</h2>
+                
+                <div class="innovation-grid">
+                    <div class="innovation-card technology">
+                        <div class="innovation-icon"><i class="fas fa-atom"></i></div>
+                        <h4><i class="fas fa-flask"></i> חיטוי מתקדם</h4>
+                        <ul class="features-list">
+                            <li>מערכות UV-C מתקדמות</li>
+                            <li>טכנולוגיית אוזון</li>
+                            <li>יינון נחושת וכסף</li>
+                            <li>פלזמה קרה</li>
+                            <li>ננו-טכנולוגיה</li>
+                        </ul>
+                        <p><strong>יתרון:</strong> חיטוי יעיל ללא כימיקלים מזיקים</p>
+                    </div>
+
+                    <div class="innovation-card technology">
+                        <div class="innovation-icon"><i class="fas fa-tint"></i></div>
+                        <h4><i class="fas fa-recycle"></i> ניהול מים חכם</h4>
+                        <ul class="features-list">
+                            <li>חיישנים חכמים לאיכות מים</li>
+                            <li>מערכות מיחזור מתקדמות</li>
+                            <li>בקרת אידוי אוטומטית</li>
+                            <li>איסוף מי גשמים</li>
+                            <li>סינון ביולוגי</li>
+                        </ul>
+                        <p><strong>יתרון:</strong> חיסכון של עד 50% במים</p>
+                    </div>
+                    <div class="innovation-card technology">
+                        <div class="innovation-icon"><i class="fas fa-sun"></i></div>
+                        <h4><i class="fas fa-solar-panel"></i> אנרגיה מתחדשת</h4>
+                        <ul class="features-list">
+                            <li>פאנלים סולאריים יעילים</li>
+                            <li>מערכות אגירת אנרגיה</li>
+                            <li>בקרה חכמה לחימום</li>
+                            <li>משאבות סולאריות</li>
+                            <li>תאורה סולארית</li>
+                        </ul>
+                        <p><strong>יתרון:</strong> עצמאות אנרגטית וחיסכון בעלויות</p>
+                    </div>
+
+                    <div class="innovation-card technology">
+                        <div class="innovation-icon"><i class="fas fa-robot"></i></div>
+                        <h4><i class="fas fa-wifi"></i> אוטומציה חכמה</h4>
+                        <ul class="features-list">
+                            <li>בינה מלאכותית לניהול בריכה</li>
+                            <li>חיישנים מתקדמים</li>
+                            <li>בקרה מרחוק</li>
+                            <li>למידת מכונה</li>
+                            <li>חיזוי תחזוקה</li>
+                        </ul>
+                        <p><strong>יתרון:</strong> ניהול אוטומטי מלא ויעיל</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-building"></i> חברות ישראליות מובילות</h2>
+
+                <h3>חברות טכנולוגיה</h3>
+                <div class="company-card">
+                    <h5>Watergen</h5>
+                    <div class="specialty">מומחיות: ייצור מים מהאוויר</div>
+                    <p>פיתחה טכנולוגיה מהפכנית לייצור מים נקיים מהאוויר, המשמשת גם למילוי בריכות באזורים מדבריים.</p>
+                </div>
+
+                <div class="company-card">
+                    <h5>Atlantium Technologies</h5>
+                    <div class="specialty">מומחיות: חיטוי UV מתקדם</div>
+                    <p>מובילה עולמית בטכנולוגיית חיטוי UV-C לבריכות ומערכות מים, עם פתרונות חסכוניים ויעילים.</p>
+                </div>
+
+                <div class="company-card">
+                    <h5>Amiad Water Systems</h5>
+                    <div class="specialty">מומחיות: מערכות סינון</div>
+                    <p>פיתחה מערכות סינון אוטומטיות מתקדמות לבריכות, עם טכנולוגיית ניקוי עצמי.</p>
+                </div>
+
+                <div class="company-card">
+                    <h5>Netafim</h5>
+                    <div class="specialty">מומחיות: השקיה חכמה</div>
+                    <p>חלוצת הטפטוף בעולם, מפתחת מערכות השקיה חכמות לסביבת הבריכה והגינה.</p>
+                </div>
+
+                <h3>סטארט-אפים חדשניים</h3>
+                <div class="innovation-grid">
+                    <div class="innovation-card startup">
+                        <h4><i class="fas fa-lightbulb"></i> AquaMaof</h4>
+                        <p><strong>התמחות:</strong> מערכות אקווקולטורה</p>
+                        <ul class="features-list">
+                            <li>בריכות דגים אקולוגיות</li>
+                            <li>מערכות מיחזור מים</li>
+                            <li>בקרה אוטומטית</li>
+                            <li>חיסכון במים ואנרגיה</li>
+                        </ul>
+                    </div>
+
+                    <div class="innovation-card startup">
+                        <h4><i class="fas fa-mobile-alt"></i> PoolSense</h4>
+                        <p><strong>התמחות:</strong> ניטור חכם</p>
+                        <ul class="features-list">
+                            <li>חיישנים אלחוטיים</li>
+                            <li>אפליקציה חכמה</li>
+                            <li>התראות בזמן אמת</li>
+                            <li>ניתוח נתונים</li>
+                        </ul>
+                    </div>
+
+                    <div class="innovation-card startup">
+                        <h4><i class="fas fa-leaf"></i> EcoPool</h4>
+                        <p><strong>התמחות:</strong> פתרונות ירוקים</p>
+                        <ul class="features-list">
+                            <li>חיטוי טבעי</li>
+                            <li>חומרים ממוחזרים</li>
+                            <li>אנרגיה מתחדשת</li>
+                            <li>מינימום כימיקלים</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-university"></i> מחקר ופיתוח</h2>
+
+                <h3>מוסדות מחקר מובילים</h3>
+                <ul class="features-list">
+                    <li><strong>הטכניון:</strong> מחקר בטכנולוגיות מים ואנרגיה</li>
+                    <li><strong>אוניברסיטת בן-גוריון:</strong> מחקר מדברי ומערכות מים</li>
+                    <li><strong>מכון וולקני:</strong> מחקר חקלאי ומערכות השקיה</li>
+                    <li><strong>מרכז מאיר שפיה:</strong> טכנולוגיות מים מתקדמות</li>
+                    <li><strong>מכון מקורות:</strong> פיתוח פתרונות מים</li>
+                </ul>
+
+                <h3>פרויקטי מחקר מתקדמים</h3>
+                <div class="innovation-grid">
+                    <div class="innovation-card research">
+                        <h4><i class="fas fa-microscope"></i> ננו-טכנולוגיה</h4>
+                        <ul class="features-list">
+                            <li>חלקיקי כסף ננומטריים</li>
+                            <li>ציפויים אנטי-בקטריאליים</li>
+                            <li>מסננים ננו-טכנולוגיים</li>
+                            <li>חיישנים מיניאטוריים</li>
+                        </ul>
+                    </div>
+
+                    <div class="innovation-card research">
+                        <h4><i class="fas fa-dna"></i> ביוטכנולוגיה</h4>
+                        <ul class="features-list">
+                            <li>חיידקים מועילים</li>
+                            <li>אנזימים מפרקים</li>
+                            <li>צמחי מים מטהרים</li>
+                            <li>ביו-סינון טבעי</li>
+                        </ul>
+                    </div>
+
+                    <div class="innovation-card research">
+                        <h4><i class="fas fa-brain"></i> בינה מלאכותית</h4>
+                        <ul class="features-list">
+                            <li>אלגוריתמי למידה</li>
+                            <li>חיזוי איכות מים</li>
+                            <li>אופטימיזציה אנרגטית</li>
+                            <li>זיהוי דפוסים</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-globe"></i> יצוא והשפעה עולמית</h2>
+
+                <h3>שווקים עיקריים</h3>
+                <div class="innovation-grid">
+                    <div class="innovation-card export">
+                        <h4><i class="fas fa-flag-usa"></i> צפון אמריקה</h4>
+                        <ul class="features-list">
+                            <li>מערכות חיטוי מתקדמות</li>
+                            <li>פתרונות חיסכון במים</li>
+                            <li>טכנולוגיות סולאריות</li>
+                            <li>אוטומציה חכמה</li>
+                        </ul>
+                        <p><strong>שווי יצוא:</strong> $150 מיליון שנתי</p>
+                    </div>
+
+                    <div class="innovation-card export">
+                        <h4><i class="fas fa-globe-europe"></i> אירופה</h4>
+                        <ul class="features-list">
+                            <li>פתרונות ירוקים</li>
+                            <li>מערכות יעילות אנרגטית</li>
+                            <li>חיטוי ללא כימיקלים</li>
+                            <li>מיחזור מים</li>
+                        </ul>
+                        <p><strong>שווי יצוא:</strong> $120 מיליון שנתי</p>
+                    </div>
+
+                    <div class="innovation-card export">
+                        <h4><i class="fas fa-globe-asia"></i> אסיה ואוסטרליה</h4>
+                        <ul class="features-list">
+                            <li>פתרונות לאקלים חם</li>
+                            <li>מערכות חיסכון במים</li>
+                            <li>טכנולוגיות מדבריות</li>
+                            <li>בקרה מרחוק</li>
+                        </ul>
+                        <p><strong>שווי יצוא:</strong> $80 מיליון שנתי</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-chart-line"></i> נתונים מרשימים</h4>
+                    <p>ישראל מייצאת טכנולוגיות בריכות ומים בשווי של למעלה מ-350 מיליון דולר בשנה, ומעסיקה כ-15,000 עובדים בתחום.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-award"></i> הישגים והכרה בינלאומית</h2>
+
+                <h3>פרסים ותחרויות</h3>
+                <ul class="features-list">
+                    <li><strong>פרס מים עולמי:</strong> לחדשנות בטכנולוגיות מים</li>
+                    <li><strong>תחרות CES:</strong> פרסים לחדשנות טכנולוגית</li>
+                    <li><strong>פרס האו"ם:</strong> לפתרונות קיימים</li>
+                    <li><strong>פרס אירופה:</strong> לטכנולוגיות ירוקות</li>
+                    <li><strong>פטנטים בינלאומיים:</strong> מאות פטנטים רשומים</li>
+                </ul>
+
+                <h3>שיתופי פעולה בינלאומיים</h3>
+                <ul class="features-list">
+                    <li><strong>NASA:</strong> פיתוח מערכות מים לחלל</li>
+                    <li><strong>האיחוד האירופי:</strong> פרויקטי מחקר משותפים</li>
+                    <li><strong>יפן:</strong> שיתוף בטכנולוגיות חכמות</li>
+                    <li><strong>סינגפור:</strong> פתרונות למחסור במים</li>
+                    <li><strong>אוסטרליה:</strong> טכנולוגיות לאקלים יבש</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-lightbulb"></i> עתיד החדשנות</h4>
+                    <p>ישראל ממשיכה להוביל בחדשנות עם השקעות של מיליארדי שקלים במחקר ופיתוח של טכנולוגיות מים וקיימות.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-rocket"></i> מבט לעתיד</h2>
+
+                <h3>טכנולוגיות עתידיות</h3>
+                <ul class="features-list">
+                    <li><strong>בריכות חכמות לחלוטין:</strong> ניהול אוטונומי מלא</li>
+                    <li><strong>מציאות רבודה:</strong> תחזוקה מודרכת</li>
+                    <li><strong>ביוטכנולוגיה מתקדמת:</strong> אקוסיסטם טבעי</li>
+                    <li><strong>אנרגיה מתחדשת:</strong> עצמאות אנרגטית מלאה</li>
+                    <li><strong>מיחזור מושלם:</strong> אפס פסולת</li>
+                </ul>
+
+                <h3>השקעות ומימון</h3>
+                <ul class="features-list">
+                    <li><strong>קרנות הון סיכון:</strong> השקעות במיליוני דולרים</li>
+                    <li><strong>תמיכה ממשלתית:</strong> תוכניות עידוד חדשנות</li>
+                    <li><strong>שיתופי פעולה:</strong> עם חברות בינלאומיות</li>
+                    <li><strong>אינקובטורים:</strong> לטכנולוגיות מים</li>
+                    <li><strong>מחקר אקדמי:</strong> תקציבי מחקר גדולים</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-star"></i> הזדמנויות</h4>
+                    <p>התחום מציע הזדמנויות עסקיות ותעסוקתיות רבות, עם ביקוש גובר לטכנולוגיות ישראליות ברחבי העולם.</p>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin: 40px 0; padding: 30px; background: var(--light-gray); border-radius: 12px;">
+                <h3 style="color: var(--dark-blue); margin-bottom: 20px;">מעוניינים בטכנולוגיה ישראלית?</h3>
+                <p style="margin-bottom: 20px;">גלו את הפתרונות החדשניים הזמינים בישראל</p>
+                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                    <i class="fas fa-rocket"></i> חדשנות ישראלית
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

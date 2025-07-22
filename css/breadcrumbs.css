@@ -1,0 +1,260 @@
+/* Breadcrumbs CSS - Pool Israel */
+
+/* Breadcrumbs Container */
+.breadcrumbs {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+    margin-bottom: 0;
+    margin-top: 80px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Breadcrumb List */
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Breadcrumb Items */
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Breadcrumb Separators */
+.breadcrumb-item:not(:last-child)::after {
+    content: '/';
+    margin: 0 0.75rem;
+    color: #6b7280;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+/* Breadcrumb Links */
+.breadcrumb-item a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4b5563;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Breadcrumb Link Hover */
+.breadcrumb-item a:hover {
+    color: #1e40af;
+    background: rgba(30, 64, 175, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.15);
+}
+
+/* Active Breadcrumb */
+.breadcrumb-item.active span {
+    color: #1e40af;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    background: rgba(30, 64, 175, 0.1);
+    border-radius: 6px;
+}
+
+/* Breadcrumb Icons */
+.breadcrumb-item i {
+    font-size: 0.875rem;
+    color: #6b7280;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover i {
+    color: #1e40af;
+}
+
+/* Breadcrumb Text */
+.breadcrumb-item span {
+    transition: all 0.3s ease;
+}
+
+/* Schema Breadcrumb Support */
+.breadcrumb-item[itemscope] {
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .breadcrumbs {
+        padding: 0.75rem 0;
+        margin-top: 70px;
+    }
+    
+    .breadcrumb-list {
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+    
+    .breadcrumb-item:not(:last-child)::after {
+        margin: 0 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .breadcrumb-item a,
+    .breadcrumb-item.active span {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Hide text on very small screens, keep only icons */
+    .breadcrumb-item span {
+        display: none;
+    }
+    
+    .breadcrumb-item a span {
+        display: inline;
+    }
+    
+    .breadcrumb-item.active span {
+        display: inline;
+    }
+}
+
+@media (max-width: 480px) {
+    .breadcrumbs {
+        padding: 0.5rem 0;
+    }
+    
+    .breadcrumb-list {
+        font-size: 0.75rem;
+    }
+    
+    .breadcrumb-item:not(:last-child)::after {
+        margin: 0 0.375rem;
+    }
+    
+    .breadcrumb-item a,
+    .breadcrumb-item.active span {
+        padding: 0.25rem 0.375rem;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .breadcrumbs {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        border-bottom-color: #374151;
+    }
+    
+    .breadcrumb-item a {
+        color: #d1d5db;
+    }
+    
+    .breadcrumb-item a:hover {
+        color: #60a5fa;
+        background: rgba(96, 165, 250, 0.1);
+    }
+    
+    .breadcrumb-item.active span {
+        color: #60a5fa;
+        background: rgba(96, 165, 250, 0.1);
+    }
+    
+    .breadcrumb-item:not(:last-child)::after {
+        color: #9ca3af;
+    }
+    
+    .breadcrumb-item i {
+        color: #9ca3af;
+    }
+    
+    .breadcrumb-item a:hover i {
+        color: #60a5fa;
+    }
+}
+
+/* Animation for breadcrumb items */
+.breadcrumb-item {
+    animation: breadcrumbFadeIn 0.3s ease-out;
+}
+
+@keyframes breadcrumbFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Breadcrumb item delay for staggered animation */
+.breadcrumb-item:nth-child(1) { animation-delay: 0.1s; }
+.breadcrumb-item:nth-child(2) { animation-delay: 0.2s; }
+.breadcrumb-item:nth-child(3) { animation-delay: 0.3s; }
+.breadcrumb-item:nth-child(4) { animation-delay: 0.4s; }
+.breadcrumb-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Accessibility improvements */
+.breadcrumb-item a:focus {
+    outline: 2px solid #1e40af;
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+.breadcrumb-item a:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Print styles */
+@media print {
+    .breadcrumbs {
+        background: none;
+        border: none;
+        box-shadow: none;
+        margin-top: 0;
+        padding: 0.5rem 0;
+    }
+    
+    .breadcrumb-item a {
+        color: #000;
+        background: none;
+        padding: 0;
+    }
+    
+    .breadcrumb-item.active span {
+        background: none;
+        color: #000;
+        font-weight: bold;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .breadcrumb-item a {
+        border: 1px solid currentColor;
+    }
+    
+    .breadcrumb-item a:hover {
+        background: currentColor;
+        color: white;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .breadcrumb-item {
+        animation: none;
+    }
+    
+    .breadcrumb-item a {
+        transition: none;
+    }
+}

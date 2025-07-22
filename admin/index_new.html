@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pool Israel - פאנל ניהול</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/admin_new.css">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Pool Israel - מערכת ניהול מתקדמת לבקשות הצעות מחיר">
+    <meta name="keywords" content="pool, israel, בריכות, ניהול, הצעות מחיר">
+    <meta name="author" content="Pool Israel">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-swimming-pool"></i>
+                <h2>Pool Israel</h2>
+            </div>
+            <div class="loading-spinner"></div>
+            <p>טוען מערכת הניהול...</p>
+        </div>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-swimming-pool"></i>
+                    <h1>Pool Israel</h1>
+                    <p>פאנל ניהול מתקדם</p>
+                </div>
+            </div>
+            
+            <form id="adminLoginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">שם משתמש</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" required autocomplete="username">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">סיסמה</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required autocomplete="current-password">
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    התחבר למערכת
+                </button>
+                
+                <div class="login-footer">
+                    <p>© 2024 Pool Israel - כל הזכויות שמורות</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Admin Panel -->
+    <div id="adminPanel" class="admin-panel" style="display: none;">
+        <!-- Top Header -->
+        <header class="admin-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo-section">
+                        <i class="fas fa-swimming-pool"></i>
+                        <div class="logo-text">
+                            <span class="logo-title">Pool Israel</span>
+                            <span class="logo-subtitle">פאנל ניהול</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-center">
+                    <div class="header-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="headerTodayQuotes">0</span>
+                            <span class="stat-label">בקשות היום</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="headerActiveContractors">0</span>
+                            <span class="stat-label">קבלנים פעילים</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="headerSmsBalance">-</span>
+                            <span class="stat-label">יתרת SMS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-details">
+                            <span class="user-name" id="currentUserName">מנהל המערכת</span>
+                            <span class="user-role">מנהל ראשי</span>
+                        </div>
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="btn btn-icon" onclick="refreshAllData()" title="רענן נתונים">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <button class="btn btn-icon" onclick="showNotifications()" title="התראות">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge" id="notificationCount">0</span>
+                        </button>
+                        <button class="btn btn-icon" onclick="adminPanel.showChangePasswordModal()" title="שינוי סיסמה">
+                            <i class="fas fa-key"></i>
+                        </button>
+                        <button class="btn btn-icon btn-logout" onclick="logout()" title="יציאה">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Menu -->
+        <nav class="admin-nav">
+            <div class="nav-content">
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item active" data-tab="dashboard">
+                        <a href="#" onclick="showTab('dashboard')">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>דשבורד</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-tab="quotes">
+                        <a href="#" onclick="showTab('quotes')">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>בקשות הצעות מחיר</span>
+                            <span class="nav-badge" id="pendingQuotesBadge">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-tab="contractors">
+                        <a href="#" onclick="showTab('contractors')">
+                            <i class="fas fa-users"></i>
+                            <span>קבלנים</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-tab="users">
+                        <a href="#" onclick="showTab('users')">
+                            <i class="fas fa-user-friends"></i>
+                            <span>משתמשים</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-tab="sms">
+                        <a href="#" onclick="showTab('sms')">
+                            <i class="fas fa-sms"></i>
+                            <span>ניהול SMS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-tab="settings">
+                        <a href="#" onclick="showTab('settings')">
+                            <i class="fas fa-cog"></i>
+                            <span>הגדרות</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+            <div class="content-container">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <div class="section-header">
+                        <h1 class="section-title">
+                            <i class="fas fa-tachometer-alt"></i>
+                            דשבורד ראשי
+                        </h1>
+                        <div class="section-actions">
+                            <button class="btn btn-primary" onclick="refreshDashboard()">
+                                <i class="fas fa-sync-alt"></i>
+                                רענן נתונים
+                            </button>
+                            <button class="btn btn-outline" onclick="exportDashboardReport()">
+                                <i class="fas fa-download"></i>
+                                ייצא דוח
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-content">
+                        <!-- Stats Cards Row -->
+                        <div class="stats-grid">
+                            <div class="stat-card primary">
+                                <div class="stat-icon">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="totalQuotes">0</h3>
+                                    <p>סה"כ בקשות</p>
+                                    <div class="stat-trend">
+                                        <span class="trend-value positive" id="quotesChange">+0%</span>
+                                        <span class="trend-label">השבוע</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card success">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="totalContractors">0</h3>
+                                    <p>קבלנים פעילים</p>
+                                    <div class="stat-trend">
+                                        <span class="trend-value positive" id="contractorsChange">+0%</span>
+                                        <span class="trend-label">השבוע</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card warning">
+                                <div class="stat-icon">
+                                    <i class="fas fa-sms"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="totalSMS">0</h3>
+                                    <p>SMS נשלחו</p>
+                                    <div class="stat-trend">
+                                        <span class="trend-value positive" id="smsChange">+0%</span>
+                                        <span class="trend-label">השבוע</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card info">
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="conversionRate">0%</h3>
+                                    <p>שיעור המרה</p>
+                                    <div class="stat-trend">
+                                        <span class="trend-value positive" id="conversionChange">+0%</span>
+                                        <span class="trend-label">השבוע</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Charts Row -->
+                        <div class="charts-grid">
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3>בקשות לפי יום</h3>
+                                    <select id="chartPeriod" class="chart-select">
+                                        <option value="7">7 ימים אחרונים</option>
+                                        <option value="30">30 ימים אחרונים</option>
+                                        <option value="90">3 חודשים אחרונים</option>
+                                    </select>
+                                </div>
+                                <div class="chart-content">
+                                    <canvas id="quotesChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3>התפלגות לפי סוג בריכה</h3>
+                                </div>
+                                <div class="chart-content">
+                                    <canvas id="poolTypesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Activity -->
+                        <div class="activity-section">
+                            <div class="activity-card">
+                                <div class="card-header">
+                                    <h3>פעילות אחרונה</h3>
+                                    <button class="btn btn-sm" onclick="loadRecentActivity()">
+                                        <i class="fas fa-sync-alt"></i>
+                                        רענן
+                                    </button>
+                                </div>
+                                <div class="activity-list" id="recentActivity">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quotes Section -->
+                <section id="quotes" class="content-section">
+                    <div class="section-header">
+                        <h1 class="section-title">
+                            <i class="fas fa-file-invoice"></i>
+                            בקשות הצעות מחיר
+                        </h1>
+                        <div class="section-actions">
+                            <button class="btn btn-success" onclick="adminPanel.showQuoteEditModal(null)">
+                                <i class="fas fa-plus"></i>
+                                בקשה חדשה
+                            </button>
+                            <button class="btn btn-primary" onclick="adminPanel.loadQuotesData()">
+                                <i class="fas fa-sync-alt"></i>
+                                רענן
+                            </button>
+                            <button class="btn btn-outline" onclick="adminPanel.exportQuotes()">
+                                <i class="fas fa-download"></i>
+                                ייצא לאקסל
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="section-content">
+                        <!-- Quick Stats -->
+                        <div class="quotes-stats">
+                            <div class="stat-card primary">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="pendingQuotesCount">0</h3>
+                                    <p>ממתינות לטיפול</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card warning">
+                                <div class="stat-icon">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="inProgressQuotesCount">0</h3>
+                                    <p>בטיפול</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card success">
+                                <div class="stat-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="completedQuotesCount">0</h3>
+                                    <p>הושלמו</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card info">
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="todayQuotesCount">0</h3>
+                                    <p>היום</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Filters -->
+                        <div class="filters-section">
+                            <div class="filters-card">
+                                <div class="filters-header">
+                                    <h3>סינון וחיפוש</h3>
+                                    <button class="btn btn-sm btn-outline" onclick="adminPanel.resetQuoteFilters()">
+                                        <i class="fas fa-undo"></i>
+                                        איפוס
+                                    </button>
+                                </div>
+                                <div class="filters-content">
+                                    <div class="filter-group">
+                                        <label for="quoteStatusFilter">סטטוס:</label>
+                                        <select id="quoteStatusFilter" onchange="adminPanel.applyQuoteFilters()">
+                                            <option value="">כל הסטטוסים</option>
+                                            <option value="pending">ממתין</option>
+                                            <option value="sent_to_contractors">נשלח לקבלנים</option>
+                                            <option value="contractors_responded">קבלנים הגיבו</option>
+                                            <option value="completed">הושלם</option>
+                                            <option value="cancelled">בוטל</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="quotePoolTypeFilter">סוג בריכה:</label>
+                                        <select id="quotePoolTypeFilter" onchange="adminPanel.applyQuoteFilters()">
+                                            <option value="">כל הסוגים</option>
+                                            <option value="concrete">בטון</option>
+                                            <option value="fiberglass">פיברגלס</option>
+                                            <option value="vinyl">ויניל</option>
+                                            <option value="natural">טבעית</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="quoteDateFilter">תאריך:</label>
+                                        <select id="quoteDateFilter" onchange="adminPanel.applyQuoteFilters()">
+                                            <option value="">כל התאריכים</option>
+                                            <option value="today">היום</option>
+                                            <option value="week">השבוע</option>
+                                            <option value="month">החודש</option>
+                                            <option value="custom">תאריך מותאם</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="quoteSearchInput">חיפוש:</label>
+                                        <input type="text" id="quoteSearchInput" placeholder="שם לקוח, טלפון, עיר..." onkeyup="adminPanel.searchQuotes()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quotes Table -->
+                        <div class="table-section">
+                            <div class="table-card">
+                                <div class="table-header">
+                                    <h3>רשימת בקשות הצעות מחיר</h3>
+                                    <div class="table-actions">
+                                        <span class="results-count" id="quotesResultsCount">0 תוצאות</span>
+                                    </div>
+                                </div>
+                                <div class="table-content">
+                                    <div class="table-loading" id="quotesTableLoading" style="display: none;">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        טוען נתונים...
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="data-table" id="quotesTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>מספר בקשה</th>
+                                                    <th>שם לקוח</th>
+                                                    <th>טלפון</th>
+                                                    <th>סוג בריכה</th>
+                                                    <th>עיר</th>
+                                                    <th>תקציב</th>
+                                                    <th>סטטוס</th>
+                                                    <th>תאריך יצירה</th>
+                                                    <th>פעולות</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="quotesTableBody">
+                                                <!-- Data will be populated by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Pagination -->
+                                <div class="table-pagination" id="quotesPagination">
+                                    <!-- Pagination will be added by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contractors" class="content-section">
+                    <div class="section-header">
+                        <h1 class="section-title">
+                            <i class="fas fa-users"></i>
+                            ניהול קבלנים
+                        </h1>
+                        <div class="section-actions">
+                            <button type="button" class="btn btn-success" onclick="adminPanel.showContractorEditModal(null)">
+                                <i class="fas fa-plus"></i>
+                                קבלן חדש
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="adminPanel.loadContractorsData()">
+                                <i class="fas fa-sync-alt"></i>
+                                רענן
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="adminPanel.exportContractors()">
+                                <i class="fas fa-download"></i>
+                                ייצא לאקסל
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="section-content">
+                        <!-- Contractors Stats -->
+                        <div class="contractors-stats">
+                            <div class="stat-card primary">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="totalContractorsCount">0</h3>
+                                    <p>סה"כ קבלנים</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card success">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="activeContractorsCount">0</h3>
+                                    <p>קבלנים פעילים</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card warning">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="topRatedContractorsCount">0</h3>
+                                    <p>דירוג 5 כוכבים</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card info">
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="newContractorsCount">0</h3>
+                                    <p>חדשים החודש</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contractors Filters -->
+                        <div class="filters-section">
+                            <div class="filters-card">
+                                <div class="filters-header">
+                                    <h3>סינון וחיפוש קבלנים</h3>
+                                    <button type="button" class="btn btn-sm btn-outline" onclick="adminPanel.resetContractorFilters()">
+                                        <i class="fas fa-undo"></i>
+                                        איפוס
+                                    </button>
+                                </div>
+                                <div class="filters-content">
+                                    <div class="filter-group">
+                                        <label for="contractorCityFilter">עיר:</label>
+                                        <select id="contractorCityFilter" onchange="adminPanel.applyContractorFilters()">
+                                            <option value="">כל הערים</option>
+                                            <!-- Cities will be populated by JavaScript -->
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="contractorCategoryFilter">קטגוריה:</label>
+                                        <select id="contractorCategoryFilter" onchange="adminPanel.applyContractorFilters()">
+                                            <option value="">כל הקטגוריות</option>
+                                            <option value="pool_construction">בניית בריכות</option>
+                                            <option value="pool_maintenance">תחזוקת בריכות</option>
+                                            <option value="pool_equipment">ציוד בריכות</option>
+                                            <option value="pool_design">עיצוב בריכות</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="contractorRatingFilter">דירוג:</label>
+                                        <select id="contractorRatingFilter" onchange="adminPanel.applyContractorFilters()">
+                                            <option value="">כל הדירוגים</option>
+                                            <option value="5">5 כוכבים</option>
+                                            <option value="4">4+ כוכבים</option>
+                                            <option value="3">3+ כוכבים</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="contractorSearchInput">חיפוש:</label>
+                                        <input type="text" id="contractorSearchInput" placeholder="שם קבלן, טלפון, עיר..." onkeyup="adminPanel.searchContractors()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- View Toggle -->
+                        <div class="view-toggle">
+                            <button type="button" class="btn btn-sm view-btn active" data-view="grid" onclick="adminPanel.toggleContractorView('grid')">
+                                <i class="fas fa-th"></i>
+                                תצוגת כרטיסים
+                            </button>
+                            <button type="button" class="btn btn-sm view-btn" data-view="list" onclick="adminPanel.toggleContractorView('list')">
+                                <i class="fas fa-list"></i>
+                                תצוגת רשימה
+                            </button>
+                        </div>
+
+                        <!-- Contractors Grid -->
+                        <div class="contractors-section">
+                            <div class="contractors-loading" id="contractorsLoading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                טוען קבלנים...
+                            </div>
+
+                            <!-- Grid View -->
+                            <div class="contractors-grid" id="contractorsGrid">
+                                <!-- Contractor cards will be populated by JavaScript -->
+                            </div>
+
+                            <!-- List View -->
+                            <div class="contractors-list" id="contractorsList">
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>שם קבלן</th>
+                                                <th>טלפון</th>
+                                                <th>עיר</th>
+                                                <th>קטגוריות</th>
+                                                <th>דירוג</th>
+                                                <th>סטטוס</th>
+                                                <th>פעולות</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contractorsListBody">
+                                            <!-- Data will be populated by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Results Info -->
+                            <div class="results-info">
+                                <span id="contractorsResultsCount">0 קבלנים</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="users" class="content-section">
+                    <div class="section-header">
+                        <h1 class="section-title">
+                            <i class="fas fa-user-friends"></i>
+                            ניהול משתמשים
+                        </h1>
+                        <div class="section-actions">
+                            <button type="button" class="btn btn-success" onclick="adminPanel.showUserEditModal(null)">
+                                <i class="fas fa-user-plus"></i>
+                                משתמש חדש
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="adminPanel.loadUsersData()">
+                                <i class="fas fa-sync-alt"></i>
+                                רענן
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="adminPanel.exportUsers()">
+                                <i class="fas fa-download"></i>
+                                ייצא לאקסל
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="section-content">
+                        <!-- Users Stats -->
+                        <div class="users-stats">
+                            <div class="stat-card primary">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="totalUsersCount">0</h3>
+                                    <p>סה"כ משתמשים</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card success">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="activeUsersCount">0</h3>
+                                    <p>משתמשים פעילים</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card warning">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="contractorUsersCount">0</h3>
+                                    <p>קבלנים רשומים</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card info">
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="newUsersCount">0</h3>
+                                    <p>חדשים החודש</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Users Filters -->
+                        <div class="filters-section">
+                            <div class="filters-card">
+                                <div class="filters-header">
+                                    <h3>סינון וחיפוש משתמשים</h3>
+                                    <button type="button" class="btn btn-sm btn-outline" onclick="adminPanel.resetUserFilters()">
+                                        <i class="fas fa-undo"></i>
+                                        איפוס
+                                    </button>
+                                </div>
+                                <div class="filters-content">
+                                    <div class="filter-group">
+                                        <label for="userRoleFilter">תפקיד:</label>
+                                        <select id="userRoleFilter" onchange="adminPanel.applyUserFilters()">
+                                            <option value="">כל התפקידים</option>
+                                            <option value="admin">מנהל</option>
+                                            <option value="contractor">קבלן</option>
+                                            <option value="user">משתמש רגיל</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="userStatusFilter">סטטוס:</label>
+                                        <select id="userStatusFilter" onchange="adminPanel.applyUserFilters()">
+                                            <option value="">כל הסטטוסים</option>
+                                            <option value="active">פעיל</option>
+                                            <option value="inactive">לא פעיל</option>
+                                            <option value="banned">חסום</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="userDateFilter">תאריך הצטרפות:</label>
+                                        <select id="userDateFilter" onchange="adminPanel.applyUserFilters()">
+                                            <option value="">כל התאריכים</option>
+                                            <option value="today">היום</option>
+                                            <option value="week">השבוע</option>
+                                            <option value="month">החודש</option>
+                                            <option value="year">השנה</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="userSearchInput">חיפוש:</label>
+                                        <input type="text" id="userSearchInput" placeholder="שם משתמש, אימייל, טלפון..." onkeyup="adminPanel.searchUsers()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Users Table -->
+                        <div class="table-section">
+                            <div class="table-card">
+                                <div class="table-header">
+                                    <h3>רשימת משתמשים</h3>
+                                    <div class="table-actions">
+                                        <span class="results-count" id="usersResultsCount">0 תוצאות</span>
+                                    </div>
+                                </div>
+                                <div class="table-content">
+                                    <div class="table-loading" id="usersTableLoading">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        טוען נתונים...
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="data-table" id="usersTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>שם משתמש</th>
+                                                    <th>אימייל</th>
+                                                    <th>טלפון</th>
+                                                    <th>תפקיד</th>
+                                                    <th>סטטוס</th>
+                                                    <th>תאריך הצטרפות</th>
+                                                    <th>כניסה אחרונה</th>
+                                                    <th>פעולות</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="usersTableBody">
+                                                <!-- Data will be populated by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Pagination -->
+                                <div class="table-pagination" id="usersPagination">
+                                    <!-- Pagination will be added by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="sms" class="content-section">
+                    <div class="section-header">
+                        <h1 class="section-title">
+                            <i class="fas fa-sms"></i>
+                            ניהול SMS
+                        </h1>
+                        <div class="section-actions">
+                            <button type="button" class="btn btn-success" onclick="adminPanel.showSendSMSModal()">
+                                <i class="fas fa-paper-plane"></i>
+                                שלח SMS
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="adminPanel.loadSMSData()">
+                                <i class="fas fa-sync-alt"></i>
+                                רענן
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="adminPanel.exportSMSHistory()">
+                                <i class="fas fa-download"></i>
+                                ייצא היסטוריה
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="section-content">
+                        <!-- SMS Stats -->
+                        <div class="sms-stats">
+                            <div class="stat-card primary">
+                                <div class="stat-icon">
+                                    <i class="fas fa-paper-plane"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="totalSMSCount">0</h3>
+                                    <p>סה"כ SMS נשלחו</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card success">
+                                <div class="stat-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="successfulSMSCount">0</h3>
+                                    <p>נשלחו בהצלחה</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card warning">
+                                <div class="stat-icon">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="smsBalance">0</h3>
+                                    <p>יתרת SMS</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card info">
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar-day"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 id="todaySMSCount">0</h3>
+                                    <p>נשלחו היום</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SMS Management Tabs -->
+                        <div class="sms-tabs">
+                            <div class="tab-buttons">
+                                <button type="button" class="tab-btn active" data-tab="history" onclick="adminPanel.showSMSTab('history')">
+                                    <i class="fas fa-history"></i>
+                                    היסטוריית SMS
+                                </button>
+                                <button type="button" class="tab-btn" data-tab="templates" onclick="adminPanel.showSMSTab('templates')">
+                                    <i class="fas fa-file-alt"></i>
+                                    תבניות SMS
+                                </button>
+                                <button type="button" class="tab-btn" data-tab="settings" onclick="adminPanel.showSMSTab('settings')">
+                                    <i class="fas fa-cog"></i>
+                                    הגדרות SMS
+                                </button>
+                            </div>
+
+                            <!-- SMS History Tab -->
+                            <div class="tab-content active" id="smsHistoryTab">
+                                <div class="filters-section">
+                                    <div class="filters-card">
+                                        <div class="filters-header">
+                                            <h3>סינון היסטוריית SMS</h3>
+                                            <button type="button" class="btn btn-sm btn-outline" onclick="adminPanel.resetSMSFilters()">
+                                                <i class="fas fa-undo"></i>
+                                                איפוס
+                                            </button>
+                                        </div>
+                                        <div class="filters-content">
+                                            <div class="filter-group">
+                                                <label for="smsStatusFilter">סטטוס:</label>
+                                                <select id="smsStatusFilter" onchange="adminPanel.applySMSFilters()">
+                                                    <option value="">כל הסטטוסים</option>
+                                                    <option value="sent">נשלח</option>
+                                                    <option value="failed">נכשל</option>
+                                                    <option value="pending">ממתין</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="filter-group">
+                                                <label for="smsDateFilter">תאריך:</label>
+                                                <select id="smsDateFilter" onchange="adminPanel.applySMSFilters()">
+                                                    <option value="">כל התאריכים</option>
+                                                    <option value="today">היום</option>
+                                                    <option value="week">השבוע</option>
+                                                    <option value="month">החודש</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="filter-group">
+                                                <label for="smsSearchInput">חיפוש:</label>
+                                                <input type="text" id="smsSearchInput" placeholder="מספר טלפון, תוכן הודעה..." onkeyup="adminPanel.searchSMS()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-section">
+                                    <div class="table-card">
+                                        <div class="table-header">
+                                            <h3>היסטוריית SMS</h3>
+                                            <div class="table-actions">
+                                                <span class="results-count" id="smsResultsCount">0 תוצאות</span>
+                                            </div>
+                                        </div>
+                                        <div class="table-content">
+                                            <div class="table-loading" id="smsTableLoading">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                טוען נתונים...
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="data-table" id="smsTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>מספר טלפון</th>
+                                                            <th>תוכן הודעה</th>
+                                                            <th>סטטוס</th>
+                                                            <th>תאריך שליחה</th>
+                                                            <th>עלות</th>
+                                                            <th>פעולות</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="smsTableBody">
+                                                        <!-- Data will be populated by JavaScript -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SMS Templates Tab -->
+                            <div class="tab-content" id="smsTemplatesTab">
+                                <div class="templates-section">
+                                    <div class="templates-header">
+                                        <h3>תבניות SMS</h3>
+                                        <button type="button" class="btn btn-success" onclick="adminPanel.showSMSTemplateModal(null)">
+                                            <i class="fas fa-plus"></i>
+                                            תבנית חדשה
+                                        </button>
+                                    </div>
+
+                                    <div class="templates-grid" id="smsTemplatesGrid">
+                                        <!-- Templates will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SMS Settings Tab -->
+                            <div class="tab-content" id="smsSettingsTab">
+                                <div class="settings-section">
+                                    <div class="settings-card">
+                                        <div class="settings-header">
+                                            <h3>הגדרות SMS</h3>
+                                            <button type="button" class="btn btn-primary" onclick="adminPanel.saveSMSSettings()">
+                                                <i class="fas fa-save"></i>
+                                                שמור הגדרות
+                                            </button>
+                                        </div>
+
+                                        <div class="settings-content">
+                                            <div class="setting-group">
+                                                <label for="smsApiKey">מפתח API:</label>
+                                                <input type="text" id="smsApiKey" placeholder="הכנס מפתח API">
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="smsSenderName">שם שולח:</label>
+                                                <input type="text" id="smsSenderName" placeholder="Pool Israel">
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="smsProvider">ספק SMS:</label>
+                                                <select id="smsProvider">
+                                                    <option value="sms4free">SMS4Free</option>
+                                                    <option value="other">אחר</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="smsAutoSend">שליחה אוטומטית:</label>
+                                                <input type="checkbox" id="smsAutoSend">
+                                                <span>שלח SMS אוטומטית לקבלנים</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="settings" class="content-section">
+                    <div class="section-header">
+                        <h1 class="section-title">
+                            <i class="fas fa-cog"></i>
+                            הגדרות מערכת
+                        </h1>
+                        <div class="section-actions">
+                            <button type="button" class="btn btn-success" onclick="adminPanel.saveAllSettings()">
+                                <i class="fas fa-save"></i>
+                                שמור הכל
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="adminPanel.loadSettingsData()">
+                                <i class="fas fa-sync-alt"></i>
+                                רענן
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="adminPanel.exportSettings()">
+                                <i class="fas fa-download"></i>
+                                גיבוי הגדרות
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="section-content">
+                        <!-- Settings Tabs -->
+                        <div class="settings-tabs">
+                            <div class="tab-buttons">
+                                <button type="button" class="tab-btn active" data-tab="general" onclick="adminPanel.showSettingsTab('general')">
+                                    <i class="fas fa-cog"></i>
+                                    הגדרות כלליות
+                                </button>
+                                <button type="button" class="tab-btn" data-tab="quotes" onclick="adminPanel.showSettingsTab('quotes')">
+                                    <i class="fas fa-file-invoice"></i>
+                                    הגדרות הצעות מחיר
+                                </button>
+                                <button type="button" class="tab-btn" data-tab="email" onclick="adminPanel.showSettingsTab('email')">
+                                    <i class="fas fa-envelope"></i>
+                                    הגדרות אימייל
+                                </button>
+                                <button type="button" class="tab-btn" data-tab="backup" onclick="adminPanel.showSettingsTab('backup')">
+                                    <i class="fas fa-database"></i>
+                                    גיבוי ושחזור
+                                </button>
+                            </div>
+
+                            <!-- General Settings Tab -->
+                            <div class="tab-content active" id="generalSettingsTab">
+                                <div class="settings-section">
+                                    <div class="settings-card">
+                                        <div class="settings-header">
+                                            <h3>הגדרות כלליות</h3>
+                                        </div>
+
+                                        <div class="settings-content">
+                                            <div class="setting-group">
+                                                <label for="systemEmail">אימייל מערכת:</label>
+                                                <input type="email" id="systemEmail" placeholder="admin@israel-pool.top">
+                                                <small>כתובת אימייל לקבלת התראות מערכת</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="systemName">שם המערכת:</label>
+                                                <input type="text" id="systemName" placeholder="Pool Israel">
+                                                <small>שם המערכת שיוצג בכותרות ובהודעות</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="systemPhone">טלפון מערכת:</label>
+                                                <input type="tel" id="systemPhone" placeholder="058-4995151">
+                                                <small>מספר טלפון ליצירת קשר</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="maintenanceMode">מצב תחזוקה:</label>
+                                                <input type="checkbox" id="maintenanceMode">
+                                                <span>הפעל מצב תחזוקה (האתר לא יהיה זמין למשתמשים)</span>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="debugMode">מצב דיבוג:</label>
+                                                <input type="checkbox" id="debugMode">
+                                                <span>הפעל מצב דיבוג (הצג שגיאות מפורטות)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quote Settings Tab -->
+                            <div class="tab-content" id="quotesSettingsTab">
+                                <div class="settings-section">
+                                    <div class="settings-card">
+                                        <div class="settings-header">
+                                            <h3>הגדרות הצעות מחיר</h3>
+                                        </div>
+
+                                        <div class="settings-content">
+                                            <div class="setting-group">
+                                                <label for="quoteFeePerLead">עמלה בסיסית לליד:</label>
+                                                <input type="number" id="quoteFeePerLead" placeholder="20.00" step="0.01">
+                                                <small>עמלה בשקלים לכל ליד שנשלח לקבלן</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="quoteFeePremium">עמלה פרימיום:</label>
+                                                <input type="number" id="quoteFeePremium" placeholder="35.00" step="0.01">
+                                                <small>עמלה מוגברת ללידים איכותיים</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="maxContractorsPerQuote">מספר מקסימלי של קבלנים לבקשה:</label>
+                                                <input type="number" id="maxContractorsPerQuote" placeholder="3" min="1" max="10">
+                                                <small>כמה קבלנים יקבלו כל בקשת הצעת מחיר</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="quoteAutoExpireDays">תפוגה אוטומטית (ימים):</label>
+                                                <input type="number" id="quoteAutoExpireDays" placeholder="30" min="1" max="365">
+                                                <small>מספר ימים לאחר מכן בקשה תפוג אוטומטית</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="enableImageUpload">אפשר העלאת תמונות:</label>
+                                                <input type="checkbox" id="enableImageUpload">
+                                                <span>אפשר ללקוחות להעלות תמונות עם הבקשה</span>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="maxImagesPerQuote">מספר מקסימלי של תמונות:</label>
+                                                <input type="number" id="maxImagesPerQuote" placeholder="5" min="1" max="20">
+                                                <small>מספר תמונות מקסימלי לכל בקשה</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Email Settings Tab -->
+                            <div class="tab-content" id="emailSettingsTab">
+                                <div class="settings-section">
+                                    <div class="settings-card">
+                                        <div class="settings-header">
+                                            <h3>הגדרות אימייל</h3>
+                                        </div>
+
+                                        <div class="settings-content">
+                                            <div class="setting-group">
+                                                <label for="smtpHost">שרת SMTP:</label>
+                                                <input type="text" id="smtpHost" placeholder="smtp.gmail.com">
+                                                <small>כתובת שרת SMTP לשליחת אימיילים</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="smtpPort">פורט SMTP:</label>
+                                                <input type="number" id="smtpPort" placeholder="587">
+                                                <small>פורט שרת SMTP (בדרך כלל 587 או 465)</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="smtpUsername">שם משתמש SMTP:</label>
+                                                <input type="text" id="smtpUsername" placeholder="your-email@gmail.com">
+                                                <small>שם משתמש לחיבור לשרת SMTP</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="smtpPassword">סיסמת SMTP:</label>
+                                                <input type="password" id="smtpPassword" placeholder="••••••••">
+                                                <small>סיסמה לחיבור לשרת SMTP</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="emailFromName">שם שולח:</label>
+                                                <input type="text" id="emailFromName" placeholder="Pool Israel">
+                                                <small>השם שיוצג כשולח האימיילים</small>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="emailFromAddress">כתובת שולח:</label>
+                                                <input type="email" id="emailFromAddress" placeholder="noreply@israel-pool.top">
+                                                <small>כתובת האימייל שתופיע כשולח</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Backup Settings Tab -->
+                            <div class="tab-content" id="backupSettingsTab">
+                                <div class="settings-section">
+                                    <div class="settings-card">
+                                        <div class="settings-header">
+                                            <h3>גיבוי ושחזור</h3>
+                                        </div>
+
+                                        <div class="settings-content">
+                                            <div class="backup-actions">
+                                                <div class="backup-item">
+                                                    <h4>גיבוי מסד נתונים</h4>
+                                                    <p>צור גיבוי מלא של מסד הנתונים</p>
+                                                    <button type="button" class="btn btn-primary" onclick="adminPanel.createDatabaseBackup()">
+                                                        <i class="fas fa-database"></i>
+                                                        צור גיבוי
+                                                    </button>
+                                                </div>
+
+                                                <div class="backup-item">
+                                                    <h4>גיבוי הגדרות</h4>
+                                                    <p>ייצא את כל הגדרות המערכת</p>
+                                                    <button type="button" class="btn btn-primary" onclick="adminPanel.exportSettings()">
+                                                        <i class="fas fa-cog"></i>
+                                                        ייצא הגדרות
+                                                    </button>
+                                                </div>
+
+                                                <div class="backup-item">
+                                                    <h4>שחזור הגדרות</h4>
+                                                    <p>ייבא הגדרות מקובץ גיבוי</p>
+                                                    <input type="file" id="settingsImportFile" accept=".json" style="display: none;">
+                                                    <button type="button" class="btn btn-warning" onclick="document.getElementById('settingsImportFile').click()">
+                                                        <i class="fas fa-upload"></i>
+                                                        ייבא הגדרות
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="autoBackup">גיבוי אוטומטי:</label>
+                                                <input type="checkbox" id="autoBackup">
+                                                <span>צור גיבוי אוטומטי יומי</span>
+                                            </div>
+
+                                            <div class="setting-group">
+                                                <label for="backupRetentionDays">שמירת גיבויים (ימים):</label>
+                                                <input type="number" id="backupRetentionDays" placeholder="30" min="1" max="365">
+                                                <small>כמה ימים לשמור גיבויים ישנים</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Modals Container -->
+        <div id="modalsContainer">
+            <!-- Quote Edit Modal -->
+            <div id="quoteEditModal" class="modal">
+                <div class="modal-content quote-modal">
+                    <div class="modal-header">
+                        <h2 class="modal-title">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>עריכת בקשת הצעת מחיר</span>
+                        </h2>
+                        <button type="button" class="modal-close" onclick="adminPanel.closeModal('quoteEditModal')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Content will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contractor Edit Modal -->
+            <div id="contractorEditModal" class="modal">
+                <div class="modal-content contractor-modal">
+                    <div class="modal-header">
+                        <h2 class="modal-title">
+                            <i class="fas fa-users"></i>
+                            <span>עריכת קבלן</span>
+                        </h2>
+                        <button type="button" class="modal-close" onclick="adminPanel.closeModal('contractorEditModal')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Content will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Edit Modal -->
+            <div id="userEditModal" class="modal">
+                <div class="modal-content user-modal">
+                    <div class="modal-header">
+                        <h2 class="modal-title">
+                            <i class="fas fa-user-friends"></i>
+                            <span>עריכת משתמש</span>
+                        </h2>
+                        <button type="button" class="modal-close" onclick="adminPanel.closeModal('userEditModal')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Content will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SMS Modal -->
+            <div id="smsEditModal" class="modal">
+                <div class="modal-content sms-modal">
+                    <div class="modal-header">
+                        <h2 class="modal-title">
+                            <i class="fas fa-sms"></i>
+                            <span>שליחת SMS</span>
+                        </h2>
+                        <button type="button" class="modal-close" onclick="adminPanel.closeModal('smsEditModal')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Content will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="../js/admin_new.js"></script>
+    
+    <!-- Initialize -->
+    <script>
+        // Initialize the admin panel when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            window.adminPanel = new ModernAdminPanel();
+        });
+
+        // Global functions for backward compatibility
+        function showTab(tabName) {
+            if (window.adminPanel) {
+                window.adminPanel.showTab(tabName);
+            }
+        }
+
+        function refreshAllData() {
+            if (window.adminPanel) {
+                window.adminPanel.loadInitialData();
+            }
+        }
+
+        function logout() {
+            if (window.adminPanel) {
+                window.adminPanel.logout();
+            }
+        }
+
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu) {
+                navMenu.classList.toggle('show');
+            }
+        }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.password-toggle i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.className = 'fas fa-eye';
+            }
+        }
+    </script>
+</body>
+</html>

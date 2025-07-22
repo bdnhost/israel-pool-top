@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת API קבלנים - Pool Israel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            text-align: right;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-section h3 {
+            color: #2c5aa0;
+            margin-bottom: 15px;
+        }
+        .result {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success {
+            border-left: 4px solid #28a745;
+        }
+        .error {
+            border-left: 4px solid #dc3545;
+        }
+        button {
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1e3a8a;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 בדיקת API קבלנים - Pool Israel</h1>
+        <p>דף זה בודק את תקינות ה-API של הקבלנים ומסד הנתונים</p>
+
+        <!-- Database Test -->
+        <div class="test-section">
+            <h3>1. בדיקת חיבור למסד נתונים</h3>
+            <button onclick="testDatabase()">בדוק חיבור</button>
+            <div id="dbResult" class="result"></div>
+        </div>
+
+        <!-- API Basic Test -->
+        <div class="test-section">
+            <h3>2. בדיקת API בסיסי</h3>
+            <button onclick="testBasicAPI()">בדוק API</button>
+            <div id="apiResult" class="result"></div>
+        </div>
+
+        <!-- Contractors List Test -->
+        <div class="test-section">
+            <h3>3. בדיקת רשימת קבלנים</h3>
+            <button onclick="testContractorsList()">טען קבלנים</button>
+            <button onclick="testContractorsWithFilters()">בדוק פילטרים</button>
+            <div id="contractorsResult" class="result"></div>
+        </div>
+
+        <!-- Search Test -->
+        <div class="test-section">
+            <h3>4. בדיקת חיפוש</h3>
+            <button onclick="testSearch()">בדוק חיפוש</button>
+            <div id="searchResult" class="result"></div>
+        </div>
+
+        <!-- Single Contractor Test -->
+        <div class="test-section">
+            <h3>5. בדיקת קבלן יחיד</h3>
+            <button onclick="testSingleContractor()">בדוק קבלן יחיד</button>
+            <div id="singleResult" class="result"></div>
+        </div>
+
+        <!-- Performance Test -->
+        <div class="test-section">
+            <h3>6. בדיקת ביצועים</h3>
+            <button onclick="testPerformance()">בדוק ביצועים</button>
+            <div id="performanceResult" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Test database connection
+        async function testDatabase() {
+            const result = document.getElementById('dbResult');
+            result.innerHTML = 'בודק חיבור למסד נתונים...';
+            
+            try {
+                const response = await fetch('api/contractors.php?debug=1&limit=1');
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    result.innerHTML = `✅ חיבור תקין למסד נתונים\nנמצאו ${data.pagination.total_count} קבלנים`;
+                    result.className = 'result success';
+                } else {
+                    result.innerHTML = `❌ שגיאה בחיבור למסד נתונים:\n${JSON.stringify(data, null, 2)}`;
+                    result.className = 'result error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ שגיאה בחיבור:\n${error.message}`;
+                result.className = 'result error';
+            }
+        }
+
+        // Test basic API
+        async function testBasicAPI() {
+            const result = document.getElementById('apiResult');
+            result.innerHTML = 'בודק API בסיסי...';
+            
+            try {
+                const response = await fetch('api/contractors.php');
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    result.innerHTML = `✅ API עובד תקין\nStatus: ${response.status}\nקבלנים: ${data.contractors.length}\nדפים: ${data.pagination.total_pages}`;
+                    result.className = 'result success';
+                } else {
+                    result.innerHTML = `❌ שגיאה ב-API:\n${JSON.stringify(data, null, 2)}`;
+                    result.className = 'result error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ שגיאה ב-API:\n${error.message}`;
+                result.className = 'result error';
+            }
+        }
+
+        // Test contractors list
+        async function testContractorsList() {
+            const result = document.getElementById('contractorsResult');
+            result.innerHTML = 'טוען רשימת קבלנים...';
+            
+            try {
+                const response = await fetch('api/contractors.php?limit=5');
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    let output = `✅ רשימת קבלנים נטענה בהצלחה\n`;
+                    output += `סה"כ: ${data.pagination.total_count} קבלנים\n`;
+                    output += `דף נוכחי: ${data.pagination.current_page}/${data.pagination.total_pages}\n\n`;
+                    
+                    data.contractors.forEach((contractor, index) => {
+                        output += `${index + 1}. ${contractor.title}\n`;
+                        output += `   עיר: ${contractor.city}\n`;
+                        output += `   דירוג: ${contractor.rating} (${contractor.reviews_count} ביקורות)\n`;
+                        output += `   מומלץ: ${contractor.is_featured ? 'כן' : 'לא'}\n`;
+                        output += `   קטגוריות: ${contractor.categories.join(', ')}\n\n`;
+                    });
+                    
+                    result.innerHTML = output;
+                    result.className = 'result success';
+                } else {
+                    result.innerHTML = `❌ שגיאה בטעינת קבלנים:\n${JSON.stringify(data, null, 2)}`;
+                    result.className = 'result error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ שגיאה בטעינת קבלנים:\n${error.message}`;
+                result.className = 'result error';
+            }
+        }
+
+        // Test contractors with filters
+        async function testContractorsWithFilters() {
+            const result = document.getElementById('contractorsResult');
+            result.innerHTML = 'בודק פילטרים...';
+            
+            const tests = [
+                { name: 'פילטר עיר', params: 'city=תל אביב' },
+                { name: 'פילטר קטגוריה', params: 'category=בטון' },
+                { name: 'פילטר דירוג', params: 'min_rating=4.5' },
+                { name: 'מיון לפי דירוג', params: 'sort=rating' },
+                { name: 'מיון לפי ביקורות', params: 'sort=reviews' }
+            ];
+            
+            let output = '';
+            
+            for (const test of tests) {
+                try {
+                    const response = await fetch(`api/contractors.php?${test.params}&limit=3`);
+                    const data = await response.json();
+                    
+                    if (response.ok && data.success) {
+                        output += `✅ ${test.name}: ${data.pagination.total_count} תוצאות\n`;
+                    } else {
+                        output += `❌ ${test.name}: שגיאה\n`;
+                    }
+                } catch (error) {
+                    output += `❌ ${test.name}: ${error.message}\n`;
+                }
+            }
+            
+            result.innerHTML = output;
+            result.className = 'result success';
+        }
+
+        // Test search
+        async function testSearch() {
+            const result = document.getElementById('searchResult');
+            result.innerHTML = 'בודק חיפוש...';
+            
+            const searchTerms = ['בריכות', 'אלון', 'תל אביב', 'פיברגלס'];
+            let output = '';
+            
+            for (const term of searchTerms) {
+                try {
+                    const response = await fetch(`api/contractors.php?search=${encodeURIComponent(term)}&limit=3`);
+                    const data = await response.json();
+                    
+                    if (response.ok && data.success) {
+                        output += `✅ חיפוש "${term}": ${data.pagination.total_count} תוצאות\n`;
+                        data.contractors.forEach(contractor => {
+                            output += `   - ${contractor.title}\n`;
+                        });
+                        output += '\n';
+                    } else {
+                        output += `❌ חיפוש "${term}": שגיאה\n`;
+                    }
+                } catch (error) {
+                    output += `❌ חיפוש "${term}": ${error.message}\n`;
+                }
+            }
+            
+            result.innerHTML = output;
+            result.className = 'result success';
+        }
+
+        // Test single contractor
+        async function testSingleContractor() {
+            const result = document.getElementById('singleResult');
+            result.innerHTML = 'בודק קבלן יחיד...';
+            
+            try {
+                // First get a contractor ID
+                const listResponse = await fetch('api/contractors.php?limit=1');
+                const listData = await listResponse.json();
+                
+                if (!listData.success || listData.contractors.length === 0) {
+                    result.innerHTML = '❌ לא נמצאו קבלנים לבדיקה';
+                    result.className = 'result error';
+                    return;
+                }
+                
+                const contractorId = listData.contractors[0].id;
+                
+                // Now get single contractor
+                const response = await fetch(`api/contractors.php?id=${contractorId}`);
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    const contractor = data.contractor;
+                    let output = `✅ קבלן יחיד נטען בהצלחה\n\n`;
+                    output += `ID: ${contractor.id}\n`;
+                    output += `שם: ${contractor.title}\n`;
+                    output += `עיר: ${contractor.city}\n`;
+                    output += `טלפון: ${contractor.phone || 'לא זמין'}\n`;
+                    output += `אתר: ${contractor.website || 'לא זמין'}\n`;
+                    output += `דירוג: ${contractor.rating}\n`;
+                    output += `ביקורות: ${contractor.reviews_count}\n`;
+                    output += `מומלץ: ${contractor.is_featured ? 'כן' : 'לא'}\n`;
+                    output += `קטגוריות: ${contractor.categories.join(', ')}\n`;
+                    output += `תיאור: ${contractor.description.substring(0, 100)}...\n`;
+                    
+                    result.innerHTML = output;
+                    result.className = 'result success';
+                } else {
+                    result.innerHTML = `❌ שגיאה בטעינת קבלן יחיד:\n${JSON.stringify(data, null, 2)}`;
+                    result.className = 'result error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ שגיאה בטעינת קבלן יחיד:\n${error.message}`;
+                result.className = 'result error';
+            }
+        }
+
+        // Test performance
+        async function testPerformance() {
+            const result = document.getElementById('performanceResult');
+            result.innerHTML = 'בודק ביצועים...';
+            
+            const tests = [
+                { name: 'טעינה רגילה', url: 'api/contractors.php?limit=10' },
+                { name: 'טעינה עם פילטרים', url: 'api/contractors.php?city=תל אביב&category=בטון&limit=10' },
+                { name: 'חיפוש', url: 'api/contractors.php?search=בריכות&limit=10' },
+                { name: 'מיון', url: 'api/contractors.php?sort=rating&limit=10' }
+            ];
+            
+            let output = '';
+            
+            for (const test of tests) {
+                const startTime = performance.now();
+                
+                try {
+                    const response = await fetch(test.url);
+                    const data = await response.json();
+                    const endTime = performance.now();
+                    const duration = Math.round(endTime - startTime);
+                    
+                    if (response.ok && data.success) {
+                        output += `✅ ${test.name}: ${duration}ms (${data.contractors.length} תוצאות)\n`;
+                    } else {
+                        output += `❌ ${test.name}: שגיאה\n`;
+                    }
+                } catch (error) {
+                    const endTime = performance.now();
+                    const duration = Math.round(endTime - startTime);
+                    output += `❌ ${test.name}: ${duration}ms - ${error.message}\n`;
+                }
+            }
+            
+            result.innerHTML = output;
+            result.className = 'result success';
+        }
+
+        // Auto-run basic tests on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                testDatabase();
+                setTimeout(() => testBasicAPI(), 1000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>

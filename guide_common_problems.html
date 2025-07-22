@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תקלות נפוצות בבריכה ואיך לטפל בהן | PoolIsrael</title>
+    <meta name="description" content="מדריך מקיף לתקלות הנפוצות ביותר בבריכות - מים ירוקים, משאבה לא עובדת, דליפות ועוד. פתרונות מהירים ויעילים.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://poolisrael.co.il/guide_common_problems.html">
+    <meta property="og:title" content="תקלות נפוצות בבריכה ואיך לטפל בהן">
+    <meta property="og:description" content="פתרונות מהירים לתקלות הנפוצות ביותר בבריכות - מדריך מקצועי">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://poolisrael.co.il/guide_common_problems.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2E86AB;
+            --dark-blue: #1B4F72;
+            --accent-orange: #F39C12;
+            --light-blue: #AED6F1;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --border-light: #E5E7EB;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            --success-green: #27AE60;
+            --warning-yellow: #F39C12;
+            --danger-red: #E74C3C;
+            --problem-red: #E74C3C;
+            --solution-green: #27AE60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .guide-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, var(--problem-red) 0%, #C0392B 100%);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .guide-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            border-right: 4px solid var(--problem-red);
+        }
+
+        .section h2 {
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h3 {
+            color: var(--problem-red);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .problem-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--problem-red);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .problem-card h4 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .problem-symptoms {
+            background: #FADBD8;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid var(--problem-red);
+        }
+
+        .problem-symptoms h5 {
+            color: var(--problem-red);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .solution-steps {
+            background: #D5EDDA;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid var(--solution-green);
+        }
+
+        .solution-steps h5 {
+            color: var(--solution-green);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 10px 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: "•";
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .urgency-high {
+            border-top-color: var(--danger-red) !important;
+        }
+
+        .urgency-medium {
+            border-top-color: var(--warning-yellow) !important;
+        }
+
+        .urgency-low {
+            border-top-color: var(--success-green) !important;
+        }
+
+        .urgency-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .urgency-badge.high {
+            background: #FADBD8;
+            color: var(--danger-red);
+        }
+
+        .urgency-badge.medium {
+            background: #FFF3CD;
+            color: #B7791F;
+        }
+
+        .urgency-badge.low {
+            background: #D5EDDA;
+            color: var(--success-green);
+        }
+
+        .info-box {
+            background: #D1ECF1;
+            border: 1px solid #BEE5EB;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .info-box h4 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border: 1px solid #FFEAA7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning-yellow);
+        }
+
+        .warning-box h4 {
+            color: #B7791F;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .danger-box {
+            background: #FADBD8;
+            border: 1px solid #F1948A;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--danger-red);
+        }
+
+        .danger-box h4 {
+            color: var(--danger-red);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .guide-header h1 {
+                font-size: 2rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="pool_israel_homepage.html" class="logo">
+                    <i class="fas fa-swimming-pool"></i>
+                    PoolIsrael
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="guides_page.html" class="active">מדריכים</a></li>
+                    <li><a href="contractors_page.html">קבלנים</a></li>
+                    <li><a href="tools_page.html">כלים</a></li>
+                    <li><a href="community_page.html">קהילה</a></li>
+                    <li><a href="news_page.html">חדשות</a></li>
+                </ul>
+
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">התחברות</a>
+                    <a href="#" class="btn btn-primary">הרשמה</a>
+                </div>
+
+                <button type="button" class="mobile-menu-btn" aria-label="תפריט">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="guide-container">
+        <div class="guide-header">
+            <h1>🔧 תקלות נפוצות ואיך לטפל בהן</h1>
+            <div class="meta-info">
+                <span><i class="fas fa-clock"></i> זמן קריאה: 13 דקות</span>
+                <span><i class="fas fa-calendar-alt"></i> עודכן: יוני 2025</span>
+                <span><i class="fas fa-star"></i> דירוג: 4.8/5</span>
+                <span><i class="fas fa-eye"></i> 28,543 צפיות</span>
+            </div>
+        </div>
+
+        <div class="guide-content">
+            <section class="section">
+                <h2><i class="fas fa-info-circle"></i> מבוא לתקלות בבריכה</h2>
+                <p>כל בעל בריכה נתקל מדי פעם בתקלות שונות. חלק מהתקלות ניתנות לטיפול עצמי, ואחרות דורשות התערבות מקצועית. מדריך זה יעזור לכם לזהות, לאבחן ולטפל בתקלות הנפוצות ביותר.</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> עקרון חשוב</h4>
+                    <p>תמיד התחילו מהפתרון הפשוט ביותר. רוב התקלות נגרמות מבעיות בסיסיות שקל לתקן.</p>
+                </div>
+
+                <h3>סיווג תקלות לפי דחיפות</h3>
+                <div class="problems-grid">
+                    <div class="problem-card urgency-high">
+                        <div class="urgency-badge high">
+                            <i class="fas fa-exclamation-triangle"></i> דחיפות גבוהה
+                        </div>
+                        <h4>טיפול מיידי נדרש</h4>
+                        <ul class="checklist">
+                            <li>דליפות מים משמעותיות</li>
+                            <li>תקלות חשמל</li>
+                            <li>מים מזוהמים חמור</li>
+                            <li>ציוד בטיחות לא תקין</li>
+                        </ul>
+                    </div>
+
+                    <div class="problem-card urgency-medium">
+                        <div class="urgency-badge medium">
+                            <i class="fas fa-clock"></i> דחיפות בינונית
+                        </div>
+                        <h4>טיפול תוך 24-48 שעות</h4>
+                        <ul class="checklist">
+                            <li>מים ירוקים או עכורים</li>
+                            <li>משאבה לא עובדת</li>
+                            <li>בעיות איזון כימי</li>
+                            <li>סינון לא יעיל</li>
+                        </ul>
+                    </div>
+
+                    <div class="problem-card urgency-low">
+                        <div class="urgency-badge low">
+                            <i class="fas fa-check-circle"></i> דחיפות נמוכה
+                        </div>
+                        <h4>טיפול תוך שבוע</h4>
+                        <ul class="checklist">
+                            <li>ניקוי שגרתי</li>
+                            <li>החלפת מסננים</li>
+                            <li>תחזוקה מונעת</li>
+                            <li>שיפורים קוסמטיים</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-water"></i> בעיות איכות מים</h2>
+                
+                <div class="problems-grid">
+                    <div class="problem-card urgency-medium">
+                        <h4><i class="fas fa-leaf"></i> מים ירוקים (אצות)</h4>
+                        
+                        <div class="problem-symptoms">
+                            <h5><i class="fas fa-search"></i> סימפטומים</h5>
+                            <ul class="checklist">
+                                <li>מים בצבע ירוק</li>
+                                <li>קירות חלקלקים</li>
+                                <li>ריח לא נעים</li>
+                                <li>ראות מוגבלת במים</li>
+                            </ul>
+                        </div>
+
+                        <div class="solution-steps">
+                            <h5><i class="fas fa-tools"></i> פתרון</h5>
+                            <ul class="checklist">
+                                <li>שוק כלור - 10-20 ppm</li>
+                                <li>מברשת קירות ורצפה</li>
+                                <li>הפעלת סינון 24 שעות</li>
+                                <li>הוספת אלגיציד</li>
+                                <li>ניקוי מסננים תכוף</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="problem-card urgency-medium">
+                        <h4><i class="fas fa-cloud"></i> מים עכורים</h4>
+                        
+                        <div class="problem-symptoms">
+                            <h5><i class="fas fa-search"></i> סימפטומים</h5>
+                            <ul class="checklist">
+                                <li>מים לא שקופים</li>
+                                <li>חלקיקים צפים</li>
+                                <li>קושי לראות את הרצפה</li>
+                                <li>מסננים מתלכלכים מהר</li>
+                            </ul>
+                        </div>
+
+                        <div class="solution-steps">
+                            <h5><i class="fas fa-tools"></i> פתרון</h5>
+                            <ul class="checklist">
+                                <li>בדיקת איזון כימי</li>
+                                <li>ניקוי/החלפת מסננים</li>
+                                <li>הוספת פלוקולנט</li>
+                                <li>שטיפה לאחור של המסנן</li>
+                                <li>הגברת זמני סינון</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-cog"></i> תקלות ציוד</h2>
+
+                <div class="problems-grid">
+                    <div class="problem-card urgency-high">
+                        <h4><i class="fas fa-fan"></i> משאבה לא עובדת</h4>
+
+                        <div class="problem-symptoms">
+                            <h5><i class="fas fa-search"></i> סימפטומים</h5>
+                            <ul class="checklist">
+                                <li>המשאבה לא מתניעה</li>
+                                <li>רעש חריג</li>
+                                <li>זרימת מים חלשה</li>
+                                <li>המשאבה נכבית לבד</li>
+                            </ul>
+                        </div>
+
+                        <div class="solution-steps">
+                            <h5><i class="fas fa-tools"></i> בדיקות ראשוניות</h5>
+                            <ul class="checklist">
+                                <li>בדיקת חיבור חשמל</li>
+                                <li>בדיקת מפסק הגנה</li>
+                                <li>בדיקת מסננים סתומים</li>
+                                <li>בדיקת רמת מים בסקימר</li>
+                                <li>בדיקת שסתומים סגורים</li>
+                            </ul>
+                        </div>
+
+                        <div class="danger-box">
+                            <h4><i class="fas fa-exclamation-triangle"></i> אזהרה</h4>
+                            <p>אל תנסו לתקן בעיות חשמל בעצמכם. פנו לחשמלאי מוסמך.</p>
+                        </div>
+                    </div>
+
+                    <div class="problem-card urgency-medium">
+                        <h4><i class="fas fa-filter"></i> מערכת סינון לא יעילה</h4>
+
+                        <div class="problem-symptoms">
+                            <h5><i class="fas fa-search"></i> סימפטומים</h5>
+                            <ul class="checklist">
+                                <li>מים לא מתנקים</li>
+                                <li>לחץ גבוה במסנן</li>
+                                <li>זרימה חלשה</li>
+                                <li>מסננים מתלכלכים מהר</li>
+                            </ul>
+                        </div>
+
+                        <div class="solution-steps">
+                            <h5><i class="fas fa-tools"></i> פתרון</h5>
+                            <ul class="checklist">
+                                <li>שטיפה לאחור של המסנן</li>
+                                <li>החלפת חול/מדיה</li>
+                                <li>ניקוי סלי הסקימר</li>
+                                <li>בדיקת צנרת סתומה</li>
+                                <li>כיוון זמני סינון</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="problem-card urgency-medium">
+                        <h4><i class="fas fa-thermometer-half"></i> מערכת חימום לא עובדת</h4>
+
+                        <div class="problem-symptoms">
+                            <h5><i class="fas fa-search"></i> סימפטומים</h5>
+                            <ul class="checklist">
+                                <li>מים לא מתחממים</li>
+                                <li>חימום איטי</li>
+                                <li>טמפרטורה לא יציבה</li>
+                                <li>רעש במחמם</li>
+                            </ul>
+                        </div>
+
+                        <div class="solution-steps">
+                            <h5><i class="fas fa-tools"></i> בדיקות</h5>
+                            <ul class="checklist">
+                                <li>בדיקת זרימת מים</li>
+                                <li>ניקוי מחליף חום</li>
+                                <li>בדיקת חיישן טמפרטורה</li>
+                                <li>בדיקת הגדרות תרמוסטט</li>
+                                <li>בדיקת אוורור (גז)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="problem-card urgency-low">
+                        <h4><i class="fas fa-robot"></i> רובוט ניקוי לא עובד</h4>
+
+                        <div class="problem-symptoms">
+                            <h5><i class="fas fa-search"></i> סימפטומים</h5>
+                            <ul class="checklist">
+                                <li>הרובוט לא זז</li>
+                                <li>ניקוי לא יעיל</li>
+                                <li>נתקע במקום אחד</li>
+                                <li>לא עולה על קירות</li>
+                            </ul>
+                        </div>
+
+                        <div class="solution-steps">
+                            <h5><i class="fas fa-tools"></i> פתרון</h5>
+                            <ul class="checklist">
+                                <li>ניקוי מסננים פנימיים</li>
+                                <li>בדיקת מברשות בלויות</li>
+                                <li>ניקוי חיישנים</li>
+                                <li>בדיקת כבל חשמל</li>
+                                <li>איפוס הרובוט</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-tint"></i> בעיות מבניות</h2>
+
+                <div class="problems-grid">
+                    <div class="problem-card urgency-high">
+                        <h4><i class="fas fa-exclamation-triangle"></i> דליפות מים</h4>
+
+                        <div class="problem-symptoms">
+                            <h5><i class="fas fa-search"></i> איתור דליפה</h5>
+                            <ul class="checklist">
+                                <li>ירידה מתמדת ברמת המים</li>
+                                <li>קרקע רטובה סביב הבריכה</li>
+                                <li>סדקים נראים לעין</li>
+                                <li>אזורים רכים בדשא</li>
+                            </ul>
+                        </div>
+
+                        <div class="solution-steps">
+                            <h5><i class="fas fa-tools"></i> בדיקת דליפה</h5>
+                            <ul class="checklist">
+                                <li>מבחן הדלי (bucket test)</li>
+                                <li>בדיקה עם צבע מאכל</li>
+                                <li>בדיקת צנרת וחיבורים</li>
+                                <li>בדיקת סקימר ומפלס</li>
+                                <li>בדיקת אטמים</li>
+                            </ul>
+                        </div>
+
+                        <div class="warning-box">
+                            <h4><i class="fas fa-phone"></i> מתי לפנות למקצועי</h4>
+                            <p>דליפות מבניות, סדקים גדולים או דליפות בצנרת תת-קרקעית דורשות טיפול מקצועי מיידי.</p>
+                        </div>
+                    </div>
+
+                    <div class="problem-card urgency-medium">
+                        <h4><i class="fas fa-certificate"></i> בעיות בחיפוי</h4>
+
+                        <div class="problem-symptoms">
+                            <h5><i class="fas fa-search"></i> סימפטומים</h5>
+                            <ul class="checklist">
+                                <li>אריחים רופפים</li>
+                                <li>סדקים בחיפוי</li>
+                                <li>שינוי צבע</li>
+                                <li>משטח מחוספס</li>
+                            </ul>
+                        </div>
+
+                        <div class="solution-steps">
+                            <h5><i class="fas fa-tools"></i> טיפול</h5>
+                            <ul class="checklist">
+                                <li>החלפת אריחים פגומים</li>
+                                <li>חידוש פוגות</li>
+                                <li>ניקוי עם חומרים מתאימים</li>
+                                <li>הגנה מפני כתמים</li>
+                                <li>תחזוקה מונעת</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-first-aid"></i> פתרונות מהירים לבעיות נפוצות</h2>
+
+                <h3>מדריך פתרון מהיר</h3>
+                <div class="problems-grid">
+                    <div class="problem-card">
+                        <h4><i class="fas fa-eye"></i> מים עכורים</h4>
+                        <p><strong>פתרון מהיר:</strong></p>
+                        <ul class="checklist">
+                            <li>בדקו pH ותקנו ל-7.2-7.6</li>
+                            <li>הוסיפו כלור עד 3 ppm</li>
+                            <li>הפעילו סינון 24 שעות</li>
+                            <li>נקו מסננים</li>
+                        </ul>
+                    </div>
+
+                    <div class="problem-card">
+                        <h4><i class="fas fa-nose"></i> ריח חזק של כלור</h4>
+                        <p><strong>פתרון מהיר:</strong></p>
+                        <ul class="checklist">
+                            <li>בדקו כלור משולב</li>
+                            <li>בצעו שוק כלור</li>
+                            <li>בדקו איזון pH</li>
+                            <li>הגבירו אוורור</li>
+                        </ul>
+                    </div>
+
+                    <div class="problem-card">
+                        <h4><i class="fas fa-eye-slash"></i> גירוי בעיניים</h4>
+                        <p><strong>פתרון מהיר:</strong></p>
+                        <ul class="checklist">
+                            <li>בדקו pH - צריך 7.2-7.6</li>
+                            <li>בדקו רמת כלור</li>
+                            <li>בדקו אלקליניות</li>
+                            <li>הימנעו משחייה עד לתיקון</li>
+                        </ul>
+                    </div>
+
+                    <div class="problem-card">
+                        <h4><i class="fas fa-sliders-h"></i> לחץ גבוה במסנן</h4>
+                        <p><strong>פתרון מהיר:</strong></p>
+                        <ul class="checklist">
+                            <li>בצעו שטיפה לאחור</li>
+                            <li>נקו סלי סקימר</li>
+                            <li>בדקו שסתומים</li>
+                            <li>החליפו חול במידת הצורך</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-tools"></i> ערכת כלים לתיקונים בסיסיים</h2>
+
+                <h3>כלים חיוניים</h3>
+                <ul class="checklist">
+                    <li><strong>מולטימטר:</strong> לבדיקת חשמל</li>
+                    <li><strong>מפתחות צינורות:</strong> לחיבורים</li>
+                    <li><strong>ערכת בדיקה כימית:</strong> לאיזון מים</li>
+                    <li><strong>מברשות ניקוי:</strong> לקירות ורצפה</li>
+                    <li><strong>חומרי איטום:</strong> לתיקונים קטנים</li>
+                    <li><strong>חלקי חילוף בסיסיים:</strong> אטמים, ברגים</li>
+                </ul>
+
+                <h3>מתי לפנות למקצועי</h3>
+                <div class="danger-box">
+                    <h4><i class="fas fa-phone"></i> התקשרו למקצועי במקרים הבאים</h4>
+                    <ul class="checklist">
+                        <li>תקלות חשמל או גז</li>
+                        <li>דליפות מבניות גדולות</li>
+                        <li>תקלות במשאבה הראשית</li>
+                        <li>בעיות במערכת חימום</li>
+                        <li>כל מצב שאינכם בטוחים בו</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="fas fa-lightbulb"></i> טיפ לחיסכון</h4>
+                    <p>תחזוקה מונעת סדירה מונעת רוב התקלות ויכולה לחסוך אלפי שקלים בתיקונים.</p>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin: 40px 0; padding: 30px; background: var(--light-gray); border-radius: 12px;">
+                <h3 style="color: var(--dark-blue); margin-bottom: 20px;">נתקלתם בתקלה שלא מופיעה כאן?</h3>
+                <p style="margin-bottom: 20px;">קבלו עזרה מקצועית מהטכנאים שלנו</p>
+                <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                    <i class="fas fa-wrench"></i> עזרה מקצועית
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

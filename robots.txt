@@ -1,0 +1,90 @@
+# Pool Israel - Robots.txt
+# בריכות שחייה בישראל | קבלנים מקצועיים ומדריכים מפורטים
+
+User-agent: *
+Allow: /
+
+# Allow all main pages
+Allow: /home.html
+Allow: /contractors_page.html
+Allow: /guides_page.html
+Allow: /quote_modal.html
+
+# Allow all guide pages
+Allow: /guide_*.html
+
+# Allow CSS, JS and images
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Allow specific API endpoints for search engines
+Allow: /api/contractors.php
+Allow: /api/quotes.php
+
+# Block admin and sensitive areas
+Disallow: /admin/
+Disallow: /contractor/
+Disallow: /setup/
+Disallow: /logs/
+Disallow: /uploads/
+Disallow: /includes/
+
+# Block private API endpoints
+Disallow: /api/admin.php
+Disallow: /api/contractor-quotes.php
+
+# Block debug and test files
+Disallow: /debug_*.html
+Disallow: /test_*.html
+Disallow: /*?debug=*
+Disallow: /*?test=*
+Disallow: *.sql
+Disallow: *.log
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://israel-pool.top/sitemap.xml
+
+# Additional directives for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /

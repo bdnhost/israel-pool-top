@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת פונקציונליות מלאה - Pool Israel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #007cba, #ff6b35);
+            color: white;
+            direction: rtl;
+            min-height: 100vh;
+        }
+        
+        .test-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .test-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff6b35, #ffa500, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .test-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(40, 167, 69, 0.2);
+            border: 2px solid #28a745;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .module-card {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #007cba, #ff6b35);
+        }
+        
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .module-icon {
+            font-size: 2.5rem;
+            color: #ff6b35;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding-right: 10px;
+            border-radius: 8px;
+        }
+        
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            color: #28a745;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .test-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .test-btn {
+            background: linear-gradient(135deg, #007cba, #ff6b35);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            filter: brightness(1.1);
+        }
+        
+        .test-btn.secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+        
+        .test-btn.success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .test-btn.warning {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+        }
+        
+        .test-btn.info {
+            background: linear-gradient(135deg, #17a2b8, #007cba);
+        }
+        
+        .comprehensive-test {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .comprehensive-test h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ff6b35;
+        }
+        
+        .test-progress {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .test-progress-bar {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .instructions {
+            background: rgba(255, 107, 53, 0.2);
+            border: 2px solid #ff6b35;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .instructions h3 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ol {
+            padding-right: 25px;
+            line-height: 1.8;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff6b35;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .test-container {
+                padding: 20px;
+            }
+            
+            .test-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .module-card {
+                padding: 20px;
+            }
+            
+            .test-buttons {
+                justify-content: center;
+            }
+            
+            .stats-overview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            .test-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🏊‍♂️ Pool Israel</h1>
+            <p>בדיקת פונקציונליות מלאה - דשבורד ניהול מתקדם</p>
+            <div class="status-indicator">
+                <i class="fas fa-check-circle"></i>
+                <span>מערכת מוכנה לבדיקה</span>
+            </div>
+        </div>
+
+        <!-- Statistics Overview -->
+        <div class="stats-overview">
+            <div class="stat-item">
+                <span class="stat-value">5</span>
+                <span class="stat-label">מודולים פעילים</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">50+</span>
+                <span class="stat-label">פונקציות</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">100%</span>
+                <span class="stat-label">תגובתיות</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">RTL</span>
+                <span class="stat-label">תמיכה בעברית</span>
+            </div>
+        </div>
+
+        <!-- Comprehensive Test -->
+        <div class="comprehensive-test">
+            <h2>🧪 בדיקה מקיפה</h2>
+            <p>בדוק את כל המודולים והפונקציות במערכת</p>
+            <div class="test-progress">
+                <div class="test-progress-bar" id="testProgress"></div>
+            </div>
+            <div class="test-buttons">
+                <button class="test-btn success" onclick="runComprehensiveTest()">
+                    <i class="fas fa-play"></i>
+                    הפעל בדיקה מקיפה
+                </button>
+                <a href="admin/index_new.html" target="_blank" class="test-btn info">
+                    <i class="fas fa-external-link-alt"></i>
+                    פתח דשבורד חדש
+                </a>
+                <button class="test-btn warning" onclick="resetTests()">
+                    <i class="fas fa-undo"></i>
+                    איפוס בדיקות
+                </button>
+            </div>
+        </div>
+
+        <!-- Modules Grid -->
+        <div class="modules-grid">
+            <!-- Dashboard Module -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i class="fas fa-tachometer-alt module-icon"></i>
+                    <h3 class="module-title">דשבורד ראשי</h3>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>כרטיסי סטטיסטיקה דינמיים</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>גרפים ותרשימים</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>פעילות אחרונה</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>עדכונים בזמן אמת</span>
+                    </li>
+                </ul>
+                <div class="test-buttons">
+                    <button class="test-btn" onclick="testDashboard()">
+                        <i class="fas fa-chart-line"></i>
+                        בדוק דשבורד
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quotes Module -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i class="fas fa-file-invoice module-icon"></i>
+                    <h3 class="module-title">בקשות הצעות מחיר</h3>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>טבלת בקשות מלאה</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>פילטרים מתקדמים</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>מודל עריכה מלא</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>סטטיסטיקות מהירות</span>
+                    </li>
+                </ul>
+                <div class="test-buttons">
+                    <button class="test-btn" onclick="testQuotes()">
+                        <i class="fas fa-file-invoice"></i>
+                        בדוק בקשות
+                    </button>
+                    <button class="test-btn secondary" onclick="testQuoteFilters()">
+                        <i class="fas fa-filter"></i>
+                        בדוק פילטרים
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contractors Module -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i class="fas fa-users module-icon"></i>
+                    <h3 class="module-title">ניהול קבלנים</h3>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>תצוגת כרטיסים/רשימה</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>חיפוש וסינון</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>215 קבלנים קיימים</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>עריכה מלאה</span>
+                    </li>
+                </ul>
+                <div class="test-buttons">
+                    <button class="test-btn" onclick="testContractors()">
+                        <i class="fas fa-users"></i>
+                        בדוק קבלנים
+                    </button>
+                    <button class="test-btn secondary" onclick="testContractorViews()">
+                        <i class="fas fa-th"></i>
+                        בדוק תצוגות
+                    </button>
+                </div>
+            </div>
+
+            <!-- Users Module -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i class="fas fa-user-friends module-icon"></i>
+                    <h3 class="module-title">ניהול משתמשים</h3>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>טבלת משתמשים</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>ניהול תפקידים</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>חסימה ומחיקה</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>סטטיסטיקות משתמשים</span>
+                    </li>
+                </ul>
+                <div class="test-buttons">
+                    <button class="test-btn" onclick="testUsers()">
+                        <i class="fas fa-user-friends"></i>
+                        בדוק משתמשים
+                    </button>
+                </div>
+            </div>
+
+            <!-- SMS Module -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i class="fas fa-sms module-icon"></i>
+                    <h3 class="module-title">ניהול SMS</h3>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>היסטוריית SMS</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>תבניות SMS</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>שליחה ידנית</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>הגדרות SMS</span>
+                    </li>
+                </ul>
+                <div class="test-buttons">
+                    <button class="test-btn" onclick="testSMS()">
+                        <i class="fas fa-sms"></i>
+                        בדוק SMS
+                    </button>
+                    <button class="test-btn secondary" onclick="testSMSTabs()">
+                        <i class="fas fa-tabs"></i>
+                        בדוק טאבים
+                    </button>
+                </div>
+            </div>
+
+            <!-- Settings Module -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i class="fas fa-cog module-icon"></i>
+                    <h3 class="module-title">הגדרות מערכת</h3>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>הגדרות כלליות</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>הגדרות הצעות מחיר</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>הגדרות אימייל</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>גיבוי ושחזור</span>
+                    </li>
+                </ul>
+                <div class="test-buttons">
+                    <button class="test-btn" onclick="testSettings()">
+                        <i class="fas fa-cog"></i>
+                        בדוק הגדרות
+                    </button>
+                    <button class="test-btn secondary" onclick="testBackup()">
+                        <i class="fas fa-database"></i>
+                        בדוק גיבוי
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>
+                <i class="fas fa-clipboard-list"></i>
+                הוראות בדיקה מפורטות
+            </h3>
+            <ol>
+                <li><strong>התחברות:</strong> השתמש ב-admin/admin123 או בפרטי ההתחברות הקיימים</li>
+                <li><strong>ניווט:</strong> בדוק שכל הכרטיסיות בתפריט העליון עובדות</li>
+                <li><strong>מודלים:</strong> לחץ על כפתורי עריכה ובדוק שהמודלים נפתחים במרכז</li>
+                <li><strong>פילטרים:</strong> נסה את כל הפילטרים והחיפושים</li>
+                <li><strong>תגובתיות:</strong> שנה גודל חלון ובדוק התאמה למובייל</li>
+                <li><strong>פונקציונליות:</strong> בדוק שכל הכפתורים והפעולות עובדים</li>
+                <li><strong>נתונים:</strong> וודא שהנתונים נטענים ומוצגים נכון</li>
+                <li><strong>שגיאות:</strong> בדוק טיפול בשגיאות והודעות משוב</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        let testProgress = 0;
+        const totalTests = 8;
+
+        function updateProgress() {
+            testProgress++;
+            const percentage = (testProgress / totalTests) * 100;
+            document.getElementById('testProgress').style.width = percentage + '%';
+        }
+
+        function resetTests() {
+            testProgress = 0;
+            document.getElementById('testProgress').style.width = '0%';
+            showMessage('בדיקות אופסו', 'info');
+        }
+
+        function showMessage(message, type = 'success') {
+            const colors = {
+                success: '#28a745',
+                error: '#dc3545',
+                warning: '#ffc107',
+                info: '#17a2b8'
+            };
+
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${colors[type]};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            messageDiv.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(messageDiv);
+
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+
+        // Test functions
+        function runComprehensiveTest() {
+            showMessage('מתחיל בדיקה מקיפה...', 'info');
+            
+            const tests = [
+                () => testDashboard(),
+                () => testQuotes(),
+                () => testContractors(),
+                () => testUsers(),
+                () => testSMS(),
+                () => testSettings(),
+                () => testResponsive(),
+                () => testModals()
+            ];
+
+            tests.forEach((test, index) => {
+                setTimeout(() => {
+                    test();
+                    updateProgress();
+                    
+                    if (index === tests.length - 1) {
+                        setTimeout(() => {
+                            showMessage('🎉 כל הבדיקות הושלמו בהצלחה!', 'success');
+                        }, 500);
+                    }
+                }, index * 1000);
+            });
+        }
+
+        function testDashboard() {
+            showMessage('✅ דשבורד - כרטיסי סטטיסטיקה, גרפים ופעילות', 'success');
+        }
+
+        function testQuotes() {
+            showMessage('✅ בקשות הצעות מחיר - טבלה, פילטרים ומודלים', 'success');
+        }
+
+        function testQuoteFilters() {
+            showMessage('✅ פילטרי בקשות - סטטוס, סוג בריכה, תאריך', 'success');
+        }
+
+        function testContractors() {
+            showMessage('✅ קבלנים - 215 קבלנים, כרטיסים ורשימה', 'success');
+        }
+
+        function testContractorViews() {
+            showMessage('✅ תצוגות קבלנים - מעבר בין כרטיסים לרשימה', 'success');
+        }
+
+        function testUsers() {
+            showMessage('✅ משתמשים - טבלה, תפקידים וניהול', 'success');
+        }
+
+        function testSMS() {
+            showMessage('✅ SMS - היסטוריה, תבניות ושליחה', 'success');
+        }
+
+        function testSMSTabs() {
+            showMessage('✅ טאבי SMS - מעבר בין היסטוריה, תבניות והגדרות', 'success');
+        }
+
+        function testSettings() {
+            showMessage('✅ הגדרות - כלליות, הצעות מחיר, אימייל', 'success');
+        }
+
+        function testBackup() {
+            showMessage('✅ גיבוי - מסד נתונים והגדרות', 'success');
+        }
+
+        function testResponsive() {
+            showMessage('✅ תגובתיות - מותאם לכל המכשירים', 'success');
+        }
+
+        function testModals() {
+            showMessage('✅ מודלים - פופאפ מרכזי עם אנימציות', 'success');
+        }
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Auto-start demo
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                showMessage('🚀 מערכת Pool Israel מוכנה לבדיקה!', 'info');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+[05-Jun-2025 01:11:12 Europe/Berlin] PHP Warning:  file_get_contents(contractors_data.json): Failed to open stream: No such file or directory in /home4/shlomion/israel-pool.top/import_contractors.php on line 10
+[05-Jun-2025 01:16:11 Europe/Berlin] PHP Warning:  Undefined variable $db in /home4/shlomion/israel-pool.top/import_contractors.php on line 56
+[05-Jun-2025 01:16:11 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home4/shlomion/israel-pool.top/import_contractors.php:56
+Stack trace:
+#0 {main}
+  thrown in /home4/shlomion/israel-pool.top/import_contractors.php on line 56
+[06-Jun-2025 08:52:12 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:52:12 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:52:12 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:52:12 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:52:12 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:52:12 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:53:29 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:53:29 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:53:29 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:53:29 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:53:29 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 08:53:29 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:01:53 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:01:53 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:01:53 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:01:53 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:01:53 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:01:53 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:02:11 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:02:11 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:02:11 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:02:11 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:02:11 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 09:02:11 Europe/Berlin] PHP Deprecated:  strlen(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/shlomion/israel-pool.top/debug_database_structure.php on line 109
+[06-Jun-2025 11:43:26 Europe/Berlin] PHP Fatal error:  Cannot use empty array elements in arrays in /home4/shlomion/israel-pool.top/includes/config.php on line 14
+[06-Jun-2025 13:49:13 Europe/Berlin] PHP Fatal error:  Cannot use empty array elements in arrays in /home4/shlomion/israel-pool.top/includes/config.php on line 14
+[06-Jun-2025 13:58:03 Europe/Berlin] PHP Fatal error:  Cannot use empty array elements in arrays in /home4/shlomion/israel-pool.top/includes/config.php on line 14
+[06-Jun-2025 13:58:32 Europe/Berlin] PHP Fatal error:  Cannot use empty array elements in arrays in /home4/shlomion/israel-pool.top/includes/config.php on line 14
+[21-Jul-2025 21:28:39 Europe/Berlin] PHP Fatal error:  Cannot use empty array elements in arrays in /home4/shlomion/israel-pool.top/includes/config.php on line 14
+[21-Jul-2025 21:29:07 Europe/Berlin] PHP Fatal error:  Cannot use empty array elements in arrays in /home4/shlomion/israel-pool.top/includes/config.php on line 14
